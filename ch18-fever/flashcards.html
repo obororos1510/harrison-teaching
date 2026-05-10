@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light">
+<title>Fever Flashcards — Harrison Ch. 18</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,800&family=JetBrains+Mono:wght@400;500;700&family=IBM+Plex+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light only;
+  --ink: #1a1612;
+  --paper: #f5f0e6;
+  --paper-warm: #ede4d3;
+  --rule: #2a241d;
+  --accent-fire: #c8341a;
+  --accent-cool: #1e4d6b;
+  --accent-warm: #b8742a;
+  --accent-mute: #6b5d4f;
+  --highlight: #f4d35e;
+  --serif: 'Fraunces', 'Georgia', 'Times New Roman', serif;
+  --thai: 'IBM Plex Sans Thai', 'Sukhumvit Set', 'Noto Sans Thai', -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', 'SF Mono', 'Menlo', monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+:root { color-scheme: light only; }
+html, body { background-color: #f5f0e6 !important; color: #1a1612 !important; }
+}
+
+- { box-sizing: border-box; margin: 0; padding: 0; word-break: normal; overflow-wrap: break-word; }
+
+html {
+scroll-behavior: smooth;
+background-color: #f5f0e6 !important;
+color-scheme: light only;
+}
+
+body {
+font-family: var(–thai);
+background-color: #f5f0e6 !important;
+color: #1a1612 !important;
+line-height: 1.6;
+overflow-x: hidden;
+min-height: 100vh;
+background-image:
+radial-gradient(circle at 20% 10%, rgba(200, 52, 26, 0.04) 0%, transparent 40%),
+radial-gradient(circle at 80% 70%, rgba(30, 77, 107, 0.04) 0%, transparent 40%),
+repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(26, 22, 18, 0.012) 2px, rgba(26, 22, 18, 0.012) 3px);
+}
+
+/* ===== HEADER ===== */
+.masthead {
+border-bottom: 3px double #2a241d;
+padding: 24px 40px;
+display: grid;
+grid-template-columns: 1fr auto 1fr;
+align-items: center;
+gap: 24px;
+background-color: #f5f0e6 !important;
+}
+
+.masthead-meta {
+font-family: var(–mono);
+font-size: 11px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: #6b5d4f;
+}
+
+.masthead-meta.right { text-align: right; }
+
+.masthead-title {
+font-family: var(–serif);
+font-weight: 800;
+font-style: italic;
+font-size: 28px;
+letter-spacing: -0.02em;
+text-align: center;
+}
+
+.masthead-title small {
+display: block;
+font-style: normal;
+font-weight: 400;
+font-size: 11px;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+margin-top: 4px;
+color: #c8341a;
+font-family: var(–mono);
+}
+
+/* ===== CONTROLS ===== */
+.controls {
+max-width: 1080px;
+margin: 0 auto;
+padding: 32px 40px 16px;
+}
+
+.category-tabs {
+display: flex;
+flex-wrap: wrap;
+gap: 0;
+border-bottom: 2px solid #1a1612;
+margin-bottom: 24px;
+}
+
+.tab {
+font-family: var(–mono);
+font-size: 11px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+padding: 12px 20px;
+background: transparent;
+border: none;
+border-bottom: 3px solid transparent;
+color: #6b5d4f;
+cursor: pointer;
+transition: all 0.2s ease;
+margin-bottom: -2px;
+font-weight: 500;
+}
+
+.tab:hover { color: #c8341a; }
+
+.tab.active {
+color: #c8341a;
+border-bottom-color: #c8341a;
+font-weight: 700;
+}
+
+.tab .count {
+font-size: 9px;
+margin-left: 6px;
+opacity: 0.6;
+}
+
+/* ===== PROGRESS ===== */
+.progress-bar {
+display: flex;
+align-items: center;
+gap: 16px;
+margin-bottom: 8px;
+}
+
+.progress-track {
+flex: 1;
+height: 6px;
+background: rgba(26, 22, 18, 0.1);
+position: relative;
+overflow: hidden;
+}
+
+.progress-fill {
+height: 100%;
+background: #c8341a;
+width: 0;
+transition: width 0.4s ease;
+}
+
+.progress-text {
+font-family: var(–mono);
+font-size: 11px;
+letter-spacing: 0.1em;
+color: #6b5d4f;
+text-transform: uppercase;
+white-space: nowrap;
+}
+
+.progress-text strong {
+color: #c8341a;
+font-weight: 700;
+}
+
+/* ===== CARD AREA ===== */
+.card-area {
+max-width: 1080px;
+margin: 0 auto;
+padding: 32px 40px 60px;
+min-height: 60vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.card-meta {
+display: flex;
+justify-content: space-between;
+width: 100%;
+margin-bottom: 16px;
+font-family: var(–mono);
+font-size: 10px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: #6b5d4f;
+}
+
+.card-meta .category-tag {
+color: #c8341a;
+font-weight: 700;
+}
+
+/* ===== FLIP CARD ===== */
+.card-container {
+width: 100%;
+max-width: 720px;
+height: 440px;
+perspective: 2000px;
+margin-bottom: 32px;
+}
+
+.card {
+position: relative;
+width: 100%;
+height: 100%;
+transition: transform 0.7s cubic-bezier(0.4, 0.0, 0.2, 1);
+transform-style: preserve-3d;
+cursor: pointer;
+}
+
+.card.flipped { transform: rotateY(180deg); }
+
+.card-face {
+position: absolute;
+width: 100%;
+height: 100%;
+backface-visibility: hidden;
+-webkit-backface-visibility: hidden;
+display: flex;
+flex-direction: column;
+padding: 48px 56px;
+border: 1px solid #1a1612;
+background-color: #ede4d3;
+}
+
+.card-face.front {
+background-color: #f5f0e6;
+}
+
+.card-face.back {
+transform: rotateY(180deg);
+background-color: #1a1612;
+color: #f5f0e6;
+}
+
+.card-face.back::before {
+content: ‘’;
+position: absolute;
+inset: 0;
+background-image: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(245, 240, 230, 0.02) 20px, rgba(245, 240, 230, 0.02) 21px);
+pointer-events: none;
+}
+
+.face-label {
+font-family: var(–mono);
+font-size: 10px;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+color: #c8341a;
+margin-bottom: 24px;
+}
+
+.card-face.back .face-label { color: #f4d35e; }
+
+.face-content {
+flex: 1;
+display: flex;
+flex-direction: column;
+justify-content: center;
+position: relative;
+}
+
+.question {
+font-family: var(–serif);
+font-size: clamp(24px, 3.5vw, 36px);
+font-weight: 600;
+line-height: 1.25;
+letter-spacing: -0.01em;
+margin-bottom: 16px;
+}
+
+.question .em {
+font-style: italic;
+color: #c8341a;
+}
+
+.hint {
+font-family: var(–thai);
+font-size: 14px;
+color: #6b5d4f;
+font-style: italic;
+margin-top: 12px;
+line-height: 1.5;
+}
+
+.answer-main {
+font-family: var(–serif);
+font-size: clamp(20px, 2.6vw, 28px);
+font-weight: 600;
+line-height: 1.3;
+letter-spacing: -0.01em;
+margin-bottom: 16px;
+color: #f4d35e;
+}
+
+.answer-detail {
+font-family: var(–thai);
+font-size: 14px;
+line-height: 1.6;
+color: #ede4d3;
+margin-bottom: 8px;
+}
+
+.answer-detail strong {
+color: #f5f0e6;
+font-weight: 600;
+}
+
+.answer-key {
+display: inline-block;
+font-family: var(–mono);
+font-size: 11px;
+background-color: #c8341a;
+color: #f5f0e6;
+padding: 4px 10px;
+letter-spacing: 0.05em;
+margin-top: 12px;
+margin-right: 6px;
+}
+
+.flip-hint {
+position: absolute;
+bottom: 16px;
+right: 0;
+font-family: var(–mono);
+font-size: 10px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: #6b5d4f;
+}
+
+.card-face.back .flip-hint { color: #b8742a; }
+
+/* ===== ACTIONS ===== */
+.actions {
+display: flex;
+gap: 12px;
+width: 100%;
+max-width: 720px;
+flex-wrap: wrap;
+}
+
+.btn {
+flex: 1;
+min-width: 140px;
+padding: 16px 20px;
+font-family: var(–mono);
+font-size: 11px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+border: 1px solid #1a1612;
+background-color: transparent;
+color: #1a1612;
+cursor: pointer;
+transition: all 0.2s ease;
+font-weight: 600;
+}
+
+.btn:hover { background-color: #1a1612; color: #f5f0e6; }
+
+.btn-primary { background-color: #c8341a; border-color: #c8341a; color: #f5f0e6; }
+.btn-primary:hover { background-color: #1a1612; border-color: #1a1612; color: #f4d35e; }
+
+.btn-success { border-color: #1e4d6b; color: #1e4d6b; }
+.btn-success:hover { background-color: #1e4d6b; color: #f5f0e6; }
+
+.btn-fail { border-color: #c8341a; color: #c8341a; }
+.btn-fail:hover { background-color: #c8341a; color: #f5f0e6; }
+
+.btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.btn-icon {
+display: inline-block;
+margin-right: 8px;
+font-style: italic;
+font-family: var(–serif);
+font-weight: 700;
+}
+
+/* ===== JUDGMENT BUTTONS (after flip) ===== */
+.judgment {
+display: none;
+gap: 12px;
+width: 100%;
+max-width: 720px;
+flex-wrap: wrap;
+}
+
+.judgment.visible { display: flex; }
+
+.judgment-prompt {
+font-family: var(–mono);
+font-size: 10px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: #6b5d4f;
+text-align: center;
+width: 100%;
+margin-bottom: 4px;
+}
+
+/* ===== COMPLETION ===== */
+.completion {
+display: none;
+flex-direction: column;
+align-items: center;
+text-align: center;
+padding: 60px 20px;
+max-width: 600px;
+margin: 0 auto;
+}
+
+.completion.visible { display: flex; }
+
+.completion-num {
+font-family: var(–serif);
+font-style: italic;
+font-weight: 800;
+font-size: 120px;
+line-height: 0.85;
+color: #c8341a;
+margin-bottom: 16px;
+}
+
+.completion-title {
+font-family: var(–serif);
+font-size: 32px;
+font-weight: 600;
+font-style: italic;
+margin-bottom: 12px;
+}
+
+.completion-stats {
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+gap: 24px;
+margin: 32px 0;
+width: 100%;
+}
+
+.stat-item { text-align: center; }
+
+.stat-num {
+font-family: var(–serif);
+font-style: italic;
+font-weight: 800;
+font-size: 48px;
+line-height: 1;
+color: #1a1612;
+margin-bottom: 4px;
+}
+
+.stat-num.good { color: #1e4d6b; }
+.stat-num.review { color: #b8742a; }
+
+.stat-label {
+font-family: var(–mono);
+font-size: 10px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: #6b5d4f;
+}
+
+.completion-msg {
+font-family: var(–serif);
+font-style: italic;
+font-size: 18px;
+line-height: 1.5;
+color: #2a241d;
+margin-bottom: 32px;
+max-width: 480px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+border-top: 3px double #2a241d;
+padding: 32px 40px;
+text-align: center;
+font-family: var(–mono);
+font-size: 10px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: #6b5d4f;
+background-color: #f5f0e6 !important;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+.masthead {
+grid-template-columns: 1fr;
+padding: 16px 20px;
+gap: 4px;
+text-align: center;
+}
+.masthead-meta { display: none; }
+.masthead-title { font-size: 22px; }
+
+.controls { padding: 24px 20px 12px; }
+.category-tabs { gap: 0; }
+.tab { padding: 10px 12px; font-size: 10px; letter-spacing: 0.1em; }
+.tab .count { display: none; }
+
+.card-area { padding: 20px 20px 40px; }
+.card-container { height: 480px; }
+.card-face { padding: 32px 28px; }
+
+.actions { flex-direction: column; }
+.btn { min-width: 100%; padding: 14px; }
+
+.judgment { flex-direction: column; }
+
+.completion-num { font-size: 80px; }
+.completion-title { font-size: 24px; }
+.completion-stats { gap: 12px; }
+.stat-num { font-size: 36px; }
+.stat-label { font-size: 9px; letter-spacing: 0.15em; }
+
+footer { padding: 24px 20px; }
+}
+
+@media (max-width: 480px) {
+.card-container { height: 520px; }
+.question { font-size: 22px; }
+.answer-main { font-size: 18px; }
+}
+</style>
+
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-meta">Vol. 18 · Flashcards</div>
+  <h1 class="masthead-title">
+    Fever Flashcards
+    <small>Harrison's IM 21e · Active Recall</small>
+  </h1>
+  <div class="masthead-meta right">Tap card to flip</div>
+</header>
+
+<div class="controls">
+  <div class="category-tabs">
+    <button class="tab active" data-cat="all">All<span class="count" id="count-all"></span></button>
+    <button class="tab" data-cat="def">Definitions<span class="count" id="count-def"></span></button>
+    <button class="tab" data-cat="mech">Mechanism<span class="count" id="count-mech"></span></button>
+    <button class="tab" data-cat="mol">Molecules<span class="count" id="count-mol"></span></button>
+    <button class="tab" data-cat="clin">Clinical<span class="count" id="count-clin"></span></button>
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-text">
+      Card <strong id="currentNum">1</strong> / <span id="totalNum">20</span>
+    </div>
+  </div>
+</div>
+
+<div class="card-area" id="cardArea">
+  <div class="card-meta">
+    <div class="category-tag" id="catTag">DEFINITION</div>
+    <div id="diffTag">Foundation</div>
+  </div>
+
+  <div class="card-container">
+    <div class="card" id="card">
+      <div class="card-face front">
+        <div class="face-label">Question</div>
+        <div class="face-content">
+          <div class="question" id="questionText">Loading...</div>
+          <div class="hint" id="hintText"></div>
+        </div>
+        <div class="flip-hint">▸ Tap to reveal</div>
+      </div>
+      <div class="card-face back">
+        <div class="face-label">Answer</div>
+        <div class="face-content">
+          <div class="answer-main" id="answerMain"></div>
+          <div class="answer-detail" id="answerDetail"></div>
+          <div id="answerKeys"></div>
+        </div>
+        <div class="flip-hint">◂ Tap to flip back</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions" id="actionsInitial">
+    <button class="btn" id="btnPrev"><span class="btn-icon">◂</span>Previous</button>
+    <button class="btn btn-primary" id="btnFlip">Reveal Answer</button>
+    <button class="btn" id="btnNext">Next<span class="btn-icon">▸</span></button>
+  </div>
+
+  <div class="judgment" id="actionsJudgment">
+    <div class="judgment-prompt">How well did you know this?</div>
+    <button class="btn btn-fail" data-result="hard">Need to review</button>
+    <button class="btn btn-success" data-result="known">I knew it</button>
+  </div>
+</div>
+
+<div class="completion" id="completion">
+  <div class="completion-num">★</div>
+  <div class="completion-title">Session Complete</div>
+  <div class="completion-stats">
+    <div class="stat-item">
+      <div class="stat-num good" id="finalKnown">0</div>
+      <div class="stat-label">Knew it</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num review" id="finalReview">0</div>
+      <div class="stat-label">Review</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" id="finalTotal">0</div>
+      <div class="stat-label">Total</div>
+    </div>
+  </div>
+  <p class="completion-msg" id="completionMsg">เก่งมาก! ลองทบทวนใหม่อีกรอบ หรือเปลี่ยนหมวดเพื่อขยายความรู้</p>
+  <div class="actions" style="max-width: 480px;">
+    <button class="btn" id="btnReviewHard">Review Hard Cards</button>
+    <button class="btn btn-primary" id="btnRestart">Start Over</button>
+  </div>
+</div>
+
+<footer>
+  Teaching Material · Harrison's Internal Medicine 21st Ed · Ch. 18 Fever<br>
+  สื่อการสอนเพื่อการศึกษา · ห้ามใช้แทนการตัดสินใจทางคลินิก
+</footer>
+
+<script>
+const cards = [
+  // ===== DEFINITIONS =====
+  {
+    cat: 'def', catLabel: 'Definition', diff: 'Foundation',
+    q: 'นิยามของ <span class="em">fever</span> ทางคลินิกคืออะไร?',
+    hint: 'ตอบเป็นช่วงอุณหภูมิ — ตอนเช้ากับตอนเย็นต่างกัน',
+    aMain: 'Morning > 37.2°C  หรือ  Evening > 37.7°C',
+    aDetail: 'อุณหภูมิแกนกาย (core temp) สูงกว่า circadian variation ปกติ โดย <strong>set point ของ hypothalamus เลื่อนขึ้น</strong> — ต่างจาก hyperthermia ที่ set point ปกติ',
+    keys: ['Set point ↑', 'Regulated process']
+  },
+  {
+    cat: 'def', catLabel: 'Definition', diff: 'Foundation',
+    q: 'อุณหภูมิเท่าไหร่ถึงเรียกว่า <span class="em">hyperpyrexia</span>?',
+    hint: 'พบในภาวะรุนแรงเช่น CNS hemorrhage',
+    aMain: '> 41.5°C',
+    aDetail: 'Hyperpyrexia คือ fever ที่สูงมากผิดปกติ พบใน <strong>severe infection</strong> (gram-neg sepsis), <strong>CNS hemorrhage</strong>, หรือ malignant fever ต้องรักษาเร่งด่วน',
+    keys: ['> 41.5°C', 'Medical emergency']
+  },
+  {
+    cat: 'def', catLabel: 'Definition', diff: 'Critical',
+    q: '<span class="em">Hyperthermia</span> ต่างจาก <span class="em">fever</span> อย่างไร?',
+    hint: 'คิดเรื่อง set point ของ hypothalamus',
+    aMain: 'Set point ปกติ vs. Set point เลื่อนขึ้น',
+    aDetail: '<strong>Hyperthermia:</strong> heat gain > heat loss โดย set point ปกติ — ระบบควบคุมอุณหภูมิ overwhelmed<br><strong>Fever:</strong> set point เลื่อนขึ้น (regulated) ผ่าน PGE₂',
+    keys: ['Heat stroke = Hyperthermia', 'NSAIDs ไม่ได้ผลใน hyperthermia']
+  },
+  {
+    cat: 'def', catLabel: 'Definition', diff: 'Advanced',
+    q: '<span class="em">Pyrogen</span> คืออะไร? แบ่งเป็นกี่ประเภท?',
+    hint: 'มีทั้งจากภายในและภายนอกร่างกาย',
+    aMain: 'สารที่ทำให้เกิดไข้ — Exogenous & Endogenous',
+    aDetail: '<strong>Exogenous:</strong> มาจากภายนอก เช่น LPS, peptidoglycan, viral proteins<br><strong>Endogenous:</strong> ร่างกายสร้างเอง = pyrogenic cytokines (IL-1, IL-6, TNF-α)<br>ทั้งคู่สุดท้ายกระตุ้นการสร้าง <strong>PGE₂</strong>',
+    keys: ['Exo → Endo → PGE₂']
+  },
+
+  // ===== MECHANISM =====
+  {
+    cat: 'mech', catLabel: 'Mechanism', diff: 'Critical',
+    q: 'Pyrogen ผ่าน <span class="em">blood-brain barrier</span> ได้อย่างไร?',
+    hint: 'มี 3 เส้นทาง — เส้นทางหลักคือบริเวณที่ไม่มี BBB',
+    aMain: 'ผ่าน OVLT — circumventricular organ',
+    aDetail: '<strong>OVLT</strong> (organum vasculosum laminae terminalis) อยู่ใกล้ anterior hypothalamus เป็นบริเวณที่ <strong>ไม่มี BBB</strong><br>เส้นทางอื่น: (2) brain endothelial cells สร้าง PGE₂ เอง (3) Vagal afferent จาก hepatic Kupffer cells',
+    keys: ['OVLT = no BBB', '"Sensor" of cytokines']
+  },
+  {
+    cat: 'mech', catLabel: 'Mechanism', diff: 'Critical',
+    q: 'Final common mediator ของ fever คืออะไร?',
+    hint: 'เป็นเป้าหมายของ NSAIDs',
+    aMain: 'Prostaglandin E₂ (PGE₂)',
+    aDetail: 'ที่ vascular endothelium ใกล้ OVLT: Arachidonic acid → (<strong>COX-2</strong>) → PGH₂ → PGE₂<br>PGE₂ จับ <strong>EP3 receptors</strong> บน warm-sensitive neurons ใน preoptic area → ลด firing rate → set point เลื่อนขึ้น',
+    keys: ['COX-2 → PGE₂ → EP3', 'NSAIDs block here']
+  },
+  {
+    cat: 'mech', catLabel: 'Mechanism', diff: 'Foundation',
+    q: 'ทำไมผู้ป่วยรู้สึก <span class="em">หนาวสั่น</span> ตอนไข้กำลังขึ้น?',
+    hint: 'คิดเรื่อง set point ใหม่กับอุณหภูมิปัจจุบัน',
+    aMain: 'อุณหภูมิจริง < set point ใหม่',
+    aDetail: 'เมื่อ set point เลื่อนจาก 37 → 39°C, hypothalamus "เข้าใจ" ว่าร่างกายเย็นเกินไป → สั่งกลไกเพิ่มความร้อน:<br>• <strong>Shivering</strong> (กล้ามเนื้อสั่น)<br>• <strong>Vasoconstriction</strong> (ผิวซีดเย็น)<br>• <strong>Behavioral</strong> (ห่มผ้า)',
+    keys: ['Shivering = heat production', 'Vasoconstriction = heat conservation']
+  },
+  {
+    cat: 'mech', catLabel: 'Mechanism', diff: 'Foundation',
+    q: 'ทำไมผู้ป่วย <span class="em">เหงื่อแตก</span> ตอนไข้ลด?',
+    hint: 'Defervescence phase',
+    aMain: 'อุณหภูมิจริง > set point ใหม่ (ที่ลดลง)',
+    aDetail: 'เมื่อ pyrogen หายไป หรือ NSAIDs ยับยั้ง PGE₂ → set point กลับเป็น 37°C → ตอนนี้ร่างกาย "ร้อนเกิน" → สั่งระบายความร้อน:<br>• <strong>Vasodilation</strong> (ผิวแดง อบอุ่น)<br>• <strong>Diaphoresis</strong> (เหงื่อท่วม)',
+    keys: ['Diaphoresis = defervescence']
+  },
+  {
+    cat: 'mech', catLabel: 'Mechanism', diff: 'Advanced',
+    q: 'BMR เพิ่มขึ้นเท่าไหร่ต่อทุก 1°C ของไข้?',
+    hint: 'ตัวเลขประมาณ 10-15%',
+    aMain: '~13% per 1°C',
+    aDetail: 'อุณหภูมิที่สูงขึ้นทำให้ <strong>metabolic rate เพิ่มขึ้น ~13% ต่อ 1°C</strong> — นี่คือสาเหตุที่ผู้ป่วยไข้สูงต้องการพลังงานมากขึ้น, dehydration เร็ว, และอ่อนเพลีย<br>ผู้ป่วย critically ill อาจไม่ทนต่อ metabolic demand ที่เพิ่มขึ้น',
+    keys: ['↑ O₂ consumption', '↑ Caloric needs']
+  },
+
+  // ===== MOLECULES =====
+  {
+    cat: 'mol', catLabel: 'Molecules', diff: 'Critical',
+    q: '<span class="em">Pyrogenic cytokine</span> ที่ทรงพลังที่สุดคือตัวไหน?',
+    hint: 'แม้ในปริมาณ pg/mL ก็ก่อไข้ได้',
+    aMain: 'IL-1 (Interleukin-1)',
+    aDetail: 'มี 2 forms: <strong>IL-1α</strong> (membrane-bound) และ <strong>IL-1β</strong> (secreted)<br>ออกฤทธิ์ผ่าน IL-1 receptor → induce COX-2 → PGE₂<br>เป็น "endogenous pyrogen" ตัวแรกที่ถูกค้นพบ',
+    keys: ['Most potent pyrogen', 'pg/mL = enough']
+  },
+  {
+    cat: 'mol', catLabel: 'Molecules', diff: 'Critical',
+    q: 'Cytokine ตัวไหนที่ <span class="em">essential</span> ที่สุดในการเป็นตัวกลางสู่ CNS?',
+    hint: 'KO mice ของ cytokine นี้ไม่เป็นไข้',
+    aMain: 'IL-6',
+    aDetail: '<strong>IL-6 knockout mice ไม่เป็นไข้</strong> — แสดงว่า IL-6 จำเป็นในการส่งสัญญาณสู่สมอง<br>IL-6 ยังก่อ <strong>acute-phase response</strong> ที่ตับ (CRP, fibrinogen, hepcidin)<br>เป็น marker ที่ใช้บ่งชี้ severity ของ inflammation',
+    keys: ['Essential mediator', '→ Acute-phase proteins']
+  },
+  {
+    cat: 'mol', catLabel: 'Molecules', diff: 'Advanced',
+    q: '<span class="em">TLR4</span> จดจำสารอะไร?',
+    hint: 'PAMP จาก gram-negative bacteria',
+    aMain: 'LPS (Lipopolysaccharide)',
+    aDetail: 'TLR4 บน monocytes/macrophages จดจำ <strong>LPS</strong> จาก gram-negative bacteria → activate NF-κB → transcription ของ pyrogenic cytokines<br>TLRs อื่น: <strong>TLR2</strong> = peptidoglycan/lipoteichoic acid (gram-pos), <strong>TLR3</strong> = dsRNA (virus)',
+    keys: ['TLR4 = LPS', 'TLR2 = gram-pos', 'TLR3 = virus']
+  },
+  {
+    cat: 'mol', catLabel: 'Molecules', diff: 'Critical',
+    q: 'NSAIDs ออกฤทธิ์ <span class="em">antipyretic</span> โดยยับยั้งที่จุดไหน?',
+    hint: 'เอนไซม์ที่สร้าง PGE₂',
+    aMain: 'COX-2 (Cyclooxygenase-2)',
+    aDetail: 'NSAIDs ยับยั้ง COX-2 → ไม่มี PGE₂ → ไม่มีการเลื่อน set point<br><strong>Acetaminophen</strong> ออกฤทธิ์ใน CNS เป็นหลัก ไม่ใช่ peripheral COX inhibition แบบ NSAIDs ทั่วไป<br>ทั้งคู่ลด fever แต่ <strong>ใช้ใน hyperthermia ไม่ได้ผล</strong> เพราะไม่ใช่ปัญหา PGE₂',
+    keys: ['Block COX-2', 'No use in hyperthermia']
+  },
+  {
+    cat: 'mol', catLabel: 'Molecules', diff: 'Advanced',
+    q: '<span class="em">Cryogen</span> คืออะไร? ยกตัวอย่าง',
+    hint: 'ทำหน้าที่ตรงข้ามกับ pyrogen',
+    aMain: 'สารที่ลดหรือจำกัด fever',
+    aDetail: '<strong>Endogenous antipyretics</strong> ที่ร่างกายผลิตเอง:<br>• <strong>AVP</strong> (Arginine vasopressin) — ผ่าน V1 receptor<br>• <strong>α-MSH</strong> — ทรงพลังกว่า acetaminophen ~25,000 เท่า เมื่อฉีดในสมอง<br>• <strong>Glucocorticoids</strong> — ยับยั้ง phospholipase A₂<br>• <strong>IL-10</strong> — anti-inflammatory<br>เป็นเหตุผลที่ fever มัก <strong>ไม่เกิน 41°C</strong>',
+    keys: ['Counter-regulators', 'Limit fever ceiling']
+  },
+
+  // ===== CLINICAL =====
+  {
+    cat: 'clin', catLabel: 'Clinical', diff: 'Critical',
+    q: 'ผู้ป่วยร้อนตัว ผิว <span class="em">ร้อนแห้ง</span> ไม่มีเหงื่อ — น่าจะเป็นอะไร?',
+    hint: 'เบาะแสสำคัญคือผิวแห้ง',
+    aMain: 'Heat stroke (Hyperthermia)',
+    aDetail: 'ผิว <strong>ร้อนแห้ง</strong> = ระบบระบายความร้อน (sweating) ล้มเหลว = <strong>hyperthermia</strong>, ไม่ใช่ fever<br><strong>Treatment:</strong> External cooling ทันที ไม่ใช่ paracetamol — antipyretics ใช้ไม่ได้ผลใน hyperthermia เพราะ set point ปกติอยู่แล้ว',
+    keys: ['Dry skin = warning', 'Cool externally']
+  },
+  {
+    cat: 'clin', catLabel: 'Clinical', diff: 'Critical',
+    q: 'อะไรคือสาเหตุของ <span class="em">malignant hyperthermia</span>?',
+    hint: 'เกี่ยวข้องกับ anesthesia',
+    aMain: 'Genetic disorder + volatile anesthetics / succinylcholine',
+    aDetail: '<strong>Ryanodine receptor mutation</strong> ทำให้ Ca²⁺ release จาก sarcoplasmic reticulum ผิดปกติ เมื่อโดน trigger (volatile anesthetics, succinylcholine)<br>→ Sustained muscle contraction → severe heat production<br><strong>Treatment:</strong> <strong>Dantrolene</strong> + cooling — antipyretics ไม่ได้ผล',
+    keys: ['Dantrolene = antidote', 'NOT a fever']
+  },
+  {
+    cat: 'clin', catLabel: 'Clinical', diff: 'Advanced',
+    q: '<span class="em">Neuroleptic malignant syndrome</span> (NMS) คือไข้หรือไม่ใช่?',
+    hint: 'Set point ปกติหรือเลื่อน?',
+    aMain: 'ไม่ใช่ — เป็น Hyperthermia',
+    aDetail: 'NMS เกิดจาก <strong>dopamine antagonism</strong> (จาก antipsychotics หรือ withdrawal ของ L-dopa)<br>Triad: <strong>hyperthermia + muscle rigidity + altered mental status + autonomic dysfunction</strong><br><strong>Treatment:</strong> หยุดยา + cooling + dantrolene/bromocriptine<br>Antipyretics ไม่ได้ผล',
+    keys: ['Dopamine block', 'Treat: dantrolene/bromocriptine']
+  },
+  {
+    cat: 'clin', catLabel: 'Clinical', diff: 'Foundation',
+    q: 'ทำไมไข้ <span class="em">ส่วนใหญ่ไม่เกิน 41°C</span>?',
+    hint: 'ร่างกายมีระบบ counter-regulation',
+    aMain: 'Endogenous cryogens จำกัด fever ceiling',
+    aDetail: 'แม้ pyrogen เยอะขนาดไหน ร่างกายมี <strong>negative feedback</strong> ผ่าน:<br>• AVP (V1 receptor)<br>• α-MSH<br>• Glucocorticoids<br>• IL-10<br>หากเกิน 41.5°C (hyperpyrexia) แสดงว่า counter-regulation ล้มเหลว = severe condition',
+    keys: ['Cryogen ceiling', 'Hyperpyrexia = failure']
+  },
+  {
+    cat: 'clin', catLabel: 'Clinical', diff: 'Critical',
+    q: 'ใน critically ill patient ควร <span class="em">รักษาไข้</span> เสมอหรือไม่?',
+    hint: 'มีข้อโต้แย้งทั้ง 2 ทาง',
+    aMain: 'ขึ้นกับสถานการณ์ — ไม่ใช่ทุกกรณี',
+    aDetail: '<strong>Pro-treatment:</strong> ลด metabolic demand (↑13%/°C), ผู้ป่วย unstable อาจไม่ทน<br><strong>Anti-treatment:</strong> Fever เป็นกลไกป้องกัน — ↑ immune response, ↓ pathogen replication<br><strong>แนะนำ:</strong> Treat ถ้า > 38.5°C ในผู้ป่วย limited reserve (CHF, recent MI, neurologic injury) หรือ > 41°C ในทุกคน',
+    keys: ['Not always treat', 'Patient-dependent']
+  },
+  {
+    cat: 'clin', catLabel: 'Clinical', diff: 'Advanced',
+    q: '<span class="em">Fever of unknown origin</span> (FUO) มีเกณฑ์อะไร?',
+    hint: 'อุณหภูมิ + ระยะเวลา + การตรวจไม่พบสาเหตุ',
+    aMain: '> 38.3°C, > 3 weeks, no diagnosis after appropriate workup',
+    aDetail: '<strong>Classic FUO criteria (Petersdorf 1961, modified Durack 1991):</strong><br>1. T > 38.3°C ในหลายโอกาส<br>2. นานกว่า 3 สัปดาห์<br>3. ยังไม่ได้การวินิจฉัยหลัง appropriate workup (3 OPD visits / 3 days inpatient)<br><strong>4 categories:</strong> Classic, Nosocomial, Immunodeficient (neutropenic), HIV-associated',
+    keys: ['38.3 / 3 weeks / no Dx', '4 subtypes']
+  }
+];
+
+// State
+let currentCategory = 'all';
+let currentDeck = [];
+let currentIndex = 0;
+let isFlipped = false;
+let stats = { known: 0, hard: 0, total: 0 };
+let hardCards = [];
+
+const card = document.getElementById('card');
+const questionText = document.getElementById('questionText');
+const hintText = document.getElementById('hintText');
+const answerMain = document.getElementById('answerMain');
+const answerDetail = document.getElementById('answerDetail');
+const answerKeys = document.getElementById('answerKeys');
+const catTag = document.getElementById('catTag');
+const diffTag = document.getElementById('diffTag');
+const currentNum = document.getElementById('currentNum');
+const totalNum = document.getElementById('totalNum');
+const progressFill = document.getElementById('progressFill');
+const actionsInitial = document.getElementById('actionsInitial');
+const actionsJudgment = document.getElementById('actionsJudgment');
+const cardArea = document.getElementById('cardArea');
+const completion = document.getElementById('completion');
+
+// Init counts
+function initCounts() {
+  document.getElementById('count-all').textContent = `(${cards.length})`;
+  ['def', 'mech', 'mol', 'clin'].forEach(cat => {
+    const count = cards.filter(c => c.cat === cat).length;
+    document.getElementById(`count-${cat}`).textContent = `(${count})`;
+  });
+}
+
+function buildDeck(cat) {
+  const filtered = cat === 'all' ? cards : cards.filter(c => c.cat === cat);
+  return [...filtered].sort(() => Math.random() - 0.5);
+}
+
+function loadCard(idx) {
+  if (idx < 0 || idx >= currentDeck.length) return;
+  
+  const c = currentDeck[idx];
+  questionText.innerHTML = c.q;
+  hintText.textContent = c.hint || '';
+  answerMain.innerHTML = c.aMain;
+  answerDetail.innerHTML = c.aDetail;
+  answerKeys.innerHTML = (c.keys || []).map(k => `<span class="answer-key">${k}</span>`).join('');
+  catTag.textContent = c.catLabel;
+  diffTag.textContent = c.diff;
+  
+  currentNum.textContent = idx + 1;
+  totalNum.textContent = currentDeck.length;
+  progressFill.style.width = ((idx) / currentDeck.length * 100) + '%';
+  
+  // Reset card state
+  card.classList.remove('flipped');
+  isFlipped = false;
+  actionsInitial.style.display = 'flex';
+  actionsJudgment.classList.remove('visible');
+  
+  document.getElementById('btnPrev').disabled = idx === 0;
+}
+
+function flipCard() {
+  isFlipped = !isFlipped;
+  card.classList.toggle('flipped');
+  
+  if (isFlipped) {
+    // Show judgment buttons after flip
+    setTimeout(() => {
+      actionsInitial.style.display = 'none';
+      actionsJudgment.classList.add('visible');
+    }, 350);
+  } else {
+    actionsInitial.style.display = 'flex';
+    actionsJudgment.classList.remove('visible');
+  }
+}
+
+function recordResult(result) {
+  if (result === 'known') stats.known++;
+  else {
+    stats.hard++;
+    hardCards.push(currentDeck[currentIndex]);
+  }
+  stats.total++;
+  
+  if (currentIndex < currentDeck.length - 1) {
+    currentIndex++;
+    loadCard(currentIndex);
+  } else {
+    showCompletion();
+  }
+}
+
+function showCompletion() {
+  cardArea.style.display = 'none';
+  completion.classList.add('visible');
+  document.getElementById('finalKnown').textContent = stats.known;
+  document.getElementById('finalReview').textContent = stats.hard;
+  document.getElementById('finalTotal').textContent = stats.total;
+  progressFill.style.width = '100%';
+  
+  const pct = stats.total > 0 ? (stats.known / stats.total) : 0;
+  let msg = '';
+  if (pct >= 0.9) msg = 'ยอดเยี่ยม! ความเข้าใจของคุณแน่นมาก ลองหมวดที่ยังไม่ได้ทำหรือทบทวน hard cards เพื่อรักษาความรู้';
+  else if (pct >= 0.7) msg = 'เก่งมาก! ยังมีบางจุดที่ควรกลับไปทบทวน ลองทำ "Review Hard Cards" เพื่อเสริมจุดที่ยังไม่แน่น';
+  else if (pct >= 0.5) msg = 'มาถูกทางแล้ว! แนะนำให้กลับไปอ่าน Concept Map ของบทนี้ก่อน แล้วลองทำ flashcards ใหม่อีกรอบ';
+  else msg = 'ยังต้องทบทวนอีก ลองเปิด pathophysiology cascade ก่อน แล้วค่อยกลับมาทำ flashcards — active recall ต้องการความเข้าใจพื้นฐานก่อน';
+  document.getElementById('completionMsg').textContent = msg;
+}
+
+function reset() {
+  currentIndex = 0;
+  stats = { known: 0, hard: 0, total: 0 };
+  hardCards = [];
+  currentDeck = buildDeck(currentCategory);
+  cardArea.style.display = 'flex';
+  completion.classList.remove('visible');
+  loadCard(0);
+}
+
+function reviewHardCards() {
+  if (hardCards.length === 0) {
+    reset();
+    return;
+  }
+  currentDeck = [...hardCards].sort(() => Math.random() - 0.5);
+  currentIndex = 0;
+  stats = { known: 0, hard: 0, total: 0 };
+  hardCards = [];
+  cardArea.style.display = 'flex';
+  completion.classList.remove('visible');
+  loadCard(0);
+}
+
+// Event listeners
+card.addEventListener('click', flipCard);
+document.getElementById('btnFlip').addEventListener('click', (e) => { e.stopPropagation(); flipCard(); });
+
+document.getElementById('btnPrev').addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (currentIndex > 0) { currentIndex--; loadCard(currentIndex); }
+});
+
+document.getElementById('btnNext').addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (currentIndex < currentDeck.length - 1) {
+    currentIndex++;
+    loadCard(currentIndex);
+  }
+});
+
+document.querySelectorAll('[data-result]').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    recordResult(btn.dataset.result);
+  });
+});
+
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    currentCategory = tab.dataset.cat;
+    reset();
+  });
+});
+
+document.getElementById('btnRestart').addEventListener('click', reset);
+document.getElementById('btnReviewHard').addEventListener('click', reviewHardCards);
+
+// Keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+  if (completion.classList.contains('visible')) return;
+  if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); flipCard(); }
+  else if (e.key === 'ArrowLeft' && currentIndex > 0) { currentIndex--; loadCard(currentIndex); }
+  else if (e.key === 'ArrowRight' && isFlipped) { recordResult('known'); }
+  else if (e.key === '1' && isFlipped) { recordResult('hard'); }
+  else if (e.key === '2' && isFlipped) { recordResult('known'); }
+});
+
+// Initialize
+initCounts();
+currentDeck = buildDeck('all');
+loadCard(0);
+</script>
+
+</body>
+</html>
