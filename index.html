@@ -4,10 +4,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fever Pathophysiology — Interactive Concept Map</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<title>Harrison Teaching Library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=JetBrains+Mono:wght@400;500;700&family=IBM+Plex+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,800&family=JetBrains+Mono:wght@400;500;700&family=IBM+Plex+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
   --ink: #1a1612;
@@ -19,40 +19,39 @@
   --accent-warm: #b8742a;
   --accent-mute: #6b5d4f;
   --highlight: #f4d35e;
-  --serif: 'Fraunces', Georgia, serif;
-  --thai: 'IBM Plex Sans Thai', sans-serif;
-  --mono: 'JetBrains Mono', monospace;
+  --serif: 'Fraunces', 'Georgia', 'Times New Roman', serif;
+  --thai: 'IBM Plex Sans Thai', 'Sukhumvit Set', 'Noto Sans Thai', -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', 'SF Mono', 'Menlo', monospace;
 }
 
 - { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; background: #f5f0e6; }
 
 body {
 font-family: var(–thai);
-background: var(–paper);
-color: var(–ink);
+background: #f5f0e6 !important;
+color: #1a1612;
 line-height: 1.6;
 overflow-x: hidden;
+min-height: 100vh;
 background-image:
-radial-gradient(circle at 20% 10%, rgba(200, 52, 26, 0.04) 0%, transparent 40%),
-radial-gradient(circle at 80% 70%, rgba(30, 77, 107, 0.04) 0%, transparent 40%),
+radial-gradient(circle at 15% 20%, rgba(200, 52, 26, 0.05) 0%, transparent 45%),
+radial-gradient(circle at 85% 80%, rgba(30, 77, 107, 0.05) 0%, transparent 45%),
 repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(26, 22, 18, 0.012) 2px, rgba(26, 22, 18, 0.012) 3px);
 }
 
-/* ===== HEADER ===== */
+a { color: inherit; text-decoration: none; }
+
+/* ===== MASTHEAD ===== */
 .masthead {
-border-bottom: 3px double var(–rule);
-padding: 32px 40px 24px;
+border-bottom: 3px double #2a241d;
+padding: 24px 40px;
 display: grid;
-grid-template-columns: 1fr auto 1fr;
-align-items: end;
+grid-template-columns: 1fr 1fr 1fr;
+align-items: center;
 gap: 24px;
-background: var(–paper);
-position: sticky;
-top: 0;
-z-index: 100;
-backdrop-filter: blur(8px);
+background: #f5f0e6;
 }
 
 .masthead-meta {
@@ -60,105 +59,162 @@ font-family: var(–mono);
 font-size: 11px;
 letter-spacing: 0.15em;
 text-transform: uppercase;
-color: var(–accent-mute);
+color: #6b5d4f;
 }
 
 .masthead-meta.right { text-align: right; }
 
-.masthead-title {
+.masthead-logo {
 font-family: var(–serif);
 font-weight: 800;
 font-style: italic;
-font-size: clamp(28px, 4vw, 48px);
-letter-spacing: -0.02em;
-line-height: 0.95;
+font-size: 22px;
 text-align: center;
-font-variation-settings: “opsz” 144;
+letter-spacing: -0.01em;
 }
 
-.masthead-title small {
-display: block;
-font-style: normal;
-font-weight: 400;
-font-size: 13px;
-letter-spacing: 0.3em;
-text-transform: uppercase;
-margin-top: 8px;
-color: var(–accent-fire);
-font-family: var(–mono);
-}
+.masthead-logo span { color: #c8341a; }
 
 /* ===== HERO ===== */
 .hero {
-padding: 64px 40px 48px;
 max-width: 1280px;
 margin: 0 auto;
+padding: 80px 40px 60px;
 display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 48px;
+grid-template-columns: 3fr 2fr;
+gap: 60px;
 align-items: end;
-border-bottom: 1px solid var(–rule);
+border-bottom: 1px solid #2a241d;
 }
 
-.hero-lede {
+.hero-eyebrow {
+font-family: var(–mono);
+font-size: 11px;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+color: #c8341a;
+margin-bottom: 24px;
+}
+
+.hero-title {
 font-family: var(–serif);
-font-size: clamp(20px, 2.4vw, 28px);
-line-height: 1.35;
+font-size: clamp(48px, 8vw, 96px);
+font-weight: 800;
+font-style: italic;
+line-height: 0.9;
+letter-spacing: -0.03em;
+margin-bottom: 24px;
+}
+
+.hero-title em {
+font-style: normal;
+font-weight: 300;
+color: #6b5d4f;
+}
+
+.hero-tagline {
+font-family: var(–serif);
+font-size: 20px;
+font-style: italic;
+line-height: 1.4;
+font-weight: 300;
+color: #2a241d;
+max-width: 540px;
+}
+
+.hero-tagline strong {
+font-style: normal;
+font-weight: 600;
+background: linear-gradient(180deg, transparent 60%, #f4d35e 60%);
+padding: 0 4px;
+}
+
+.hero-stats {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 24px;
+border-top: 1px solid rgba(26, 22, 18, 0.2);
+padding-top: 24px;
+}
+
+.stat {
+text-align: center;
+}
+
+.stat-num {
+font-family: var(–serif);
+font-style: italic;
+font-weight: 800;
+font-size: 56px;
+line-height: 1;
+color: #c8341a;
+margin-bottom: 4px;
+}
+
+.stat-label {
+font-family: var(–mono);
+font-size: 10px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: #6b5d4f;
+}
+
+/* ===== INTRO PARA ===== */
+.intro {
+max-width: 1280px;
+margin: 0 auto;
+padding: 60px 40px;
+display: grid;
+grid-template-columns: 200px 1fr;
+gap: 48px;
+border-bottom: 1px solid rgba(26, 22, 18, 0.15);
+}
+
+.intro-label {
+font-family: var(–mono);
+font-size: 11px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: #c8341a;
+padding-top: 8px;
+}
+
+.intro-text {
+font-family: var(–serif);
+font-size: 24px;
+line-height: 1.45;
 font-weight: 300;
 font-style: italic;
 }
 
-.hero-lede strong {
+.intro-text strong {
 font-style: normal;
 font-weight: 600;
-background: linear-gradient(180deg, transparent 60%, var(–highlight) 60%);
-padding: 0 4px;
 }
-
-.hero-defs {
-font-size: 14px;
-border-left: 3px solid var(–accent-fire);
-padding-left: 24px;
-}
-
-.hero-defs dt {
-font-family: var(–mono);
-font-size: 11px;
-letter-spacing: 0.15em;
-text-transform: uppercase;
-color: var(–accent-fire);
-margin-top: 14px;
-font-weight: 700;
-}
-
-.hero-defs dt:first-child { margin-top: 0; }
-
-.hero-defs dd { margin-top: 4px; color: var(–ink); }
 
 /* ===== SECTION HEADER ===== */
 .section-header {
-padding: 56px 40px 24px;
 max-width: 1280px;
 margin: 0 auto;
+padding: 80px 40px 32px;
 display: flex;
 align-items: baseline;
 gap: 24px;
-border-bottom: 1px solid rgba(26, 22, 18, 0.2);
+border-bottom: 2px solid #1a1612;
 }
 
 .section-num {
 font-family: var(–serif);
-font-size: 96px;
+font-size: 80px;
 font-weight: 800;
 font-style: italic;
 line-height: 0.8;
-color: var(–accent-fire);
-font-variation-settings: “opsz” 144;
+color: #c8341a;
 }
 
 .section-title {
 font-family: var(–serif);
-font-size: 32px;
+font-size: 36px;
 font-weight: 600;
 letter-spacing: -0.01em;
 }
@@ -168,149 +224,169 @@ font-family: var(–mono);
 font-size: 11px;
 letter-spacing: 0.2em;
 text-transform: uppercase;
-color: var(–accent-mute);
-margin-top: 4px;
+color: #6b5d4f;
+margin-top: 6px;
 }
 
-/* ===== CASCADE DIAGRAM ===== */
-.cascade {
+/* ===== CHAPTER LIST ===== */
+.chapters {
 max-width: 1280px;
 margin: 0 auto;
-padding: 48px 40px 80px;
-position: relative;
+padding: 0 40px 80px;
 }
 
-.cascade-grid {
+.chapter {
 display: grid;
-grid-template-columns: 1fr;
-gap: 0;
+grid-template-columns: 100px 1fr 2fr;
+gap: 32px;
+padding: 40px 0;
+border-bottom: 1px solid rgba(26, 22, 18, 0.15);
 position: relative;
-}
-
-.stage {
-display: grid;
-grid-template-columns: 80px 1fr 2fr;
-gap: 24px;
-padding: 28px 0;
-border-top: 1px solid rgba(26, 22, 18, 0.15);
-position: relative;
-cursor: pointer;
 transition: background 0.3s ease;
 }
 
-.stage:hover { background: rgba(244, 211, 94, 0.08); }
+.chapter.coming-soon {
+opacity: 0.5;
+}
 
-.stage:first-child { border-top: 2px solid var(–ink); }
-.stage:last-child { border-bottom: 2px solid var(–ink); }
+.chapter:hover:not(.coming-soon) {
+background: rgba(244, 211, 94, 0.08);
+}
 
-.stage-marker {
+.chapter-num {
 font-family: var(–serif);
 font-style: italic;
 font-weight: 800;
-font-size: 56px;
-line-height: 1;
-color: var(–accent-fire);
-text-align: center;
-position: relative;
-font-variation-settings: “opsz” 144;
+font-size: 80px;
+line-height: 0.85;
+color: #c8341a;
 }
 
-.stage-marker::after {
-content: ‘’;
-position: absolute;
-left: 50%;
-bottom: -32px;
-width: 1px;
-height: 32px;
-background: var(–accent-fire);
-transform: translateX(-50%);
-}
-
-.stage:last-child .stage-marker::after { display: none; }
-
-.stage-label {
-font-family: var(–serif);
-font-size: 22px;
-font-weight: 600;
-line-height: 1.2;
+.chapter-title-wrap {
 align-self: center;
 }
 
-.stage-label .en {
-display: block;
-font-style: italic;
-font-weight: 400;
-font-size: 14px;
-color: var(–accent-mute);
-margin-top: 4px;
-letter-spacing: 0.02em;
-}
-
-.stage-detail {
-font-size: 14px;
-line-height: 1.6;
-align-self: center;
-max-height: 0;
-overflow: hidden;
-opacity: 0;
-transition: max-height 0.5s ease, opacity 0.3s ease, margin 0.3s ease;
-}
-
-.stage.open .stage-detail {
-max-height: 800px;
-opacity: 1;
-margin-top: 4px;
-}
-
-.stage.open { background: rgba(244, 211, 94, 0.1); }
-
-.stage-detail p { margin-bottom: 8px; }
-
-.stage-detail .key-fact {
-display: inline-block;
-font-family: var(–mono);
-font-size: 11px;
-background: var(–ink);
-color: var(–paper);
-padding: 2px 8px;
-letter-spacing: 0.05em;
-margin-right: 6px;
-margin-top: 4px;
-}
-
-.stage-tag {
-position: absolute;
-top: 20px;
-right: 0;
+.chapter-eyebrow {
 font-family: var(–mono);
 font-size: 10px;
 letter-spacing: 0.2em;
 text-transform: uppercase;
-color: var(–accent-mute);
+color: #6b5d4f;
+margin-bottom: 8px;
 }
 
-.toggle-hint {
+.chapter-title {
+font-family: var(–serif);
+font-size: 30px;
+font-weight: 600;
+line-height: 1.1;
+margin-bottom: 6px;
+letter-spacing: -0.01em;
+}
+
+.chapter-th {
+font-family: var(–thai);
+font-size: 14px;
+color: #6b5d4f;
+font-weight: 400;
+}
+
+.chapter-status {
 font-family: var(–mono);
 font-size: 10px;
-letter-spacing: 0.15em;
-color: var(–accent-fire);
+letter-spacing: 0.2em;
 text-transform: uppercase;
-margin-top: 8px;
+color: #b8742a;
+margin-top: 12px;
 display: inline-block;
 }
 
-.stage.open .toggle-hint { display: none; }
+/* Materials grid for each chapter */
+.materials {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 12px;
+align-self: center;
+}
 
-/* ===== KEY MOLECULES PANEL ===== */
-.molecules {
-background: var(–ink);
-color: var(–paper);
-padding: 80px 40px;
-margin: 0;
+.material-card {
+background: #ede4d3;
+padding: 16px 20px;
+border: 1px solid rgba(26, 22, 18, 0.12);
+display: flex;
+align-items: center;
+gap: 14px;
+transition: all 0.2s ease;
+cursor: pointer;
 position: relative;
 }
 
-.molecules::before {
+.material-card:hover {
+background: #1a1612;
+color: #f5f0e6;
+border-color: #1a1612;
+transform: translateX(4px);
+}
+
+.material-card:hover .material-icon { color: #f4d35e; }
+.material-card:hover .material-meta { color: #b8742a; }
+
+.material-card.disabled {
+opacity: 0.4;
+cursor: not-allowed;
+pointer-events: none;
+}
+
+.material-icon {
+font-family: var(–serif);
+font-style: italic;
+font-weight: 800;
+font-size: 28px;
+color: #c8341a;
+line-height: 1;
+flex-shrink: 0;
+width: 32px;
+}
+
+.material-info { flex: 1; min-width: 0; }
+
+.material-name {
+font-family: var(–serif);
+font-size: 16px;
+font-weight: 600;
+line-height: 1.2;
+margin-bottom: 2px;
+}
+
+.material-meta {
+font-family: var(–mono);
+font-size: 9px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: #6b5d4f;
+}
+
+.material-arrow {
+font-family: var(–serif);
+font-size: 20px;
+color: #c8341a;
+transition: transform 0.2s ease;
+}
+
+.material-card:hover .material-arrow {
+color: #f4d35e;
+transform: translateX(4px);
+}
+
+/* ===== ABOUT BLOCK ===== */
+.about {
+background: #1a1612;
+color: #f5f0e6;
+padding: 100px 40px;
+position: relative;
+}
+
+.about::before {
 content: ‘’;
 position: absolute;
 inset: 0;
@@ -318,210 +394,175 @@ background-image: repeating-linear-gradient(45deg, transparent, transparent 20px
 pointer-events: none;
 }
 
-.molecules-inner {
+.about-inner {
 max-width: 1280px;
 margin: 0 auto;
+display: grid;
+grid-template-columns: 1fr 2fr;
+gap: 80px;
 position: relative;
 }
 
-.molecules-title {
-font-family: var(–serif);
-font-size: 40px;
-font-weight: 300;
-font-style: italic;
-margin-bottom: 8px;
-}
-
-.molecules-title strong {
-font-style: normal;
-font-weight: 800;
-color: var(–highlight);
-}
-
-.molecules-subtitle {
+.about-label {
 font-family: var(–mono);
 font-size: 11px;
-letter-spacing: 0.2em;
+letter-spacing: 0.3em;
 text-transform: uppercase;
-color: var(–accent-warm);
-margin-bottom: 40px;
+color: #b8742a;
 }
 
-.mol-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-gap: 1px;
-background: rgba(245, 240, 230, 0.1);
-}
-
-.mol-card {
-background: var(–ink);
-padding: 24px;
-transition: background 0.3s;
-}
-
-.mol-card:hover { background: #2a241d; }
-
-.mol-name {
+.about-title {
 font-family: var(–serif);
+font-size: 14px;
 font-style: italic;
-font-size: 28px;
-font-weight: 800;
-color: var(–highlight);
-letter-spacing: -0.02em;
+margin-top: 8px;
+color: #ede4d3;
 }
 
-.mol-full {
-font-size: 12px;
-color: var(–paper-warm);
-margin-top: 4px;
-margin-bottom: 12px;
-font-style: italic;
-}
-
-.mol-role {
-font-size: 13px;
+.about-content {
+font-family: var(–serif);
+font-size: 22px;
 line-height: 1.5;
-color: var(–paper-warm);
+font-weight: 300;
+font-style: italic;
 }
 
-.mol-tag {
-font-family: var(–mono);
-font-size: 9px;
-letter-spacing: 0.2em;
-text-transform: uppercase;
-margin-top: 12px;
-color: var(–accent-warm);
+.about-content strong {
+font-style: normal;
+font-weight: 600;
+color: #f4d35e;
 }
 
-/* ===== COMPARISON TABLE ===== */
-.comparison {
+.about-content p { margin-bottom: 20px; }
+
+.about-content p:last-child { margin-bottom: 0; }
+
+/* ===== HOW TO USE ===== */
+.howto {
 max-width: 1280px;
 margin: 0 auto;
 padding: 80px 40px;
 }
 
-.comp-table {
-width: 100%;
-border-collapse: collapse;
-margin-top: 32px;
-font-size: 14px;
+.howto-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 40px;
+margin-top: 40px;
 }
 
-.comp-table th {
-text-align: left;
+.howto-card {
+border-top: 2px solid #1a1612;
+padding-top: 24px;
+}
+
+.howto-num {
+font-family: var(–serif);
+font-style: italic;
+font-weight: 800;
+font-size: 64px;
+line-height: 0.8;
+color: #c8341a;
+margin-bottom: 16px;
+}
+
+.howto-title {
+font-family: var(–serif);
+font-size: 22px;
+font-weight: 600;
+margin-bottom: 8px;
+line-height: 1.2;
+}
+
+.howto-desc {
+font-size: 14px;
+line-height: 1.5;
+color: #2a241d;
+}
+
+/* ===== FOOTER ===== */
+footer {
+border-top: 3px double #2a241d;
+padding: 50px 40px;
+background: #f5f0e6;
+}
+
+.footer-inner {
+max-width: 1280px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: 2fr 1fr 1fr;
+gap: 40px;
+align-items: start;
+}
+
+.footer-block { font-size: 13px; }
+
+.footer-label {
 font-family: var(–mono);
 font-size: 10px;
 letter-spacing: 0.2em;
 text-transform: uppercase;
-padding: 12px 16px;
-border-bottom: 2px solid var(–ink);
-vertical-align: bottom;
-}
-
-.comp-table th.feat { width: 22%; color: var(–accent-mute); }
-.comp-table th.fever { color: var(–accent-fire); font-size: 14px; font-style: italic; font-family: var(–serif); font-weight: 700; letter-spacing: 0; text-transform: none; }
-.comp-table th.hyper { color: var(–accent-cool); font-size: 14px; font-style: italic; font-family: var(–serif); font-weight: 700; letter-spacing: 0; text-transform: none; }
-.comp-table th.pyrex { color: var(–accent-warm); font-size: 14px; font-style: italic; font-family: var(–serif); font-weight: 700; letter-spacing: 0; text-transform: none; }
-
-.comp-table td {
-padding: 14px 16px;
-border-bottom: 1px solid rgba(26, 22, 18, 0.15);
-vertical-align: top;
-}
-
-.comp-table tr:hover td { background: rgba(244, 211, 94, 0.08); }
-
-.comp-table .feat-name {
-font-family: var(–mono);
-font-size: 11px;
-text-transform: uppercase;
-letter-spacing: 0.1em;
-color: var(–accent-mute);
-}
-
-/* ===== CALLOUT ===== */
-.callout {
-max-width: 900px;
-margin: 0 auto 80px;
-padding: 40px;
-border: 1px solid var(–ink);
-position: relative;
-background: var(–paper-warm);
-}
-
-.callout::before {
-content: ‘⚠’;
-position: absolute;
-top: -20px;
-left: 32px;
-background: var(–paper);
-padding: 0 12px;
-font-size: 24px;
-color: var(–accent-fire);
-}
-
-.callout-label {
-font-family: var(–mono);
-font-size: 11px;
-letter-spacing: 0.2em;
-text-transform: uppercase;
-color: var(–accent-fire);
+color: #c8341a;
 margin-bottom: 12px;
 }
 
-.callout-text {
+.footer-text {
 font-family: var(–serif);
-font-size: 18px;
+font-size: 14px;
 line-height: 1.5;
-font-style: italic;
+color: #2a241d;
 }
 
-.callout-text strong { font-style: normal; font-weight: 700; }
-
-/* ===== FOOTER ===== */
-footer {
-border-top: 3px double var(–rule);
-padding: 40px;
-text-align: center;
+.footer-bottom {
+max-width: 1280px;
+margin: 40px auto 0;
+padding-top: 24px;
+border-top: 1px solid rgba(26, 22, 18, 0.15);
 font-family: var(–mono);
-font-size: 11px;
+font-size: 10px;
 letter-spacing: 0.15em;
 text-transform: uppercase;
-color: var(–accent-mute);
-background: var(–paper);
+color: #6b5d4f;
+text-align: center;
 }
-
-footer a { color: var(–accent-fire); text-decoration: none; border-bottom: 1px solid; }
 
 /* ===== ANIMATIONS ===== */
-@keyframes pulse-warm {
-0%, 100% { transform: scale(1); opacity: 1; }
-50% { transform: scale(1.05); opacity: 0.8; }
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
 }
 
-.stage-marker { animation: pulse-warm 4s ease-in-out infinite; animation-delay: calc(var(–idx) * 0.3s); }
+.hero, .intro, .chapter, .howto-card { animation: fadeUp 0.8s ease backwards; }
+.chapter:nth-child(1) { animation-delay: 0.1s; }
+.chapter:nth-child(2) { animation-delay: 0.2s; }
+.chapter:nth-child(3) { animation-delay: 0.3s; }
+.chapter:nth-child(4) { animation-delay: 0.4s; }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-.masthead { grid-template-columns: 1fr; padding: 20px; gap: 8px; }
+@media (max-width: 900px) {
+.masthead { grid-template-columns: 1fr; padding: 16px 20px; gap: 4px; text-align: center; }
 .masthead-meta { display: none; }
-.hero { grid-template-columns: 1fr; padding: 32px 20px; gap: 32px; }
-.section-header { padding: 40px 20px 16px; gap: 16px; }
-.section-num { font-size: 64px; }
-.section-title { font-size: 24px; }
-.cascade { padding: 24px 20px 60px; }
-.stage { grid-template-columns: 50px 1fr; gap: 12px; padding: 20px 0; }
-.stage-detail { grid-column: 1 / -1; padding-left: 62px; }
-.stage-marker { font-size: 36px; }
-.stage-label { font-size: 17px; }
-.stage-tag { display: none; }
-.molecules { padding: 60px 20px; }
-.molecules-title { font-size: 28px; }
-.comparison { padding: 60px 20px; }
-.comp-table { font-size: 12px; }
-.comp-table th, .comp-table td { padding: 8px 6px; }
-.callout { margin: 0 20px 60px; padding: 24px; }
+.hero { grid-template-columns: 1fr; padding: 48px 20px 40px; gap: 32px; }
+.hero-stats { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.stat-num { font-size: 36px; }
+.intro { grid-template-columns: 1fr; padding: 40px 20px; gap: 16px; }
+.intro-text { font-size: 18px; }
+.section-header { padding: 56px 20px 24px; gap: 16px; }
+.section-num { font-size: 56px; }
+.section-title { font-size: 26px; }
+.chapters { padding: 0 20px 60px; }
+.chapter { grid-template-columns: 60px 1fr; gap: 16px; padding: 28px 0; }
+.chapter-num { font-size: 48px; }
+.chapter-title { font-size: 22px; }
+.materials { grid-column: 1 / -1; grid-template-columns: 1fr; gap: 8px; margin-top: 8px; }
+.about { padding: 60px 20px; }
+.about-inner { grid-template-columns: 1fr; gap: 24px; }
+.about-content { font-size: 18px; }
+.howto { padding: 60px 20px; }
+.howto-grid { grid-template-columns: 1fr; gap: 32px; }
+footer { padding: 40px 20px; }
+.footer-inner { grid-template-columns: 1fr; gap: 24px; }
 }
 </style>
 
@@ -529,387 +570,218 @@ footer a { color: var(–accent-fire); text-decoration: none; border-bottom: 1px
 <body>
 
 <header class="masthead">
-  <div class="masthead-meta">Vol. 18 · No. 1 · Pathophysiology Series</div>
-  <h1 class="masthead-title">
-    The Febrile Cascade
-    <small>Harrison's IM 21e · Ch. 18 · Fever</small>
-  </h1>
-  <div class="masthead-meta right">For Medical Students &amp; Residents</div>
+  <div class="masthead-meta">A Teaching Resource · Internal Medicine</div>
+  <div class="masthead-logo">Harrison <span>·</span> <em>Teaching Library</em></div>
+  <div class="masthead-meta right">Updated · May 2026</div>
 </header>
 
 <section class="hero">
-  <p class="hero-lede">
-    ไข้ไม่ใช่ความผิดปกติของการระบายความร้อน — แต่คือ <strong>การปรับ thermoregulatory set point ของ hypothalamus</strong> ขึ้นอย่างจงใจ เพื่อตอบสนองต่อ pyrogen ที่เข้าสู่ร่างกาย
+  <div>
+    <div class="hero-eyebrow">An Independent Teaching Resource</div>
+    <h1 class="hero-title">
+      Harrison's,<br>
+      <em>made to teach.</em>
+    </h1>
+    <p class="hero-tagline">
+      สื่อการสอน internal medicine สำหรับ <strong>medical students &amp; residents</strong> — เน้น mechanism ที่เข้าใจได้ และ clinical reasoning ที่ใช้ได้จริงในห้องตรวจ
+    </p>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">1</div>
+      <div class="stat-label">Chapter Live</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">1</div>
+      <div class="stat-label">Resource</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">21e</div>
+      <div class="stat-label">Edition</div>
+    </div>
+  </div>
+</section>
+
+<section class="intro">
+  <div class="intro-label">Editor's Note</div>
+  <p class="intro-text">
+    เนื้อหาทั้งหมดเป็นการสรุปและนำเสนอใหม่จาก <strong>Harrison's Principles of Internal Medicine, 21st edition</strong> เพื่อจุดประสงค์ทางการศึกษา การแสดงผลออกแบบสำหรับการอ่านบนมือถือและแท็บเล็ต
   </p>
-  <dl class="hero-defs">
-    <dt>Fever</dt>
-    <dd>อุณหภูมิแกนกายเช้า &gt; 37.2°C หรือเย็น &gt; 37.7°C โดย <em>set point เลื่อนขึ้น</em></dd>
-    <dt>Hyperpyrexia</dt>
-    <dd>อุณหภูมิ &gt; 41.5°C — พบใน severe infection หรือ CNS hemorrhage</dd>
-    <dt>Hyperthermia</dt>
-    <dd>ความร้อนสูงโดย <em>set point ปกติ</em> — ระบบระบายความร้อนล้มเหลว</dd>
-  </dl>
 </section>
 
 <div class="section-header">
-  <div class="section-num">I</div>
+  <div class="section-num">§</div>
   <div>
-    <h2 class="section-title">The Cascade</h2>
-    <div class="section-subtitle">Eight stages from pyrogen to pyrexia · คลิกแต่ละขั้นเพื่อดูรายละเอียด</div>
+    <h2 class="section-title">Chapters</h2>
+    <div class="section-subtitle">Browse by topic · เลือกบทที่ต้องการศึกษา</div>
   </div>
 </div>
 
-<section class="cascade">
-  <div class="cascade-grid">
+<section class="chapters">
 
-```
-<div class="stage" style="--idx: 0" data-stage="1">
-  <div class="stage-marker">01</div>
-  <div class="stage-label">
-    Pyrogen entry
-    <span class="en">Exogenous &amp; endogenous triggers</span>
-  </div>
-  <div>
-    <span class="stage-tag">Trigger</span>
-    <p style="font-size: 14px;">สารก่อไข้เข้าสู่ระบบไหลเวียนเลือด</p>
-    <span class="toggle-hint">▸ คลิกเพื่อขยาย</span>
-    <div class="stage-detail">
-      <p><strong>Exogenous pyrogens</strong> — มาจากภายนอกร่างกาย ส่วนใหญ่เป็นผลิตภัณฑ์จุลชีพ:</p>
-      <p>• LPS (lipopolysaccharide) จาก gram-negative bacteria<br>
-         • Peptidoglycan, lipoteichoic acid จาก gram-positive<br>
-         • Superantigens เช่น TSST-1<br>
-         • Viral proteins, fungal cell wall components</p>
-      <p style="margin-top: 12px;"><strong>Endogenous triggers</strong> — จาก host เอง: tissue injury, immune complexes, malignancy</p>
-      <span class="key-fact">PAMPs → PRRs (TLR4, TLR2)</span>
+  <!-- Chapter 18: Fever -->
+
+  <article class="chapter">
+    <div class="chapter-num">18</div>
+    <div class="chapter-title-wrap">
+      <div class="chapter-eyebrow">Cardinal Manifestations · Section 1</div>
+      <h3 class="chapter-title">Fever</h3>
+      <div class="chapter-th">การเกิดไข้ · pathophysiology &amp; clinical approach</div>
+      <span class="chapter-status">● Live</span>
     </div>
-  </div>
-</div>
-
-<div class="stage" style="--idx: 1" data-stage="2">
-  <div class="stage-marker">02</div>
-  <div class="stage-label">
-    Immune cell activation
-    <span class="en">Monocytes, macrophages recognize PAMPs</span>
-  </div>
-  <div>
-    <span class="stage-tag">Sensing</span>
-    <p style="font-size: 14px;">เซลล์ภูมิคุ้มกันจดจำสาร pyrogen ผ่าน pattern-recognition receptors</p>
-    <span class="toggle-hint">▸ คลิกเพื่อขยาย</span>
-    <div class="stage-detail">
-      <p>Monocytes, macrophages, Kupffer cells, และ endothelial cells มี <strong>Toll-like receptors (TLRs)</strong> และ NLRs ทำหน้าที่จดจำ PAMPs</p>
-      <p>• TLR4 → จับ LPS<br>
-         • TLR2 → จับ peptidoglycan, lipoteichoic acid<br>
-         • TLR3 → จับ dsRNA (virus)</p>
-      <p>การจับนี้ทำให้เกิด signaling cascade (NF-κB, MAPK) → transcription ของ cytokine genes</p>
+    <div class="materials">
+      <a href="ch18-fever/pathophysiology.html" class="material-card">
+        <div class="material-icon">α</div>
+        <div class="material-info">
+          <div class="material-name">Pathophysiology Cascade</div>
+          <div class="material-meta">Interactive · 8 stages</div>
+        </div>
+        <div class="material-arrow">→</div>
+      </a>
+      <div class="material-card disabled">
+        <div class="material-icon">β</div>
+        <div class="material-info">
+          <div class="material-name">Flashcards</div>
+          <div class="material-meta">Coming soon</div>
+        </div>
+        <div class="material-arrow">→</div>
+      </div>
+      <div class="material-card disabled">
+        <div class="material-icon">γ</div>
+        <div class="material-info">
+          <div class="material-name">Clinical Cases</div>
+          <div class="material-meta">Coming soon</div>
+        </div>
+        <div class="material-arrow">→</div>
+      </div>
+      <div class="material-card disabled">
+        <div class="material-icon">δ</div>
+        <div class="material-info">
+          <div class="material-name">MCQ Quiz</div>
+          <div class="material-meta">Coming soon</div>
+        </div>
+        <div class="material-arrow">→</div>
+      </div>
     </div>
-  </div>
-</div>
+  </article>
 
-<div class="stage" style="--idx: 2" data-stage="3">
-  <div class="stage-marker">03</div>
-  <div class="stage-label">
-    Pyrogenic cytokine release
-    <span class="en">IL-1, IL-6, TNF-α, IFN-γ enter circulation</span>
-  </div>
-  <div>
-    <span class="stage-tag">Signal amplification</span>
-    <p style="font-size: 14px;">เซลล์หลั่ง endogenous pyrogenic cytokines เข้ากระแสเลือด</p>
-    <span class="toggle-hint">▸ คลิกเพื่อขยาย</span>
-    <div class="stage-detail">
-      <p>"Endogenous pyrogens" หรือที่เรียกว่า <strong>pyrogenic cytokines</strong>:</p>
-      <p>• <strong>IL-1 (α &amp; β)</strong> — pyrogen ที่ทรงพลังที่สุด<br>
-         • <strong>IL-6</strong> — สำคัญที่สุดในการเป็นตัวกลางสู่ CNS<br>
-         • <strong>TNF-α</strong> — ทำงานร่วมกัน, ก่อ acute-phase response<br>
-         • <strong>IFN-γ, IFN-α</strong> — โดยเฉพาะใน viral infections, CTGF</p>
-      <span class="key-fact">All pyrogenic cytokines induce PGE₂</span>
+  <!-- Placeholder for next chapter -->
+
+  <article class="chapter coming-soon">
+    <div class="chapter-num">19</div>
+    <div class="chapter-title-wrap">
+      <div class="chapter-eyebrow">Cardinal Manifestations · Section 1</div>
+      <h3 class="chapter-title">Hypothermia &amp; Frostbite</h3>
+      <div class="chapter-th">ภาวะอุณหภูมิกายต่ำ</div>
+      <span class="chapter-status">○ Planned</span>
     </div>
-  </div>
-</div>
-
-<div class="stage" style="--idx: 3" data-stage="4">
-  <div class="stage-marker">04</div>
-  <div class="stage-label">
-    Reaching the brain
-    <span class="en">OVLT &amp; circumventricular organs</span>
-  </div>
-  <div>
-    <span class="stage-tag">Crossing the BBB</span>
-    <p style="font-size: 14px;">cytokines ไปถึงสมองได้อย่างไรในเมื่อมี blood-brain barrier?</p>
-    <span class="toggle-hint">▸ คลิกเพื่อขยาย</span>
-    <div class="stage-detail">
-      <p>Cytokines เป็นโมเลกุลใหญ่ ผ่าน BBB โดยตรงไม่ได้ มี 3 เส้นทาง:</p>
-      <p>1. <strong>OVLT</strong> (organum vasculosum laminae terminalis) — circumventricular organ ใกล้ anterior hypothalamus ที่ <em>ไม่มี BBB</em><br>
-         2. กระตุ้น brain endothelial cells ให้สร้าง PGE₂ เอง<br>
-         3. Vagal afferent signaling จาก hepatic Kupffer cells</p>
-      <p>OVLT คือจุด "เซ็นเซอร์" ที่สำคัญที่สุด</p>
+    <div class="materials">
+      <div class="material-card disabled">
+        <div class="material-icon">·</div>
+        <div class="material-info">
+          <div class="material-name">Coming Soon</div>
+          <div class="material-meta">In preparation</div>
+        </div>
+        <div class="material-arrow">→</div>
+      </div>
     </div>
-  </div>
-</div>
+  </article>
 
-<div class="stage" style="--idx: 4" data-stage="5">
-  <div class="stage-marker">05</div>
-  <div class="stage-label">
-    PGE₂ synthesis
-    <span class="en">COX-2 catalyzes the critical step</span>
-  </div>
-  <div>
-    <span class="stage-tag">The pivotal molecule</span>
-    <p style="font-size: 14px;">Prostaglandin E₂ คือ final common mediator ที่ออกฤทธิ์ต่อ hypothalamus</p>
-    <span class="toggle-hint">▸ คลิกเพื่อขยาย</span>
-    <div class="stage-detail">
-      <p>ที่ vascular endothelium ใกล้ OVLT:</p>
-      <p>Phospholipid → (PLA₂) → <strong>Arachidonic acid</strong> → (<strong>COX-2</strong>) → PGH₂ → (mPGES-1) → <strong>PGE₂</strong></p>
-      <p>PGE₂ diffuses เข้าสู่ <strong>preoptic area ของ anterior hypothalamus</strong> และจับกับ <strong>EP3 receptors</strong> บน thermoregulatory neurons</p>
-      <p style="margin-top: 12px;">นี่คือจุดที่ <strong>NSAIDs และ acetaminophen ออกฤทธิ์</strong> — ยับยั้ง COX → ไม่มี PGE₂ → ไม่มีการเลื่อน set point</p>
-      <span class="key-fact">COX-2 inhibition = antipyresis</span>
+  <!-- Placeholder for next chapter -->
+
+  <article class="chapter coming-soon">
+    <div class="chapter-num">20</div>
+    <div class="chapter-title-wrap">
+      <div class="chapter-eyebrow">Cardinal Manifestations · Section 1</div>
+      <h3 class="chapter-title">Headache</h3>
+      <div class="chapter-th">ปวดศีรษะ · diagnostic approach</div>
+      <span class="chapter-status">○ Planned</span>
     </div>
-  </div>
-</div>
-
-<div class="stage" style="--idx: 5" data-stage="6">
-  <div class="stage-marker">06</div>
-  <div class="stage-label">
-    Set point elevation
-    <span class="en">Hypothalamic thermostat reset upward</span>
-  </div>
-  <div>
-    <span class="stage-tag">The reset</span>
-    <p style="font-size: 14px;">Hypothalamus ตั้งอุณหภูมิเป้าหมายใหม่สูงกว่าเดิม เช่น จาก 37°C → 39°C</p>
-    <span class="toggle-hint">▸ คลิกเพื่อขยาย</span>
-    <div class="stage-detail">
-      <p>PGE₂ → EP3 receptors → ลด firing rate ของ <em>warm-sensitive neurons</em> ใน preoptic area</p>
-      <p>ผลคือ hypothalamus "เข้าใจ" ว่าร่างกายกำลังเย็นเกินไป (เทียบกับ set point ใหม่) → สั่งกลไกเพิ่มความร้อนและสงวนความร้อน</p>
-      <p style="margin-top: 12px;"><strong>นี่คือหัวใจของ fever:</strong> ร่างกายไม่ได้ "ร้อนเกินไป" จริงๆ — แต่ <em>ตั้งใจให้ร้อนขึ้น</em></p>
+    <div class="materials">
+      <div class="material-card disabled">
+        <div class="material-icon">·</div>
+        <div class="material-info">
+          <div class="material-name">Coming Soon</div>
+          <div class="material-meta">In preparation</div>
+        </div>
+        <div class="material-arrow">→</div>
+      </div>
     </div>
-  </div>
-</div>
+  </article>
 
-<div class="stage" style="--idx: 6" data-stage="7">
-  <div class="stage-marker">07</div>
-  <div class="stage-label">
-    Heat generation &amp; conservation
-    <span class="en">Chills, shivering, vasoconstriction</span>
-  </div>
-  <div>
-    <span class="stage-tag">Effector response</span>
-    <p style="font-size: 14px;">ร่างกายใช้ทุกกลไกเพื่อให้อุณหภูมิแกนสูงตาม set point ใหม่</p>
-    <span class="toggle-hint">▸ คลิกเพื่อขยาย</span>
-    <div class="stage-detail">
-      <p><strong>Heat production ↑</strong></p>
-      <p>• Shivering thermogenesis (กล้ามเนื้อสั่น)<br>
-         • Non-shivering thermogenesis ใน brown adipose tissue<br>
-         • เพิ่ม metabolic rate (BMR ↑ ~13% ต่อ 1°C)</p>
-      <p><strong>Heat loss ↓</strong></p>
-      <p>• Cutaneous vasoconstriction (ผิวซีด เย็น)<br>
-         • Behavioral: ห่มผ้า ขดตัว<br>
-         • Piloerection (ขนลุก)</p>
-      <p style="margin-top: 12px;"><em>นี่คือช่วง "หนาวสั่น" — ผู้ป่วยรู้สึกหนาวทั้งที่ temp กำลังขึ้น</em></p>
-    </div>
-  </div>
-</div>
-
-<div class="stage" style="--idx: 7" data-stage="8">
-  <div class="stage-marker">08</div>
-  <div class="stage-label">
-    Defervescence
-    <span class="en">Set point returns; the body cools</span>
-  </div>
-  <div>
-    <span class="stage-tag">Resolution</span>
-    <p style="font-size: 14px;">เมื่อ pyrogen หายไป (หรือถูกยับยั้ง) set point กลับสู่ปกติ</p>
-    <span class="toggle-hint">▸ คลิกเพื่อขยาย</span>
-    <div class="stage-detail">
-      <p>เมื่อ infection ถูกควบคุม หรือเมื่อให้ antipyretic:</p>
-      <p>• PGE₂ ลดลง → set point กลับสู่ 37°C<br>
-         • ตอนนี้ร่างกาย "ร้อนเกิน" set point → สั่งระบายความร้อน<br>
-         • Cutaneous vasodilation (ผิวแดง, อบอุ่น)<br>
-         • <strong>Diaphoresis</strong> (เหงื่อท่วม)</p>
-      <p style="margin-top: 12px;"><em>นี่คือช่วง "เหงื่อแตก" ที่ผู้ป่วยมักรู้สึกสบายขึ้น</em></p>
-      <p>การคุม fever ด้วย <strong>cryogens</strong> ภายใน (vasopressin, α-MSH, glucocorticoids) ช่วยจำกัดความสูงของ fever ให้ไม่เกิน 41°C</p>
-    </div>
-  </div>
-</div>
-```
-
-  </div>
 </section>
 
-<section class="molecules">
-  <div class="molecules-inner">
-    <h2 class="molecules-title">Key <strong>molecules</strong>, at a glance.</h2>
-    <div class="molecules-subtitle">The cast of cytokines, prostaglandins, and counter-regulators</div>
-
-```
-<div class="mol-grid">
-
-  <div class="mol-card">
-    <div class="mol-name">IL-1</div>
-    <div class="mol-full">Interleukin-1 (α &amp; β)</div>
-    <div class="mol-role">Pyrogenic cytokine ที่ทรงพลังที่สุด — แม้ในปริมาณ pg/mL ก็ก่อไข้ได้ ออกฤทธิ์ผ่าน PGE₂</div>
-    <div class="mol-tag">Endogenous Pyrogen</div>
-  </div>
-
-  <div class="mol-card">
-    <div class="mol-name">IL-6</div>
-    <div class="mol-full">Interleukin-6</div>
-    <div class="mol-role">ตัวกลางสำคัญสู่ CNS — IL-6 KO mice ไม่เป็นไข้ ก่อ acute-phase proteins (CRP) ที่ตับ</div>
-    <div class="mol-tag">Critical Mediator</div>
-  </div>
-
-  <div class="mol-card">
-    <div class="mol-name">TNF-α</div>
-    <div class="mol-full">Tumor Necrosis Factor</div>
-    <div class="mol-role">ทำงานร่วมกับ IL-1 อย่างเสริมฤทธิ์ ก่อ cachexia และ shock ในปริมาณสูง</div>
-    <div class="mol-tag">Endogenous Pyrogen</div>
-  </div>
-
-  <div class="mol-card">
-    <div class="mol-name">PGE₂</div>
-    <div class="mol-full">Prostaglandin E₂</div>
-    <div class="mol-role">Final common mediator ที่จับ EP3 receptor บน hypothalamic neurons เป็นเป้าหมายของ NSAIDs</div>
-    <div class="mol-tag">★ The Pivot</div>
-  </div>
-
-  <div class="mol-card">
-    <div class="mol-name">COX-2</div>
-    <div class="mol-full">Cyclooxygenase-2</div>
-    <div class="mol-role">เอนไซม์ที่เปลี่ยน arachidonic acid → PGH₂ ถูก induce โดย cytokines NSAIDs ยับยั้งที่นี่</div>
-    <div class="mol-tag">Drug Target</div>
-  </div>
-
-  <div class="mol-card">
-    <div class="mol-name">AVP</div>
-    <div class="mol-full">Arginine Vasopressin</div>
-    <div class="mol-role">Cryogen ภายใน — ลด fever จำกัดไม่ให้เกิน hyperpyrexia ทำงานผ่าน V1 receptor</div>
-    <div class="mol-tag">Counter-regulator</div>
-  </div>
-
-  <div class="mol-card">
-    <div class="mol-name">α-MSH</div>
-    <div class="mol-full">α-Melanocyte stim. hormone</div>
-    <div class="mol-role">Endogenous antipyretic — ทรงพลังกว่า acetaminophen ~25,000 เท่า เมื่อฉีดในสมอง</div>
-    <div class="mol-tag">Cryogen</div>
-  </div>
-
-  <div class="mol-card">
-    <div class="mol-name">IL-10</div>
-    <div class="mol-full">Interleukin-10</div>
-    <div class="mol-role">Anti-inflammatory cytokine ลด pyrogenic cytokine production ช่วยจำกัด fever response</div>
-    <div class="mol-tag">Cryogen</div>
-  </div>
-
-</div>
-```
-
+<section class="about">
+  <div class="about-inner">
+    <div>
+      <div class="about-label">About</div>
+      <div class="about-title">A note on this project</div>
+    </div>
+    <div class="about-content">
+      <p>
+        ห้องสมุดนี้ไม่ใช่ทางลัดสำหรับการอ่านตำรา — แต่ออกแบบมาเป็น <strong>เพื่อนคู่การอ่าน</strong> ที่ช่วยให้ concept ที่ซับซ้อนใน Harrison เข้าใจได้ลึกขึ้น และจดจำได้นานขึ้น
+      </p>
+      <p>
+        ทุกหัวข้อสร้างจากการสรุปเนื้อหาด้วยตัวเอง แล้วใช้ AI ช่วยจัดรูปแบบให้เป็น interactive media ที่เหมาะกับการเรียนรู้แบบ active recall และ spaced repetition
+      </p>
+    </div>
   </div>
 </section>
 
 <div class="section-header">
-  <div class="section-num">II</div>
+  <div class="section-num">¶</div>
   <div>
-    <h2 class="section-title">The Crucial Distinction</h2>
-    <div class="section-subtitle">Fever vs. Hyperthermia vs. Hyperpyrexia</div>
+    <h2 class="section-title">How to Use</h2>
+    <div class="section-subtitle">Suggested workflow · วิธีใช้สื่อให้เกิดประโยชน์สูงสุด</div>
   </div>
 </div>
 
-<section class="comparison">
-  <p style="font-family: var(--serif); font-size: 17px; font-style: italic; max-width: 720px; line-height: 1.5;">
-    การแยกแยะสามภาวะนี้สำคัญทางคลินิก เพราะ<strong style="font-style: normal;">วิธีรักษาต่างกันโดยสิ้นเชิง</strong> — antipyretics ใช้ไม่ได้ผลใน hyperthermia
-  </p>
-
-  <table class="comp-table">
-    <thead>
-      <tr>
-        <th class="feat">Feature</th>
-        <th class="fever">Fever</th>
-        <th class="hyper">Hyperthermia</th>
-        <th class="pyrex">Hyperpyrexia</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="feat-name">Set point</td>
-        <td>เลื่อนขึ้น (regulated)</td>
-        <td>ปกติ (unregulated)</td>
-        <td>เลื่อนขึ้นมาก</td>
-      </tr>
-      <tr>
-        <td class="feat-name">Mechanism</td>
-        <td>PGE₂-mediated</td>
-        <td>Heat gain &gt; loss</td>
-        <td>Severe pyrogen load</td>
-      </tr>
-      <tr>
-        <td class="feat-name">Temp range</td>
-        <td>มักไม่เกิน 41°C</td>
-        <td>อาจเกิน 41.5°C</td>
-        <td>&gt; 41.5°C</td>
-      </tr>
-      <tr>
-        <td class="feat-name">Skin</td>
-        <td>ขึ้นอยู่กับ phase (เย็น/ร้อน)</td>
-        <td>ร้อน, แห้ง (heat stroke)</td>
-        <td>ร้อนมาก</td>
-      </tr>
-      <tr>
-        <td class="feat-name">Examples</td>
-        <td>Infection, malignancy, autoimmune</td>
-        <td>Heat stroke, NMS, malignant hyperthermia, MDMA</td>
-        <td>CNS hemorrhage, severe sepsis, gram-neg bacteremia</td>
-      </tr>
-      <tr>
-        <td class="feat-name">Antipyretics?</td>
-        <td><strong style="color: var(--accent-fire);">ได้ผล</strong></td>
-        <td><strong style="color: var(--accent-cool);">ไม่ได้ผล</strong></td>
-        <td>ได้ผลบางส่วน</td>
-      </tr>
-      <tr>
-        <td class="feat-name">Treatment</td>
-        <td>NSAIDs, treat cause</td>
-        <td>External cooling, dantrolene (MH/NMS)</td>
-        <td>Aggressive cooling + antipyretics</td>
-      </tr>
-    </tbody>
-  </table>
+<section class="howto">
+  <div class="howto-grid">
+    <div class="howto-card">
+      <div class="howto-num">01</div>
+      <div class="howto-title">อ่าน Harrison ก่อน</div>
+      <div class="howto-desc">เปิดบทที่ต้องการเรียนใน textbook อ่านครั้งแรกให้จบ พยายามจับ concept หลักและ flow ของเนื้อหา</div>
+    </div>
+    <div class="howto-card">
+      <div class="howto-num">02</div>
+      <div class="howto-title">ใช้สื่อนี้ทบทวน</div>
+      <div class="howto-desc">เปิด concept map → เล่น flashcards → ลอง clinical cases สื่อแต่ละชนิดเสริมความเข้าใจคนละมุม</div>
+    </div>
+    <div class="howto-card">
+      <div class="howto-num">03</div>
+      <div class="howto-title">ทดสอบตัวเอง</div>
+      <div class="howto-desc">ทำ MCQ quiz เพื่อหา gap ในความเข้าใจ กลับไปอ่าน textbook ในส่วนที่ยังไม่แม่น แล้วทำซ้ำ</div>
+    </div>
+  </div>
 </section>
-
-<div class="callout">
-  <div class="callout-label">Clinical Pearl</div>
-  <div class="callout-text">
-    เมื่อพบผู้ป่วยอุณหภูมิสูง ถามตัวเองก่อน — <strong>ผิวเขามีเหงื่อไหม?</strong> ผิวร้อนแห้งคือสัญญาณเตือนของ heat stroke ซึ่งเป็น hyperthermia, ไม่ใช่ fever การรักษาคือทำให้เย็นทันที ไม่ใช่ paracetamol
-  </div>
-</div>
 
 <footer>
-  Teaching Material · Harrison's Internal Medicine 21st Ed · Ch. 18 Fever<br>
-  สื่อการสอนเพื่อการศึกษา · ห้ามใช้แทนการตัดสินใจทางคลินิก
+  <div class="footer-inner">
+    <div class="footer-block">
+      <div class="footer-label">Source</div>
+      <div class="footer-text">
+        Harrison's Principles of Internal Medicine, 21st Edition · McGraw-Hill Education · เนื้อหาทั้งหมดเป็นการสรุปและเรียบเรียงใหม่เพื่อการศึกษา ห้ามใช้แทนตำราต้นฉบับ
+      </div>
+    </div>
+    <div class="footer-block">
+      <div class="footer-label">Disclaimer</div>
+      <div class="footer-text">
+        สื่อเพื่อการศึกษาเท่านั้น ห้ามใช้แทนการตัดสินใจทางคลินิก ผู้ใช้ควรตรวจสอบกับ guideline และวรรณกรรมล่าสุดเสมอ
+      </div>
+    </div>
+    <div class="footer-block">
+      <div class="footer-label">Audience</div>
+      <div class="footer-text">
+        สำหรับ medical students, interns, residents และผู้สนใจ internal medicine
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    Harrison Teaching Library · Built with care · Updated May 2026
+  </div>
 </footer>
-
-<script>
-document.querySelectorAll('.stage').forEach(stage => {
-  stage.addEventListener('click', () => {
-    stage.classList.toggle('open');
-  });
-});
-
-// Stagger entrance animation
-const observerOptions = { threshold: 0.1 };
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
-    }
-  });
-}, observerOptions);
-
-document.querySelectorAll('.stage, .mol-card').forEach((el, i) => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(20px)';
-  el.style.transition = `opacity 0.6s ease ${i * 0.05}s, transform 0.6s ease ${i * 0.05}s, background 0.3s ease`;
-  observer.observe(el);
-});
-</script>
 
 </body>
 </html>
