@@ -91,7 +91,6 @@ font-weight: 500;
 .tab .count { font-size: 9px; margin-left: 4px; opacity: 0.6; }
 
 .progress-bar { display: flex; align-items: center; gap: 12px; }
-
 .progress-track { flex: 1; height: 4px; background: rgba(26, 22, 18, 0.1); overflow: hidden; }
 .progress-fill { height: 100%; background: #c8341a; width: 0; transition: width 0.4s; }
 
@@ -121,41 +120,19 @@ color: #6b5d4f;
 
 .card-meta .category-tag { color: #c8341a; font-weight: 700; }
 
-.card-container { width: 100%; perspective: 2000px; margin-bottom: 20px; }
-
+/* ===== CARD: Question + Answer stacked ===== */
 .card {
-position: relative;
-width: 100%;
-min-height: 400px;
-transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-transform-style: preserve-3d;
-cursor: pointer;
-}
-
-.card.flipped { transform: rotateY(180deg); }
-
-.card-face {
-position: absolute;
-inset: 0;
-width: 100%;
-height: 100%;
-backface-visibility: hidden;
--webkit-backface-visibility: hidden;
-display: flex;
-flex-direction: column;
-padding: 32px 28px 44px;
 border: 1px solid #1a1612;
+margin-bottom: 20px;
+overflow: hidden;
 }
 
-.card-face.front { background-color: #f5f0e6; }
-.card-face.back {
-transform: rotateY(180deg);
-background-color: #1a1612;
-color: #f5f0e6;
-overflow-y: auto;
+.card-question {
+background-color: #f5f0e6;
+padding: 32px 24px;
 }
 
-.face-label {
+.section-label {
 font-family: var(–mono);
 font-size: 10px;
 letter-spacing: 0.3em;
@@ -164,14 +141,9 @@ color: #c8341a;
 margin-bottom: 16px;
 }
 
-.card-face.back .face-label { color: #f4d35e; }
-
-.face-content { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-.card-face.back .face-content { justify-content: flex-start; padding-top: 8px; }
-
 .question {
 font-family: var(–serif);
-font-size: 24px;
+font-size: 22px;
 font-weight: 600;
 line-height: 1.3;
 margin-bottom: 14px;
@@ -187,9 +159,26 @@ font-style: italic;
 line-height: 1.5;
 }
 
+/* Answer section - collapsed by default */
+.card-answer {
+background-color: #1a1612;
+color: #f5f0e6;
+padding: 0 24px;
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.5s ease, padding 0.5s ease;
+}
+
+.card.revealed .card-answer {
+max-height: 1200px;
+padding: 32px 24px;
+}
+
+.card-answer .section-label { color: #f4d35e; }
+
 .answer-main {
 font-family: var(–serif);
-font-size: 22px;
+font-size: 20px;
 font-weight: 600;
 line-height: 1.3;
 margin-bottom: 14px;
@@ -218,19 +207,20 @@ margin-top: 6px;
 margin-right: 4px;
 }
 
-.flip-hint {
-position: absolute;
-bottom: 14px;
-right: 20px;
+/* Reveal hint inside card-question */
+.reveal-hint {
 font-family: var(–mono);
-font-size: 9px;
+font-size: 10px;
 letter-spacing: 0.2em;
 text-transform: uppercase;
-color: #6b5d4f;
+color: #c8341a;
+margin-top: 16px;
+display: inline-block;
 }
 
-.card-face.back .flip-hint { color: #b8742a; }
+.card.revealed .reveal-hint { display: none; }
 
+/* ===== ACTIONS ===== */
 .actions, .judgment-buttons { display: flex; gap: 8px; }
 .judgment { display: none; flex-direction: column; gap: 8px; }
 .judgment.visible { display: flex; }
@@ -362,11 +352,10 @@ margin-top: 20px;
 .tab .count { font-size: 9px; margin-left: 6px; }
 .progress-text { font-size: 11px; }
 .card-area { padding: 24px 40px 60px; }
-.card { min-height: 440px; }
-.card-face { padding: 40px 44px 52px; }
-.question { font-size: 30px; margin-bottom: 16px; }
+.card-question, .card.revealed .card-answer { padding: 40px 44px; }
+.question { font-size: 28px; margin-bottom: 16px; }
 .hint { font-size: 14px; }
-.answer-main { font-size: 26px; }
+.answer-main { font-size: 24px; }
 .answer-detail { font-size: 14px; }
 .completion-num { font-size: 100px; }
 .completion-title { font-size: 30px; }
@@ -376,9 +365,8 @@ footer { padding: 32px 40px; font-size: 10px; }
 }
 
 @media (min-width: 900px) {
-.question { font-size: 34px; }
-.answer-main { font-size: 28px; }
-.card { min-height: 460px; }
+.question { font-size: 32px; }
+.answer-main { font-size: 26px; }
 }
 </style>
 
@@ -412,25 +400,18 @@ footer { padding: 32px 40px; font-size: 10px; }
     <div id="diffTag">Foundation</div>
   </div>
 
-  <div class="card-container">
-    <div class="card" id="card">
-      <div class="card-face front">
-        <div class="face-label">Question</div>
-        <div class="face-content">
-          <div class="question" id="questionText">Loading...</div>
-          <div class="hint" id="hintText"></div>
-        </div>
-        <div class="flip-hint">▸ Tap to reveal</div>
-      </div>
-      <div class="card-face back">
-        <div class="face-label">Answer</div>
-        <div class="face-content">
-          <div class="answer-main" id="answerMain"></div>
-          <div class="answer-detail" id="answerDetail"></div>
-          <div id="answerKeys"></div>
-        </div>
-        <div class="flip-hint">◂ Tap to flip back</div>
-      </div>
+  <div class="card" id="card">
+    <div class="card-question" id="cardQuestion">
+      <div class="section-label">Question</div>
+      <div class="question" id="questionText">Loading...</div>
+      <div class="hint" id="hintText"></div>
+      <div class="reveal-hint">▾ Tap to reveal answer</div>
+    </div>
+    <div class="card-answer">
+      <div class="section-label">Answer</div>
+      <div class="answer-main" id="answerMain"></div>
+      <div class="answer-detail" id="answerDetail"></div>
+      <div id="answerKeys"></div>
     </div>
   </div>
 
@@ -596,7 +577,7 @@ const cards = [
 let currentCategory = 'all';
 let currentDeck = [];
 let currentIndex = 0;
-let isFlipped = false;
+let isRevealed = false;
 let stats = { known: 0, hard: 0, total: 0 };
 let hardCards = [];
 
@@ -628,24 +609,26 @@ function loadCard(idx) {
   $('currentNum').textContent = idx + 1;
   $('totalNum').textContent = currentDeck.length;
   $('progressFill').style.width = (idx / currentDeck.length * 100) + '%';
-  card.classList.remove('flipped');
-  isFlipped = false;
+  card.classList.remove('revealed');
+  isRevealed = false;
   $('actionsInitial').style.display = 'flex';
   $('actionsJudgment').classList.remove('visible');
   $('btnPrev').disabled = idx === 0;
 }
 
-function flipCard() {
-  isFlipped = !isFlipped;
-  card.classList.toggle('flipped');
-  if (isFlipped) {
+function revealAnswer() {
+  if (isRevealed) {
+    card.classList.remove('revealed');
+    isRevealed = false;
+    $('actionsInitial').style.display = 'flex';
+    $('actionsJudgment').classList.remove('visible');
+  } else {
+    card.classList.add('revealed');
+    isRevealed = true;
     setTimeout(() => {
       $('actionsInitial').style.display = 'none';
       $('actionsJudgment').classList.add('visible');
-    }, 300);
-  } else {
-    $('actionsInitial').style.display = 'flex';
-    $('actionsJudgment').classList.remove('visible');
+    }, 250);
   }
 }
 
@@ -656,6 +639,7 @@ function recordResult(result) {
   if (currentIndex < currentDeck.length - 1) {
     currentIndex++;
     loadCard(currentIndex);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   } else showCompletion();
 }
 
@@ -696,12 +680,12 @@ function reviewHardCards() {
   loadCard(0);
 }
 
-card.addEventListener('click', flipCard);
-$('btnFlip').addEventListener('click', e => { e.stopPropagation(); flipCard(); });
-$('btnPrev').addEventListener('click', e => { e.stopPropagation(); if (currentIndex > 0) { currentIndex--; loadCard(currentIndex); } });
-$('btnNext').addEventListener('click', e => { e.stopPropagation(); if (currentIndex < currentDeck.length - 1) { currentIndex++; loadCard(currentIndex); } });
+$('cardQuestion').addEventListener('click', () => { if (!isRevealed) revealAnswer(); });
+$('btnFlip').addEventListener('click', revealAnswer);
+$('btnPrev').addEventListener('click', () => { if (currentIndex > 0) { currentIndex--; loadCard(currentIndex); } });
+$('btnNext').addEventListener('click', () => { if (currentIndex < currentDeck.length - 1) { currentIndex++; loadCard(currentIndex); } });
 document.querySelectorAll('[data-result]').forEach(btn => {
-  btn.addEventListener('click', e => { e.stopPropagation(); recordResult(btn.dataset.result); });
+  btn.addEventListener('click', () => recordResult(btn.dataset.result));
 });
 document.querySelectorAll('.tab').forEach(tab => {
   tab.addEventListener('click', () => {
