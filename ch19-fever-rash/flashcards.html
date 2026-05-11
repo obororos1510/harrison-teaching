@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<title>Fever and Rash Flashcards — Harrison Ch. 19</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,800&family=JetBrains+Mono:wght@400;500;700&family=IBM+Plex+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light only;
+  --serif: 'Fraunces', 'Georgia', serif;
+  --thai: 'IBM Plex Sans Thai', 'Sukhumvit Set', sans-serif;
+  --mono: 'JetBrains Mono', 'SF Mono', monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+:root { color-scheme: light only; }
+html, body { background-color: #f5f0e6 !important; color: #1a1612 !important; }
+}
+
+- { box-sizing: border-box; margin: 0; padding: 0; overflow-wrap: break-word; }
+
+html { background-color: #f5f0e6 !important; color-scheme: light only; }
+
+body {
+font-family: var(–thai);
+background-color: #f5f0e6 !important;
+color: #1a1612 !important;
+line-height: 1.6;
+overflow-x: hidden;
+background-image:
+radial-gradient(circle at 20% 10%, rgba(200, 52, 26, 0.04) 0%, transparent 40%),
+radial-gradient(circle at 80% 70%, rgba(30, 77, 107, 0.04) 0%, transparent 40%);
+}
+
+.masthead {
+border-bottom: 3px double #2a241d;
+padding: 20px 24px;
+text-align: center;
+background-color: #f5f0e6;
+}
+
+.masthead-title {
+font-family: var(–serif);
+font-weight: 800;
+font-style: italic;
+font-size: 24px;
+}
+
+.masthead-title small {
+display: block;
+font-style: normal;
+font-weight: 400;
+font-size: 10px;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+margin-top: 4px;
+color: #c8341a;
+font-family: var(–mono);
+}
+
+.controls { max-width: 720px; margin: 0 auto; padding: 20px 20px 12px; }
+
+.category-tabs {
+display: flex;
+flex-wrap: wrap;
+border-bottom: 2px solid #1a1612;
+margin-bottom: 16px;
+}
+
+.tab {
+font-family: var(–mono);
+font-size: 10px;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+padding: 8px 10px;
+background: transparent;
+border: none;
+border-bottom: 3px solid transparent;
+color: #6b5d4f;
+cursor: pointer;
+margin-bottom: -2px;
+font-weight: 500;
+}
+
+.tab.active { color: #c8341a; border-bottom-color: #c8341a; font-weight: 700; }
+.tab .count { font-size: 9px; margin-left: 4px; opacity: 0.6; }
+
+.progress-bar { display: flex; align-items: center; gap: 12px; }
+.progress-track { flex: 1; height: 4px; background: rgba(26, 22, 18, 0.1); overflow: hidden; }
+.progress-fill { height: 100%; background: #c8341a; width: 0; transition: width 0.4s; }
+
+.progress-text {
+font-family: var(–mono);
+font-size: 10px;
+letter-spacing: 0.1em;
+color: #6b5d4f;
+text-transform: uppercase;
+white-space: nowrap;
+}
+
+.progress-text strong { color: #c8341a; font-weight: 700; }
+
+.card-area { max-width: 720px; margin: 0 auto; padding: 16px 20px 40px; }
+
+.card-meta {
+display: flex;
+justify-content: space-between;
+margin-bottom: 12px;
+font-family: var(–mono);
+font-size: 10px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: #6b5d4f;
+}
+
+.card-meta .category-tag { color: #c8341a; font-weight: 700; }
+
+.card {
+border: 1px solid #1a1612;
+margin-bottom: 20px;
+overflow: hidden;
+}
+
+.card-question {
+background-color: #f5f0e6;
+padding: 32px 24px;
+cursor: pointer;
+}
+
+.section-label {
+font-family: var(–mono);
+font-size: 10px;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+color: #c8341a;
+margin-bottom: 16px;
+}
+
+.question {
+font-family: var(–serif);
+font-size: 22px;
+font-weight: 600;
+line-height: 1.3;
+margin-bottom: 14px;
+}
+
+.question .em { font-style: italic; color: #c8341a; }
+
+.hint {
+font-family: var(–thai);
+font-size: 13px;
+color: #6b5d4f;
+font-style: italic;
+line-height: 1.5;
+}
+
+.card-answer {
+background-color: #1a1612;
+color: #f5f0e6;
+padding: 0 24px;
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.5s ease, padding 0.5s ease;
+}
+
+.card.revealed .card-answer {
+max-height: 1600px;
+padding: 32px 24px;
+}
+
+.card-answer .section-label { color: #f4d35e; }
+
+.answer-main {
+font-family: var(–serif);
+font-size: 20px;
+font-weight: 600;
+line-height: 1.3;
+margin-bottom: 14px;
+color: #f4d35e;
+}
+
+.answer-detail {
+font-family: var(–thai);
+font-size: 13px;
+line-height: 1.6;
+color: #ede4d3;
+margin-bottom: 12px;
+}
+
+.answer-detail strong { color: #f5f0e6; font-weight: 600; }
+
+.answer-key {
+display: inline-block;
+font-family: var(–mono);
+font-size: 10px;
+background-color: #c8341a;
+color: #f5f0e6;
+padding: 3px 8px;
+letter-spacing: 0.05em;
+margin-top: 6px;
+margin-right: 4px;
+}
+
+.image-link {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+font-family: var(–mono);
+font-size: 11px;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: #f4d35e;
+border: 1px solid #f4d35e;
+padding: 8px 14px;
+text-decoration: none;
+margin-top: 16px;
+transition: all 0.2s ease;
+font-weight: 600;
+}
+
+.image-link:hover {
+background-color: #f4d35e;
+color: #1a1612;
+}
+
+.image-link::before {
+content: ‘◉’;
+font-size: 14px;
+}
+
+.image-link::after {
+content: ‘↗’;
+font-size: 14px;
+margin-left: 4px;
+}
+
+.reveal-hint {
+font-family: var(–mono);
+font-size: 10px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: #c8341a;
+margin-top: 16px;
+display: inline-block;
+}
+
+.card.revealed .reveal-hint { display: none; }
+
+.actions, .judgment-buttons { display: flex; gap: 8px; }
+.judgment { display: none; flex-direction: column; gap: 8px; }
+.judgment.visible { display: flex; }
+
+.judgment-prompt {
+font-family: var(–mono);
+font-size: 10px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: #6b5d4f;
+text-align: center;
+}
+
+.btn {
+flex: 1;
+padding: 14px 16px;
+font-family: var(–mono);
+font-size: 11px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+border: 1px solid #1a1612;
+background-color: transparent;
+color: #1a1612;
+cursor: pointer;
+font-weight: 600;
+}
+
+.btn:hover { background-color: #1a1612; color: #f5f0e6; }
+.btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.btn-primary { background-color: #c8341a; border-color: #c8341a; color: #f5f0e6; }
+.btn-primary:hover { background-color: #1a1612; border-color: #1a1612; color: #f4d35e; }
+
+.btn-success { border-color: #1e4d6b; color: #1e4d6b; }
+.btn-success:hover { background-color: #1e4d6b; color: #f5f0e6; }
+
+.btn-fail { border-color: #c8341a; color: #c8341a; }
+.btn-fail:hover { background-color: #c8341a; color: #f5f0e6; }
+
+.completion {
+display: none;
+flex-direction: column;
+align-items: center;
+text-align: center;
+padding: 40px 20px;
+max-width: 600px;
+margin: 0 auto;
+}
+
+.completion.visible { display: flex; }
+
+.completion-num {
+font-family: var(–serif);
+font-style: italic;
+font-weight: 800;
+font-size: 80px;
+line-height: 0.85;
+color: #c8341a;
+margin-bottom: 12px;
+}
+
+.completion-title {
+font-family: var(–serif);
+font-size: 26px;
+font-weight: 600;
+font-style: italic;
+margin-bottom: 8px;
+}
+
+.completion-stats {
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+gap: 16px;
+margin: 24px 0;
+width: 100%;
+}
+
+.stat-num {
+font-family: var(–serif);
+font-style: italic;
+font-weight: 800;
+font-size: 36px;
+line-height: 1;
+margin-bottom: 4px;
+}
+
+.stat-num.good { color: #1e4d6b; }
+.stat-num.review { color: #b8742a; }
+
+.stat-label {
+font-family: var(–mono);
+font-size: 9px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: #6b5d4f;
+}
+
+.completion-msg {
+font-family: var(–serif);
+font-style: italic;
+font-size: 16px;
+line-height: 1.5;
+color: #2a241d;
+margin-bottom: 24px;
+max-width: 440px;
+}
+
+.completion-actions { display: flex; gap: 8px; width: 100%; max-width: 440px; flex-direction: column; }
+
+footer {
+border-top: 3px double #2a241d;
+padding: 24px 20px;
+text-align: center;
+font-family: var(–mono);
+font-size: 9px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: #6b5d4f;
+background-color: #f5f0e6;
+margin-top: 20px;
+}
+
+@media (min-width: 600px) {
+.masthead { padding: 24px 40px; }
+.masthead-title { font-size: 28px; }
+.masthead-title small { font-size: 11px; }
+.controls { padding: 28px 40px 16px; }
+.tab { padding: 10px 14px; font-size: 11px; letter-spacing: 0.15em; }
+.tab .count { font-size: 9px; margin-left: 6px; }
+.progress-text { font-size: 11px; }
+.card-area { padding: 24px 40px 60px; }
+.card-question, .card.revealed .card-answer { padding: 40px 44px; }
+.question { font-size: 28px; margin-bottom: 16px; }
+.hint { font-size: 14px; }
+.answer-main { font-size: 24px; }
+.answer-detail { font-size: 14px; }
+.completion-num { font-size: 100px; }
+.completion-title { font-size: 30px; }
+.stat-num { font-size: 42px; }
+.completion-actions { flex-direction: row; }
+footer { padding: 32px 40px; font-size: 10px; }
+}
+
+@media (min-width: 900px) {
+.question { font-size: 32px; }
+.answer-main { font-size: 26px; }
+}
+</style>
+
+</head>
+<body>
+
+<header class="masthead">
+  <h1 class="masthead-title">
+    Fever &amp; Rash Flashcards
+    <small>Harrison's IM 21e · Ch. 19 · Kaye &amp; Kaye</small>
+  </h1>
+</header>
+
+<div class="controls">
+  <div class="category-tabs">
+    <button class="tab active" data-cat="all">All<span class="count" id="count-all"></span></button>
+    <button class="tab" data-cat="lesion">Lesions<span class="count" id="count-lesion"></span></button>
+    <button class="tab" data-cat="critical">Critical<span class="count" id="count-critical"></span></button>
+    <button class="tab" data-cat="common">Common<span class="count" id="count-common"></span></button>
+    <button class="tab" data-cat="approach">Approach<span class="count" id="count-approach"></span></button>
+    <button class="tab" data-cat="pearl">Pearls<span class="count" id="count-pearl"></span></button>
+  </div>
+  <div class="progress-bar">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-text"><strong id="currentNum">1</strong> / <span id="totalNum">26</span></div>
+  </div>
+</div>
+
+<div class="card-area" id="cardArea">
+  <div class="card-meta">
+    <div class="category-tag" id="catTag">LESIONS</div>
+    <div id="diffTag">Foundation</div>
+  </div>
+
+  <div class="card" id="card">
+    <div class="card-question" id="cardQuestion">
+      <div class="section-label">Question</div>
+      <div class="question" id="questionText">Loading...</div>
+      <div class="hint" id="hintText"></div>
+      <div class="reveal-hint">▾ Tap to reveal answer</div>
+    </div>
+    <div class="card-answer">
+      <div class="section-label">Answer</div>
+      <div class="answer-main" id="answerMain"></div>
+      <div class="answer-detail" id="answerDetail"></div>
+      <div id="answerKeys"></div>
+      <div id="answerImage"></div>
+    </div>
+  </div>
+
+  <div class="actions" id="actionsInitial">
+    <button class="btn" id="btnPrev">◂ Prev</button>
+    <button class="btn btn-primary" id="btnFlip">Reveal</button>
+    <button class="btn" id="btnNext">Next ▸</button>
+  </div>
+
+  <div class="judgment" id="actionsJudgment">
+    <div class="judgment-prompt">How well did you know this?</div>
+    <div class="judgment-buttons">
+      <button class="btn btn-fail" data-result="hard">Need to review</button>
+      <button class="btn btn-success" data-result="known">I knew it</button>
+    </div>
+  </div>
+</div>
+
+<div class="completion" id="completion">
+  <div class="completion-num">★</div>
+  <div class="completion-title">Session Complete</div>
+  <div class="completion-stats">
+    <div><div class="stat-num good" id="finalKnown">0</div><div class="stat-label">Knew it</div></div>
+    <div><div class="stat-num review" id="finalReview">0</div><div class="stat-label">Review</div></div>
+    <div><div class="stat-num" id="finalTotal">0</div><div class="stat-label">Total</div></div>
+  </div>
+  <p class="completion-msg" id="completionMsg">เก่งมาก!</p>
+  <div class="completion-actions">
+    <button class="btn" id="btnReviewHard">Review Hard Cards</button>
+    <button class="btn btn-primary" id="btnRestart">Start Over</button>
+  </div>
+</div>
+
+<footer>
+  Teaching Material · Harrison's IM 21st Ed · Ch. 19 Fever &amp; Rash<br>
+  สื่อการสอนเพื่อการศึกษา · ห้ามใช้แทนการตัดสินใจทางคลินิก
+</footer>
+
+<script>
+const cards = [
+  // ========== LESION TYPES (Foundation) ==========
+  { cat: 'lesion', catLabel: 'Lesions', diff: 'Foundation',
+    q: '<span class="em">Macule</span> ต่างจาก <span class="em">papule</span> อย่างไร?',
+    hint: 'นูนหรือไม่นูน?',
+    aMain: 'Flat vs. Raised — palpable หรือไม่',
+    aDetail: '<strong>Macule:</strong> รอยสีเปลี่ยน flat ไม่นูน คลำไม่ได้ (เช่น measles ระยะแรก)<br><strong>Papule:</strong> รอยนูน palpable ≤ 5 mm (เช่น insect bite)<br><strong>Nodule:</strong> นูนใหญ่ > 5 mm<br><strong>Plaque:</strong> นูนแบนแผ่กว้าง (เช่น psoriasis)',
+    keys: ['Macule = flat', 'Papule = raised'] },
+  { cat: 'lesion', catLabel: 'Lesions', diff: 'Foundation',
+    q: '<span class="em">Vesicle</span> vs. <span class="em">Pustule</span> ต่างกันยังไง?',
+    hint: 'เนื้อในข้างใน',
+    aMain: 'Clear fluid vs. Pus',
+    aDetail: '<strong>Vesicle:</strong> ตุ่มน้ำใส ≤ 5 mm (เช่น varicella, HSV)<br><strong>Bulla:</strong> ตุ่มน้ำใส > 5 mm (เช่น pemphigus, bullous impetigo)<br><strong>Pustule:</strong> ตุ่มมีหนอง (เช่น disseminated gonococcemia, smallpox)',
+    keys: ['Vesicle ≤ 5mm', 'Bulla > 5mm', 'Pustule = pus'],
+    img: { url: 'https://dermnetnz.org/topics/morphology-of-skin-lesions', label: 'View on DermNet' } },
+  { cat: 'lesion', catLabel: 'Lesions', diff: 'Critical',
+    q: '<span class="em">Petechiae</span> vs. <span class="em">Purpura</span> vs. <span class="em">Ecchymosis</span>?',
+    hint: 'ขนาดและ blanching',
+    aMain: 'ขนาดต่างกัน — ทั้งหมด non-blanching',
+    aDetail: '<strong>Petechiae:</strong> &lt; 3 mm, pinpoint, non-blanching<br><strong>Purpura:</strong> 3 mm – 1 cm, palpable หรือ non-palpable<br><strong>Ecchymosis:</strong> &gt; 1 cm (bruise)<br><strong>Non-blanching = vascular extravasation</strong> = bleed into skin — บ่งชี้ thrombocytopenia, vasculitis, DIC, severe infection',
+    keys: ['All non-blanching', 'Vascular bleed'] },
+  { cat: 'lesion', catLabel: 'Lesions', diff: 'Critical',
+    q: 'วิธีทำ <span class="em">Blanching test</span> และมันบอกอะไร?',
+    hint: 'กดผ่านแก้วใส',
+    aMain: 'กดผิวแล้วดูสีจาง — แยก vascular ออกจาก hemorrhagic',
+    aDetail: 'ใช้แก้วใส (glass slide) หรือนิ้วกดลงบน rash:<br><strong>Blanching (จางลง):</strong> เลือดยังอยู่ในหลอด — เช่น viral exanthem, drug eruption, erythema<br><strong>Non-blanching (ไม่จาง):</strong> เลือดออกนอกหลอด — petechiae, purpura ← <strong>RED FLAG</strong> ต้องระวัง meningococcemia, RMSF, DIC',
+    keys: ['Non-blanching = bleed', 'Always test'] },
+  { cat: 'lesion', catLabel: 'Lesions', diff: 'Advanced',
+    q: '<span class="em">Centrally</span> vs. <span class="em">peripherally</span> distributed rash มีโรคอะไรบ้าง?',
+    hint: 'จุดเริ่มต้นและทิศทางการลาม',
+    aMain: 'Distribution pattern ช่วยจำกัด differential',
+    aDetail: '<strong>Centrally distributed</strong> (ลำตัวก่อน): viral exanthems ส่วนใหญ่ — measles, rubella, drug eruptions, typhus, secondary syphilis<br><strong>Peripherally distributed</strong> (ปลายแขน-ขาก่อน): <strong>RMSF</strong> (เริ่ม wrists/ankles), secondary syphilis (palms/soles), erythema multiforme, hand-foot-mouth, endocarditis (Janeway/Osler)<br><strong>Mucosal involvement:</strong> SJS/TEN, measles (Koplik), Kawasaki',
+    keys: ['Central = trunk first', 'Peripheral = extremities first'] },
+
+  // ========== LIFE-THREATENING (Critical) ==========
+  { cat: 'critical', catLabel: 'Critical', diff: 'Critical',
+    q: 'ผู้ป่วยมีไข้สูง + <span class="em">petechial rash</span> ลามเร็ว + hypotension — Dx อะไร? ต้องทำอะไรทันที?',
+    hint: 'พบบ่อยในวัยรุ่น, น่ากลัวที่สุด',
+    aMain: 'Meningococcemia (Neisseria meningitidis)',
+    aDetail: '<strong>Pathognomonic:</strong> petechiae ลามเป็น <strong>purpura fulminans</strong> ภายในชั่วโมง — DIC + skin necrosis<br><strong>Mortality 5-15%</strong> ถึงรักษาทัน, ถึง 70% ถ้าช้า<br><strong>Action ทันที:</strong><br>• Blood culture × 2 แล้วให้ <strong>ceftriaxone 2g IV</strong> เลย ไม่รอผล<br>• LP (ถ้าไม่มี contraindication)<br>• Droplet isolation<br>• Prophylaxis ให้ close contacts (rifampin, cipro)',
+    keys: ['Empiric Abx FIRST', 'Don\'t wait for LP'],
+    img: { url: 'https://dermnetnz.org/topics/meningococcal-disease', label: 'Meningococcal rash on DermNet' } },
+  { cat: 'critical', catLabel: 'Critical', diff: 'Critical',
+    q: 'นักเดินป่ามีไข้ + ปวดหัว + rash <span class="em">เริ่มที่ข้อมือและข้อเท้า</span> แล้วลามเข้าลำตัว — Dx?',
+    hint: 'พาหะ: tick. รักษา: doxycycline',
+    aMain: 'Rocky Mountain Spotted Fever (Rickettsia rickettsii)',
+    aDetail: '<strong>Classic triad:</strong> fever + headache + rash (แต่พบ ≤ 50% ของเคส!)<br><strong>Rash pattern:</strong> เริ่มเป็น <strong>blanching macules</strong> ที่ wrists/ankles → ลามเข้า trunk → palms/soles → <strong>petechial</strong>ใน 2-3 วัน<br><strong>"Centripetal spread"</strong> — peripheral → central<br><strong>Treatment:</strong> <strong>Doxycycline</strong> ทันที (แม้ในเด็ก) ห้ามรอ confirm — mortality สูงถ้าให้ช้า > 5 วัน<br>ไทย: น้อยกว่า RMSF แต่มี <strong>scrub typhus</strong> (O. tsutsugamushi) — มี eschar',
+    keys: ['Wrists/ankles first', 'Doxycycline empiric', 'Centripetal'] },
+  { cat: 'critical', catLabel: 'Critical', diff: 'Critical',
+    q: 'ผู้ป่วยหญิงมี <span class="em">diffuse erythroderma คล้าย sunburn</span> + ไข้สูง + hypotension + อาเจียน — Dx?',
+    hint: 'มีประวัติ tampon หรือ surgical wound',
+    aMain: 'Toxic Shock Syndrome (TSS)',
+    aDetail: '<strong>Cause:</strong> <em>Staphylococcus aureus</em> (TSST-1) หรือ <em>Streptococcus pyogenes</em> (Strep TSS)<br><strong>Criteria (CDC):</strong> Fever > 38.9°C, hypotension, diffuse macular erythroderma, <strong>desquamation ใน 1-2 สัปดาห์</strong> (palms, soles), multisystem involvement (≥ 3 systems)<br><strong>Triggers:</strong> tampons, surgical wounds, postpartum, nasal packing, burns<br><strong>Treatment:</strong> Source control (remove tampon/debride) + <strong>clindamycin</strong> (anti-toxin) + β-lactam + IVIG ใน severe',
+    keys: ['Erythroderma = sunburn', 'Desquamation late', 'Clindamycin'] },
+  { cat: 'critical', catLabel: 'Critical', diff: 'Critical',
+    q: 'ผู้ป่วยเริ่มยา <span class="em">sulfa</span> 10 วันก่อน มา รพ. มี painful rash + mucosal ulcers + skin sloughing — Dx?',
+    hint: 'Nikolsky sign บวก',
+    aMain: 'Stevens-Johnson Syndrome / TEN',
+    aDetail: '<strong>Spectrum:</strong> SJS &lt; 10% BSA, TEN &gt; 30%, SJS/TEN overlap 10-30%<br><strong>Features:</strong> Painful skin, target lesions, <strong>mucosal involvement (≥ 2 sites)</strong> — oral, ocular, genital. <strong>Nikolsky sign +</strong> (rub → epidermal detach)<br><strong>Common triggers:</strong> sulfa, allopurinol, lamotrigine, carbamazepine, nevirapine, NSAIDs<br><strong>Treatment:</strong> Stop drug ทันที, ICU/burn unit care, fluid + electrolytes, ophthal consult, IVIG/cyclosporine controversial<br><strong>SCORTEN</strong> = prognostic score',
+    keys: ['Mucosa ≥ 2 sites', 'Nikolsky +', 'Stop drug'],
+    img: { url: 'https://dermnetnz.org/topics/stevens-johnson-syndrome-toxic-epidermal-necrolysis', label: 'SJS/TEN on DermNet' } },
+  { cat: 'critical', catLabel: 'Critical', diff: 'Critical',
+    q: 'ผู้ป่วย DM มา รพ. ด้วยขาบวมแดง — แต่ <span class="em">เจ็บมากกว่าที่ผิวควรจะเป็น</span> + ไข้ + tachycardia — Dx?',
+    hint: '"Pain out of proportion"',
+    aMain: 'Necrotizing fasciitis',
+    aDetail: '<strong>Red flags:</strong><br>• <strong>Pain out of proportion to skin findings</strong> ← key clue<br>• Rapid progression (hours)<br>• Skin: dusky, mottled, bullae → necrosis<br>• Crepitus (gas in tissue) ใน Type I (polymicrobial)<br>• Systemic: fever, tachycardia, hypotension<br><strong>Types:</strong> I (polymicrobial, DM/elderly), II (group A Strep), III (Vibrio — seawater), IV (fungal)<br><strong>Treatment:</strong> <strong>Surgical debridement EMERGENCY</strong> + broad-spectrum Abx (vanc + pip-tazo + clindamycin)<br><strong>"Time to debridement"</strong> = strongest predictor of survival',
+    keys: ['Pain >> skin findings', 'Surgical emergency'] },
+  { cat: 'critical', catLabel: 'Critical', diff: 'Advanced',
+    q: '<span class="em">Purpura fulminans</span> คืออะไร? พบในโรคไหน?',
+    hint: 'DIC + skin necrosis',
+    aMain: 'Severe DIC ที่แสดงออกทาง skin — necrosis + gangrene',
+    aDetail: '<strong>Pathophys:</strong> Microvascular thrombosis + DIC → ischemic necrosis of skin → purpura ที่ขยายและกลายเป็น black eschar/gangrene<br><strong>Causes:</strong><br>• <strong>Meningococcemia</strong> (most classic)<br>• Severe sepsis (gram-neg, Strep pneumo)<br>• Protein C/S deficiency (neonatal)<br>• Post-infectious (after varicella, scarlet fever)<br><strong>Sites:</strong> มัก distal extremities, อาจต้อง amputate<br><strong>Treatment:</strong> Treat underlying + FFP, heparin (controversial), protein C concentrate ใน hereditary',
+    keys: ['DIC + skin necrosis', 'May need amputation'] },
+
+  // ========== COMMON IN THAILAND ==========
+  { cat: 'common', catLabel: 'Common', diff: 'Critical',
+    q: 'ไข้ 3-7 วัน + <span class="em">petechiae</span> + thrombocytopenia + ปวดเมื่อย — Dx ที่ต้องคิดในไทย?',
+    hint: 'ระวัง shock phase',
+    aMain: 'Dengue fever / Dengue hemorrhagic fever',
+    aDetail: '<strong>Phases:</strong><br>1. <strong>Febrile (1-3 days):</strong> high fever, retro-orbital pain, myalgia, flushed face<br>2. <strong>Critical (4-6 days):</strong> defervescence → plasma leakage → <strong>shock</strong> + bleeding (DSS)<br>3. <strong>Recovery (7+ days):</strong> "Convalescent rash" — confluent petechial rash with islands of normal skin ("white islands in a red sea")<br><strong>Tourniquet test:</strong> Inflate BP cuff midway between SBP/DBP × 5 min → count petechiae in 1 inch² ของ antecubital. ≥ 10 = positive<br><strong>Warning signs:</strong> abdominal pain, persistent vomiting, mucosal bleed, lethargy, ↑Hct + ↓plt, hepatomegaly<br><strong>Treatment:</strong> Supportive, careful IV fluid, NO NSAIDs/aspirin',
+    keys: ['Tourniquet test ≥ 10', 'No NSAIDs', 'Watch shock phase'] },
+  { cat: 'common', catLabel: 'Common', diff: 'Critical',
+    q: 'เด็กไม่ได้ฉีดวัคซีน มี <span class="em">Koplik spots</span> ในปาก + ไข้สูง + cough/coryza/conjunctivitis — Dx?',
+    hint: '3 C\'s + spots ในปาก',
+    aMain: 'Measles (Rubeola)',
+    aDetail: '<strong>Prodrome:</strong> 3 C\'s — <strong>Cough, Coryza, Conjunctivitis</strong> + fever<br><strong>Koplik spots:</strong> Pathognomonic! Bluish-white dots บน buccal mucosa ตรงข้าม molars — เกิด 1-2 วัน <strong>ก่อน</strong> rash<br><strong>Rash:</strong> Erythematous maculopapular เริ่มที่ <strong>head/face → ลามลง trunk/extremities (cephalocaudal)</strong> ภายใน 3 วัน → desquamation<br><strong>Complications:</strong> pneumonia (cause of death), otitis media, encephalitis, SSPE (late)<br><strong>Vit A supplementation</strong> ลด mortality<br><strong>Highly contagious:</strong> R0 = 12-18 (เปรียบเทียบกับ COVID R0 = 2-3)',
+    keys: ['3 C\'s prodrome', 'Koplik = pathognomonic', 'Cephalocaudal'],
+    img: { url: 'https://dermnetnz.org/topics/measles', label: 'Measles on DermNet' } },
+  { cat: 'common', catLabel: 'Common', diff: 'Foundation',
+    q: 'เด็กมีไข้ + <span class="em">vesicles ในระยะต่างกัน</span> ทั้ง body — Dx?',
+    hint: 'มีทั้ง papule, vesicle, crust พร้อมกัน',
+    aMain: 'Varicella (Chickenpox) — VZV',
+    aDetail: '<strong>Hallmark:</strong> Vesicles <strong>"in different stages"</strong> on the same area — papule, vesicle ("dewdrop on rose petal"), pustule, crust — มีหมดในเวลาเดียวกัน<br><strong>Distribution:</strong> centripetal (trunk > extremities), รวม scalp และ mucous membranes<br><strong>Contagious:</strong> 1-2 วันก่อน rash จนกว่าทุก lesions crust<br><strong>Complications:</strong> bacterial superinfection, pneumonia (adults), encephalitis, congenital varicella<br><strong>Adults more severe</strong> than children — consider acyclovir<br><strong>Reactivation</strong> = herpes zoster (shingles) — dermatomal',
+    keys: ['Different stages', 'Centripetal', 'Adults severe'] },
+  { cat: 'common', catLabel: 'Common', diff: 'Foundation',
+    q: 'เด็กเจ็บคอ + ไข้ + <span class="em">sandpaper rash</span> + strawberry tongue — Dx?',
+    hint: 'GAS infection',
+    aMain: 'Scarlet fever (Group A Streptococcus)',
+    aDetail: '<strong>Cause:</strong> GAS pharyngitis producing erythrogenic exotoxin<br><strong>Features:</strong><br>• <strong>"Sandpaper" rash</strong> — fine punctate erythema, rough feel<br>• Starts on neck/chest → spreads<br>• <strong>Pastia\'s lines</strong> — accentuation ใน skin folds (axillae, antecubital)<br>• <strong>Strawberry tongue</strong> — initially white-coated → red papillae<br>• Circumoral pallor<br>• <strong>Desquamation</strong> ใน 7-10 วัน<br><strong>Treatment:</strong> Penicillin/amoxicillin × 10 days — prevent rheumatic fever<br>(Throat swab + ASO titer ยืนยัน)',
+    keys: ['Sandpaper rash', 'Strawberry tongue', 'Pastia\'s lines'] },
+  { cat: 'common', catLabel: 'Common', diff: 'Critical',
+    q: 'ผู้ป่วยเริ่มยา amoxicillin 7 วันก่อน มี <span class="em">morbilliform rash</span> ทั่วลำตัว ไม่คัน — Dx? อันตรายไหม?',
+    hint: 'Most common drug rash',
+    aMain: 'Morbilliform drug eruption',
+    aDetail: '<strong>= "Measles-like"</strong> maculopapular rash — most common drug reaction<br><strong>Onset:</strong> ปกติ 5-14 วันหลังเริ่มยา (sooner ถ้าเคยได้ยานี้)<br><strong>Common culprits:</strong> aminopenicillins, sulfa, allopurinol, anticonvulsants<br><strong>Distribution:</strong> trunk → ลามออก, symmetric, no mucosal involvement<br><strong>Usually benign</strong> — แต่ต้องแยกจาก <strong>SJS/TEN</strong> และ <strong>DRESS</strong>:<br>• <strong>RED FLAGS:</strong> Pain, blisters, mucosal involvement, fever, lymphadenopathy, eosinophilia, hepatitis, facial edema → think DRESS/SJS<br><strong>EBV + amoxicillin</strong> = nearly 100% rash (classic NEJM image)',
+    keys: ['Most common drug rash', 'EBV + amox classic', 'Watch for DRESS'] },
+  { cat: 'common', catLabel: 'Common', diff: 'Advanced',
+    q: 'เด็กไข้สูง 5 วัน + conjunctivitis + strawberry tongue + <span class="em">peeling fingertips</span> + cervical LN — Dx?',
+    hint: 'CRASH and BURN',
+    aMain: 'Kawasaki Disease',
+    aDetail: '<strong>Diagnostic criteria:</strong> Fever ≥ 5 days + ≥ 4 of (CRASH):<br><strong>C</strong>onjunctivitis (bilateral, non-exudative)<br><strong>R</strong>ash (polymorphous)<br><strong>A</strong>denopathy (cervical, unilateral, ≥ 1.5 cm)<br><strong>S</strong>trawberry tongue / mucosal changes<br><strong>H</strong>ands and feet — erythema/edema → <strong>desquamation</strong> of fingertips (2-3 wk)<br><strong>= BURN (fever)</strong><br><strong>Complication:</strong> Coronary artery aneurysms (15-25% untreated) → MI, sudden death<br><strong>Treatment:</strong> <strong>IVIG + aspirin</strong> ภายใน 10 วัน → ลด aneurysm risk เหลือ 4%<br>Echo at diagnosis + 6-8 wk',
+    keys: ['CRASH + BURN', 'IVIG within 10d', 'Coronary aneurysm'] },
+
+  // ========== APPROACH ==========
+  { cat: 'approach', catLabel: 'Approach', diff: 'Critical',
+    q: 'คำถาม history ที่<span class="em">ขาดไม่ได้</span>ในผู้ป่วย fever + rash?',
+    hint: 'มี 5 หมวดใหญ่',
+    aMain: '5 หมวด: travel, exposure, drugs, immunization, sexual/IV',
+    aDetail: '<strong>1. Travel:</strong> ที่ไหน, เมื่อไหร่, นานแค่ไหน — endemic diseases (malaria, dengue, scrub typhus, rickettsial)<br><strong>2. Exposure:</strong> animals (tick, mosquito, rodent), ill contacts, occupational (healthcare, butcher), food/water<br><strong>3. Medications:</strong> ทุกตัวที่เริ่มภายใน 6 สัปดาห์ ถึงแม้ over-the-counter — drug eruption, DRESS, SJS<br><strong>4. Immunization:</strong> measles, varicella, meningococcal, HPV — ตรวจสอบใน adults ด้วย<br><strong>5. Sexual/IV drug use:</strong> HIV, syphilis, hepatitis, endocarditis<br><strong>+ HIV status</strong> เสมอ — เปลี่ยน differential เยอะ',
+    keys: ['T-E-D-I-S', 'HIV status'] },
+  { cat: 'approach', catLabel: 'Approach', diff: 'Critical',
+    q: 'เมื่อไหร่ต้อง <span class="em">empiric antibiotic ก่อนได้ผล LP/culture</span>?',
+    hint: '"Don\'t wait if you suspect"',
+    aMain: 'เมื่อสงสัย: meningococcemia, RMSF, TSS, sepsis',
+    aDetail: '<strong>Empiric ทันที — ห้ามรอ:</strong><br><strong>Meningococcemia:</strong> petechiae + fever ± altered MS → ceftriaxone 2g IV<br><strong>RMSF:</strong> fever + headache + exposure (เคยพบ tick) → <strong>doxycycline</strong>, ห้ามรอ serology<br><strong>Suspected meningitis:</strong> ให้ Abx ทันทีถ้าจะ delay LP > 30 min<br><strong>Sepsis + rash:</strong> broad-spectrum within 1 hour<br><strong>หลักการ:</strong> Blood culture × 2 ก่อน Abx ได้ ถ้าใช้เวลา &lt; 45 min<br>Mortality ของ meningococcemia เพิ่ม &gt;10% ต่อชั่วโมงที่ delay',
+    keys: ['Don\'t wait for confirm', 'Blood cx first if quick'] },
+  { cat: 'approach', catLabel: 'Approach', diff: 'Advanced',
+    q: 'Investigation ที่ควรสั่งใน fever + rash <span class="em">นอกจาก CBC/blood culture</span>?',
+    hint: 'ขึ้นกับ pattern',
+    aMain: 'Pattern-directed: skin biopsy, serology, PCR',
+    aDetail: '<strong>Basic ทุกคน:</strong> CBC + diff, coag, LFT, RFT, electrolytes, blood culture × 2, UA<br><strong>Petechial/purpuric:</strong> + platelets, PT/PTT, fibrinogen, D-dimer (DIC)<br><strong>Suspect rickettsial:</strong> serology (IFA), PCR ถ้ามี<br><strong>Suspect dengue:</strong> NS1 antigen (early), IgM (after day 4)<br><strong>Vesicular:</strong> Tzanck smear, VZV/HSV PCR<br><strong>Skin biopsy:</strong> ใน purpuric rash ไม่ทราบสาเหตุ, suspected vasculitis, immunocompromised — punch biopsy + tissue Gram/AFB + culture<br><strong>HIV test เสมอ</strong> ใน atypical presentation',
+    keys: ['Pattern-directed', 'Always HIV', 'Skin Bx for unclear'] },
+  { cat: 'approach', catLabel: 'Approach', diff: 'Foundation',
+    q: 'ใช้ <span class="em">distribution</span> ของ rash ช่วยแยก dx อย่างไร?',
+    hint: 'Palms/soles, mucosa, dermatome',
+    aMain: '5 patterns สำคัญ',
+    aDetail: '<strong>1. Centrally distributed (trunk first):</strong> measles, rubella, drug eruptions, typhus<br><strong>2. Peripheral (extremities first):</strong> RMSF, secondary syphilis, hand-foot-mouth, EM<br><strong>3. Palms/soles involvement:</strong> RMSF, secondary syphilis, hand-foot-mouth, endocarditis (Janeway/Osler), Kawasaki, TSS<br><strong>4. Mucosal involvement:</strong> SJS/TEN, measles (Koplik), Kawasaki, Behçet, HSV<br><strong>5. Dermatomal:</strong> herpes zoster<br><strong>Mnemonic palms/soles:</strong> "Stay Healthy, Keep Reading Texts" — Syphilis, Hand-foot-mouth, Kawasaki, RMSF, TSS',
+    keys: ['Palms/soles narrow Ddx', 'Mucosa narrows further'] },
+
+  // ========== HIGH-YIELD PEARLS ==========
+  { cat: 'pearl', catLabel: 'Pearls', diff: 'Critical',
+    q: '<span class="em">Koplik spots</span> สำคัญทำไม? ดูยังไง?',
+    hint: 'ปรากฏก่อน rash',
+    aMain: 'Pathognomonic for measles — เห็นก่อน skin rash',
+    aDetail: 'Bluish-white spots (1-3 mm) <strong>บน buccal mucosa</strong> ตรงข้ามกับ 2nd molars บน erythematous base — ดูเหมือน "grains of salt on red background"<br><strong>Timing:</strong> ปรากฏ <strong>1-2 วัน before skin rash</strong> และหายภายใน 2-3 วันหลัง rash ขึ้น<br><strong>Clinical value:</strong><br>• เป็น pathognomonic — ไม่เจอในโรคอื่น<br>• ช่วยวินิจฉัยเร็ว → isolation + ติดตาม contacts<br>• แยกจาก drug eruption, rubella ที่ rash คล้ายกัน<br>ตรวจ buccal mucosa ในเด็กไข้ทุกคนที่ไม่ได้ vaccine',
+    keys: ['Pathognomonic for measles', 'Before skin rash'] },
+  { cat: 'pearl', catLabel: 'Pearls', diff: 'Critical',
+    q: '<span class="em">Nikolsky sign</span> คืออะไร? บวกใน rash อะไรบ้าง?',
+    hint: 'Rub the skin',
+    aMain: 'Lateral pressure → epidermal separation',
+    aDetail: 'กดและถู skin ผิวข้างๆ lesion (หรือ perilesional skin) — ถ้า <strong>epidermis แยกออกจาก dermis</strong> = Nikolsky positive<br><strong>Positive ใน:</strong><br>• <strong>SJS/TEN</strong> ← most important<br>• <strong>Staphylococcal scalded skin syndrome (SSSS)</strong><br>• Pemphigus vulgaris<br>• Severe drug eruptions<br><strong>Significance:</strong> บ่งชี้ desmosomal disruption — ต้อง admit ICU/burn unit, refer ophthal, stop drug<br><strong>Negative ใน:</strong> bullous pemphigoid (subepidermal split), most viral exanthems',
+    keys: ['Epidermal detachment', 'SJS/TEN, SSSS, Pemphigus'] },
+  { cat: 'pearl', catLabel: 'Pearls', diff: 'Foundation',
+    q: 'อะไรคือ <span class="em">"Centripetal vs. Centrifugal"</span> rash spread?',
+    hint: 'ทิศทางเข้า/ออก',
+    aMain: 'Centripetal = peripheral → central; Centrifugal = central → peripheral',
+    aDetail: '<strong>Centripetal (peripheral → central):</strong> เริ่มที่ปลาย แล้วลามเข้าตัว — <strong>RMSF</strong>, scrub typhus, secondary syphilis<br><strong>Centrifugal (central → peripheral):</strong> เริ่มที่ลำตัว แล้วลามออก — <strong>varicella</strong>, smallpox<br><strong>Cephalocaudal (head → feet):</strong> measles, rubella<br><strong>Clinical pearl:</strong> Distribution + timing ช่วย narrow ddx เร็ว — RMSF rash ที่เริ่ม wrists/ankles คือ "centripetal" และเป็น life-threat ต้องคิดเสมอ',
+    keys: ['Centripetal = inward', 'Centrifugal = outward'] },
+  { cat: 'pearl', catLabel: 'Pearls', diff: 'Advanced',
+    q: '<span class="em">DRESS syndrome</span> ต่างจาก simple drug eruption อย่างไร?',
+    hint: 'Latent period + systemic',
+    aMain: 'Drug Reaction with Eosinophilia and Systemic Symptoms',
+    aDetail: '<strong>Onset:</strong> <strong>2-8 สัปดาห์</strong> หลังเริ่มยา (ยาวกว่า morbilliform rash ทั่วไป)<br><strong>Features (RegiSCAR criteria):</strong><br>• Fever > 38.5°C<br>• Morbilliform rash > 50% BSA<br>• <strong>Facial edema</strong> (characteristic)<br>• Lymphadenopathy (≥ 2 sites)<br>• <strong>Eosinophilia &gt; 1500 หรือ atypical lymphocytes</strong><br>• <strong>Organ involvement:</strong> hepatitis (most common), nephritis, pneumonitis, myocarditis<br><strong>Culprits:</strong> aromatic anticonvulsants (carbamazepine, phenytoin), allopurinol, sulfa, dapsone, minocycline, nevirapine<br><strong>Mortality 10%</strong> (mainly hepatic failure)<br><strong>Treatment:</strong> Stop drug + systemic steroids + supportive<br><strong>HHV-6 reactivation</strong> มีบทบาท',
+    keys: ['Latent 2-8 wk', 'Eosinophilia + organ', 'Facial edema'] }
+];
+
+let currentCategory = 'all';
+let currentDeck = [];
+let currentIndex = 0;
+let isRevealed = false;
+let stats = { known: 0, hard: 0, total: 0 };
+let hardCards = [];
+
+const $ = id => document.getElementById(id);
+const card = $('card');
+
+function initCounts() {
+  $('count-all').textContent = `(${cards.length})`;
+  ['lesion', 'critical', 'common', 'approach', 'pearl'].forEach(cat => {
+    $('count-' + cat).textContent = `(${cards.filter(c => c.cat === cat).length})`;
+  });
+}
+
+function buildDeck(cat) {
+  const filtered = cat === 'all' ? cards : cards.filter(c => c.cat === cat);
+  return [...filtered].sort(() => Math.random() - 0.5);
+}
+
+function loadCard(idx) {
+  if (idx < 0 || idx >= currentDeck.length) return;
+  const c = currentDeck[idx];
+  $('questionText').innerHTML = c.q;
+  $('hintText').textContent = c.hint || '';
+  $('answerMain').innerHTML = c.aMain;
+  $('answerDetail').innerHTML = c.aDetail;
+  $('answerKeys').innerHTML = (c.keys || []).map(k => `<span class="answer-key">${k}</span>`).join('');
+  $('answerImage').innerHTML = c.img ? `<a href="${c.img.url}" target="_blank" rel="noopener noreferrer" class="image-link">${c.img.label}</a>` : '';
+  $('catTag').textContent = c.catLabel;
+  $('diffTag').textContent = c.diff;
+  $('currentNum').textContent = idx + 1;
+  $('totalNum').textContent = currentDeck.length;
+  $('progressFill').style.width = (idx / currentDeck.length * 100) + '%';
+  card.classList.remove('revealed');
+  isRevealed = false;
+  $('actionsInitial').style.display = 'flex';
+  $('actionsJudgment').classList.remove('visible');
+  $('btnPrev').disabled = idx === 0;
+}
+
+function revealAnswer() {
+  if (isRevealed) {
+    card.classList.remove('revealed');
+    isRevealed = false;
+    $('actionsInitial').style.display = 'flex';
+    $('actionsJudgment').classList.remove('visible');
+  } else {
+    card.classList.add('revealed');
+    isRevealed = true;
+    setTimeout(() => {
+      $('actionsInitial').style.display = 'none';
+      $('actionsJudgment').classList.add('visible');
+    }, 250);
+  }
+}
+
+function recordResult(result) {
+  if (result === 'known') stats.known++;
+  else { stats.hard++; hardCards.push(currentDeck[currentIndex]); }
+  stats.total++;
+  if (currentIndex < currentDeck.length - 1) {
+    currentIndex++;
+    loadCard(currentIndex);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else showCompletion();
+}
+
+function showCompletion() {
+  $('cardArea').style.display = 'none';
+  $('completion').classList.add('visible');
+  $('finalKnown').textContent = stats.known;
+  $('finalReview').textContent = stats.hard;
+  $('finalTotal').textContent = stats.total;
+  $('progressFill').style.width = '100%';
+  const pct = stats.total > 0 ? (stats.known / stats.total) : 0;
+  let msg = '';
+  if (pct >= 0.9) msg = 'ยอดเยี่ยม! ความเข้าใจของคุณแน่นมาก พร้อมเจอเคสจริงแล้ว';
+  else if (pct >= 0.7) msg = 'เก่งมาก! ลองทำ Review Hard Cards เพื่อเสริมจุดที่ยังไม่แน่น';
+  else if (pct >= 0.5) msg = 'มาถูกทางแล้ว แนะนำให้กลับไปอ่าน Harrison Ch.19 อีกครั้ง';
+  else msg = 'ยังต้องทบทวนอีก ลองอ่านบทนี้แล้วค่อยกลับมาทำใหม่';
+  $('completionMsg').textContent = msg;
+}
+
+function reset() {
+  currentIndex = 0;
+  stats = { known: 0, hard: 0, total: 0 };
+  hardCards = [];
+  currentDeck = buildDeck(currentCategory);
+  $('cardArea').style.display = 'block';
+  $('completion').classList.remove('visible');
+  loadCard(0);
+}
+
+function reviewHardCards() {
+  if (hardCards.length === 0) { reset(); return; }
+  currentDeck = [...hardCards].sort(() => Math.random() - 0.5);
+  currentIndex = 0;
+  stats = { known: 0, hard: 0, total: 0 };
+  hardCards = [];
+  $('cardArea').style.display = 'block';
+  $('completion').classList.remove('visible');
+  loadCard(0);
+}
+
+$('cardQuestion').addEventListener('click', () => { if (!isRevealed) revealAnswer(); });
+$('btnFlip').addEventListener('click', revealAnswer);
+$('btnPrev').addEventListener('click', () => { if (currentIndex > 0) { currentIndex--; loadCard(currentIndex); } });
+$('btnNext').addEventListener('click', () => { if (currentIndex < currentDeck.length - 1) { currentIndex++; loadCard(currentIndex); } });
+document.querySelectorAll('[data-result]').forEach(btn => {
+  btn.addEventListener('click', () => recordResult(btn.dataset.result));
+});
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    currentCategory = tab.dataset.cat;
+    reset();
+  });
+});
+$('btnRestart').addEventListener('click', reset);
+$('btnReviewHard').addEventListener('click', reviewHardCards);
+
+initCounts();
+currentDeck = buildDeck('all');
+loadCard(0);
+</script>
+
+</body>
+</html>
