@@ -1,0 +1,932 @@
+ <!DOCTYPE html>
+
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<title>Fever and Rash — Advanced Flashcards · Harrison Ch. 19</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,800&family=JetBrains+Mono:wght@400;500;700&family=IBM+Plex+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light only;
+  --serif: 'Fraunces', 'Georgia', serif;
+  --thai: 'IBM Plex Sans Thai', 'Sukhumvit Set', sans-serif;
+  --mono: 'JetBrains Mono', 'SF Mono', monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+:root { color-scheme: light only; }
+html, body { background-color: #f5f0e6 !important; color: #1a1612 !important; }
+}
+
+- { box-sizing: border-box; margin: 0; padding: 0; overflow-wrap: break-word; }
+
+html { background-color: #f5f0e6 !important; color-scheme: light only; }
+
+body {
+font-family: var(–thai);
+background-color: #f5f0e6 !important;
+color: #1a1612 !important;
+line-height: 1.6;
+overflow-x: hidden;
+background-image:
+radial-gradient(circle at 20% 10%, rgba(200, 52, 26, 0.04) 0%, transparent 40%),
+radial-gradient(circle at 80% 70%, rgba(30, 77, 107, 0.04) 0%, transparent 40%);
+}
+
+.masthead {
+border-bottom: 3px double #2a241d;
+padding: 20px 24px;
+text-align: center;
+background-color: #f5f0e6;
+}
+
+.masthead-title {
+font-family: var(–serif);
+font-weight: 800;
+font-style: italic;
+font-size: 24px;
+}
+
+.masthead-title small {
+display: block;
+font-style: normal;
+font-weight: 400;
+font-size: 10px;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+margin-top: 4px;
+color: #c8341a;
+font-family: var(–mono);
+}
+
+.badge {
+display: inline-block;
+font-family: var(–mono);
+font-size: 9px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+background-color: #1a1612;
+color: #f4d35e;
+padding: 3px 8px;
+margin-top: 8px;
+font-weight: 700;
+}
+
+.controls { max-width: 720px; margin: 0 auto; padding: 20px 20px 12px; }
+
+.category-tabs {
+display: flex;
+flex-wrap: wrap;
+border-bottom: 2px solid #1a1612;
+margin-bottom: 16px;
+}
+
+.tab {
+font-family: var(–mono);
+font-size: 10px;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+padding: 8px 9px;
+background: transparent;
+border: none;
+border-bottom: 3px solid transparent;
+color: #6b5d4f;
+cursor: pointer;
+margin-bottom: -2px;
+font-weight: 500;
+}
+
+.tab.active { color: #c8341a; border-bottom-color: #c8341a; font-weight: 700; }
+.tab .count { font-size: 9px; margin-left: 3px; opacity: 0.6; }
+
+.progress-bar { display: flex; align-items: center; gap: 12px; }
+.progress-track { flex: 1; height: 4px; background: rgba(26, 22, 18, 0.1); overflow: hidden; }
+.progress-fill { height: 100%; background: #c8341a; width: 0; transition: width 0.4s; }
+
+.progress-text {
+font-family: var(–mono);
+font-size: 10px;
+letter-spacing: 0.1em;
+color: #6b5d4f;
+text-transform: uppercase;
+white-space: nowrap;
+}
+
+.progress-text strong { color: #c8341a; font-weight: 700; }
+
+.card-area { max-width: 720px; margin: 0 auto; padding: 16px 20px 40px; }
+
+.card-meta {
+display: flex;
+justify-content: space-between;
+margin-bottom: 12px;
+font-family: var(–mono);
+font-size: 10px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: #6b5d4f;
+}
+
+.card-meta .category-tag { color: #c8341a; font-weight: 700; }
+
+.card {
+border: 1px solid #1a1612;
+margin-bottom: 20px;
+overflow: hidden;
+}
+
+.card-question {
+background-color: #f5f0e6;
+padding: 32px 24px;
+cursor: pointer;
+}
+
+.section-label {
+font-family: var(–mono);
+font-size: 10px;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+color: #c8341a;
+margin-bottom: 16px;
+}
+
+.question {
+font-family: var(–serif);
+font-size: 22px;
+font-weight: 600;
+line-height: 1.3;
+margin-bottom: 14px;
+}
+
+.question .em { font-style: italic; color: #c8341a; }
+.question .vignette { font-style: italic; font-weight: 400; color: #2a241d; }
+
+.hint {
+font-family: var(–thai);
+font-size: 13px;
+color: #6b5d4f;
+font-style: italic;
+line-height: 1.5;
+}
+
+.card-answer {
+background-color: #1a1612;
+color: #f5f0e6;
+padding: 0 24px;
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.5s ease, padding 0.5s ease;
+}
+
+.card.revealed .card-answer {
+max-height: 1800px;
+padding: 32px 24px;
+}
+
+.card-answer .section-label { color: #f4d35e; }
+
+.answer-main {
+font-family: var(–serif);
+font-size: 20px;
+font-weight: 600;
+line-height: 1.3;
+margin-bottom: 14px;
+color: #f4d35e;
+}
+
+.answer-detail {
+font-family: var(–thai);
+font-size: 13px;
+line-height: 1.6;
+color: #ede4d3;
+margin-bottom: 12px;
+}
+
+.answer-detail strong { color: #f5f0e6; font-weight: 600; }
+
+.answer-key {
+display: inline-block;
+font-family: var(–mono);
+font-size: 10px;
+background-color: #c8341a;
+color: #f5f0e6;
+padding: 3px 8px;
+letter-spacing: 0.05em;
+margin-top: 6px;
+margin-right: 4px;
+}
+
+.image-link {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+font-family: var(–mono);
+font-size: 11px;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: #f4d35e;
+border: 1px solid #f4d35e;
+padding: 8px 14px;
+text-decoration: none;
+margin-top: 16px;
+font-weight: 600;
+}
+
+.image-link:hover { background-color: #f4d35e; color: #1a1612; }
+.image-link::before { content: ‘◉’; font-size: 14px; }
+.image-link::after { content: ‘↗’; font-size: 14px; margin-left: 4px; }
+
+.reveal-hint {
+font-family: var(–mono);
+font-size: 10px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: #c8341a;
+margin-top: 16px;
+display: inline-block;
+}
+
+.card.revealed .reveal-hint { display: none; }
+
+.actions, .judgment-buttons { display: flex; gap: 8px; }
+.judgment { display: none; flex-direction: column; gap: 8px; }
+.judgment.visible { display: flex; }
+
+.judgment-prompt {
+font-family: var(–mono);
+font-size: 10px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: #6b5d4f;
+text-align: center;
+}
+
+.btn {
+flex: 1;
+padding: 14px 16px;
+font-family: var(–mono);
+font-size: 11px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+border: 1px solid #1a1612;
+background-color: transparent;
+color: #1a1612;
+cursor: pointer;
+font-weight: 600;
+}
+
+.btn:hover { background-color: #1a1612; color: #f5f0e6; }
+.btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.btn-primary { background-color: #c8341a; border-color: #c8341a; color: #f5f0e6; }
+.btn-primary:hover { background-color: #1a1612; border-color: #1a1612; color: #f4d35e; }
+
+.btn-success { border-color: #1e4d6b; color: #1e4d6b; }
+.btn-success:hover { background-color: #1e4d6b; color: #f5f0e6; }
+
+.btn-fail { border-color: #c8341a; color: #c8341a; }
+.btn-fail:hover { background-color: #c8341a; color: #f5f0e6; }
+
+.completion {
+display: none;
+flex-direction: column;
+align-items: center;
+text-align: center;
+padding: 40px 20px;
+max-width: 600px;
+margin: 0 auto;
+}
+
+.completion.visible { display: flex; }
+
+.completion-num {
+font-family: var(–serif);
+font-style: italic;
+font-weight: 800;
+font-size: 80px;
+line-height: 0.85;
+color: #c8341a;
+margin-bottom: 12px;
+}
+
+.completion-title {
+font-family: var(–serif);
+font-size: 26px;
+font-weight: 600;
+font-style: italic;
+margin-bottom: 8px;
+}
+
+.completion-stats {
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+gap: 16px;
+margin: 24px 0;
+width: 100%;
+}
+
+.stat-num {
+font-family: var(–serif);
+font-style: italic;
+font-weight: 800;
+font-size: 36px;
+line-height: 1;
+margin-bottom: 4px;
+}
+
+.stat-num.good { color: #1e4d6b; }
+.stat-num.review { color: #b8742a; }
+
+.stat-label {
+font-family: var(–mono);
+font-size: 9px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: #6b5d4f;
+}
+
+.completion-msg {
+font-family: var(–serif);
+font-style: italic;
+font-size: 16px;
+line-height: 1.5;
+color: #2a241d;
+margin-bottom: 24px;
+max-width: 440px;
+}
+
+.completion-actions { display: flex; gap: 8px; width: 100%; max-width: 440px; flex-direction: column; }
+
+footer {
+border-top: 3px double #2a241d;
+padding: 24px 20px;
+text-align: center;
+font-family: var(–mono);
+font-size: 9px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: #6b5d4f;
+background-color: #f5f0e6;
+margin-top: 20px;
+}
+
+@media (min-width: 600px) {
+.masthead { padding: 24px 40px; }
+.masthead-title { font-size: 28px; }
+.masthead-title small { font-size: 11px; }
+.controls { padding: 28px 40px 16px; }
+.tab { padding: 10px 12px; font-size: 11px; letter-spacing: 0.12em; }
+.tab .count { font-size: 9px; margin-left: 5px; }
+.progress-text { font-size: 11px; }
+.card-area { padding: 24px 40px 60px; }
+.card-question, .card.revealed .card-answer { padding: 40px 44px; }
+.question { font-size: 26px; margin-bottom: 16px; }
+.hint { font-size: 14px; }
+.answer-main { font-size: 24px; }
+.answer-detail { font-size: 14px; }
+.completion-num { font-size: 100px; }
+.completion-title { font-size: 30px; }
+.stat-num { font-size: 42px; }
+.completion-actions { flex-direction: row; }
+footer { padding: 32px 40px; font-size: 10px; }
+}
+
+@media (min-width: 900px) {
+.question { font-size: 30px; }
+.answer-main { font-size: 26px; }
+}
+</style>
+
+</head>
+<body>
+
+<header class="masthead">
+  <h1 class="masthead-title">
+    Fever &amp; Rash — Advanced
+    <small>Harrison's IM 21e · Ch. 19 · Kaye &amp; Kaye</small>
+    <div class="badge">★ Advanced Deck · 47 cards</div>
+    <!-- count = 47 confirmed -->
+  </h1>
+</header>
+
+<div class="controls">
+  <div class="category-tabs">
+    <button class="tab active" data-cat="all">All<span class="count" id="count-all"></span></button>
+    <button class="tab" data-cat="framework">Framework<span class="count" id="count-framework"></span></button>
+    <button class="tab" data-cat="critical">Critical<span class="count" id="count-critical"></span></button>
+    <button class="tab" data-cat="central">Central<span class="count" id="count-central"></span></button>
+    <button class="tab" data-cat="peripheral">Peripheral<span class="count" id="count-peripheral"></span></button>
+    <button class="tab" data-cat="desq">Desquam.<span class="count" id="count-desq"></span></button>
+    <button class="tab" data-cat="vesicle">Vesicular<span class="count" id="count-vesicle"></span></button>
+    <button class="tab" data-cat="purpura">Purpuric<span class="count" id="count-purpura"></span></button>
+    <button class="tab" data-cat="other">Other<span class="count" id="count-other"></span></button>
+  </div>
+  <div class="progress-bar">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-text"><strong id="currentNum">1</strong> / <span id="totalNum">47</span></div>
+  </div>
+</div>
+
+<div class="card-area" id="cardArea">
+  <div class="card-meta">
+    <div class="category-tag" id="catTag">FRAMEWORK</div>
+    <div id="diffTag">Foundation</div>
+  </div>
+
+  <div class="card" id="card">
+    <div class="card-question" id="cardQuestion">
+      <div class="section-label">Question</div>
+      <div class="question" id="questionText">Loading...</div>
+      <div class="hint" id="hintText"></div>
+      <div class="reveal-hint">▾ Tap to reveal answer</div>
+    </div>
+    <div class="card-answer">
+      <div class="section-label">Answer</div>
+      <div class="answer-main" id="answerMain"></div>
+      <div class="answer-detail" id="answerDetail"></div>
+      <div id="answerKeys"></div>
+      <div id="answerImage"></div>
+    </div>
+  </div>
+
+  <div class="actions" id="actionsInitial">
+    <button class="btn" id="btnPrev">◂ Prev</button>
+    <button class="btn btn-primary" id="btnFlip">Reveal</button>
+    <button class="btn" id="btnNext">Next ▸</button>
+  </div>
+
+  <div class="judgment" id="actionsJudgment">
+    <div class="judgment-prompt">How well did you know this?</div>
+    <div class="judgment-buttons">
+      <button class="btn btn-fail" data-result="hard">Need to review</button>
+      <button class="btn btn-success" data-result="known">I knew it</button>
+    </div>
+  </div>
+</div>
+
+<div class="completion" id="completion">
+  <div class="completion-num">★</div>
+  <div class="completion-title">Session Complete</div>
+  <div class="completion-stats">
+    <div><div class="stat-num good" id="finalKnown">0</div><div class="stat-label">Knew it</div></div>
+    <div><div class="stat-num review" id="finalReview">0</div><div class="stat-label">Review</div></div>
+    <div><div class="stat-num" id="finalTotal">0</div><div class="stat-label">Total</div></div>
+  </div>
+  <p class="completion-msg" id="completionMsg">Well done!</p>
+  <div class="completion-actions">
+    <button class="btn" id="btnReviewHard">Review Hard Cards</button>
+    <button class="btn btn-primary" id="btnRestart">Start Over</button>
+  </div>
+</div>
+
+<footer>
+  Teaching Material · Harrison's IM 21st Ed · Ch. 19 Fever &amp; Rash<br>
+  สื่อการสอนเพื่อการศึกษา · ห้ามใช้แทนการตัดสินใจทางคลินิก
+</footer>
+
+<script>
+const cards = [
+  // ========== FRAMEWORK (Harrison's classification) ==========
+  { cat: 'framework', catLabel: 'Framework', diff: 'Foundation',
+    q: 'Harrison แบ่ง fever + rash เป็น <span class="em">กี่ categories</span> ตาม eruption type?',
+    hint: 'รวมทั้ง maculopapular และ ulcer/eschar',
+    aMain: '8 categories — based on morphology + distribution',
+    aDetail: '<strong>1. Centrally distributed maculopapular</strong> (trunk first) — most common<br><strong>2. Peripheral</strong> (acral first, spread centripetally)<br><strong>3. Confluent desquamative erythemas</strong> — toxin-mediated<br><strong>4. Vesiculobullous / pustular</strong><br><strong>5. Urticaria-like</strong> (with fever = vasculitis until proven otherwise)<br><strong>6. Nodular</strong><br><strong>7. Purpuric</strong> (non-blanching)<br><strong>8. With ulcers / eschars</strong><br>หลักการ: morphology อาจเปลี่ยนเมื่อโรคดำเนิน — RMSF เริ่ม blanching macule → petechial',
+    keys: ['8 categories', 'Morphology can evolve'] },
+  { cat: 'framework', catLabel: 'Framework', diff: 'Critical',
+    q: 'เห็น <span class="em">urticaria-like rash + fever</span> — ห้ามคิดว่า "แค่ urticaria ธรรมดา" เพราะอะไร?',
+    hint: 'Classic urticaria ไม่มีไข้',
+    aMain: 'Urticarial vasculitis until proven otherwise',
+    aDetail: '<strong>Classic urticaria:</strong> lesions last &lt; 24 h, no fever, blanchable, allergic mechanism<br><strong>Urticarial vasculitis (with fever):</strong> lesions last <strong>3-5 days</strong>, may be painful/burning, <strong>incomplete blanching</strong> (hemorrhagic component), purpura ที่ผิวหลัง resolution<br><strong>Causes:</strong> serum sickness (PCN, sulfa, salicylates, barbiturates), CTD (SLE, Sjögren), hepatitis B, parasites, malignancy (lymphoma + chronic urticaria)<br><strong>Workup:</strong> CBC, ESR, complement, ANA, hep B, skin biopsy',
+    keys: ['Urticaria + fever = vasculitis', 'Lasts > 24h'] },
+  { cat: 'framework', catLabel: 'Framework', diff: 'Foundation',
+    q: '<span class="em">Centrally distributed</span> maculopapular rash — DDx ที่ต้องคิด?',
+    hint: 'Most common pattern',
+    aMain: 'Viral exanthems, drug, rickettsial, CTD',
+    aDetail: '<strong>Viral:</strong> measles (cephalocaudal), rubella, EBV, primary HIV, parvovirus B19, roseola (HHV-6), enteroviruses, dengue, Zika, West Nile<br><strong>Bacterial:</strong> typhoid (rose spots), secondary syphilis (can be central + palms/soles), Lyme (erythema migrans)<br><strong>Rickettsial:</strong> epidemic typhus, scrub typhus, ehrlichiosis<br><strong>Drug:</strong> exanthematous drug eruption (most common drug rash)<br><strong>CTD:</strong> SLE (malar), Still\'s disease (salmon, evanescent with fever spikes)<br><strong>Critical reds:</strong> acute meningococcemia (early), DRESS',
+    keys: ['Most common pattern', 'Always consider drug + viral'] },
+  { cat: 'framework', catLabel: 'Framework', diff: 'Critical',
+    q: '<span class="em">Peripheral</span> eruption — DDx ที่ห้ามพลาด?',
+    hint: 'Starts hands/feet หรือ prominent on palms/soles',
+    aMain: 'RMSF, syphilis II, EM, endocarditis, HFMD',
+    aDetail: '<strong>Life-threats:</strong><br>• <strong>RMSF</strong> — wrists/ankles → centripetal → palms/soles late<br>• <strong>Bacterial endocarditis</strong> — Janeway (painless, palms/soles), Osler (painful pads), splinter hemorrhages<br><strong>Common:</strong><br>• <strong>Secondary syphilis</strong> — copper-colored, palms/soles, "great mimicker"<br>• <strong>Hand-foot-and-mouth</strong> (coxsackie A16, EV71) — vesicles<br>• <strong>Erythema multiforme</strong> — target lesions, symmetric on elbows/knees/palms/soles<br>• <strong>Chikungunya</strong> — small joint arthralgia<br>• <strong>COVID-19 pernio</strong> — acral violaceous (mild disease)',
+    keys: ['Palms/soles → narrow Ddx fast', 'Always think syphilis + endocarditis'] },
+
+  // ========== CRITICAL / LIFE-THREATENING (gap fills) ==========
+  { cat: 'critical', catLabel: 'Critical', diff: 'Critical',
+    q: 'Neutropenic patient post-chemo + fever + <span class="em">indurated necrotic plaque with eschar</span> ที่ groin — Dx?',
+    hint: 'Often Pseudomonas',
+    aMain: 'Ecthyma gangrenosum',
+    aDetail: '<strong>Classic for Pseudomonas bacteremia</strong> ใน neutropenic patients (~28% ของ Pseudomonas bacteremia)<br><strong>Evolution:</strong> erythematous halo → hemorrhagic bulla/pustule → sloughs → <strong>necrotic ulcer with central eschar</strong><br><strong>Common sites:</strong> axilla, groin, perianal<br><strong>Other organisms:</strong> other gram-negatives, fungi (esp. immunocompromised)<br><strong>Action:</strong> blood cx + skin culture/biopsy + empiric anti-pseudomonal (cefepime/pip-tazo) + remove central lines<br><strong>Mortality high</strong> — don\'t delay',
+    keys: ['Pseudomonas + neutropenia', 'Eschar with halo'],
+    img: { url: 'https://dermnetnz.org/topics/ecthyma-gangrenosum', label: 'Ecthyma gangrenosum on DermNet' } },
+  { cat: 'critical', catLabel: 'Critical', diff: 'Critical',
+    q: '<span class="em">Disseminated gonococcal infection</span> ดูยังไง? แยกจาก meningococcemia อย่างไร?',
+    hint: 'Sparse, near joints',
+    aMain: 'Sparse hemorrhagic pustules near joints + tenosynovitis',
+    aDetail: '<strong>Classic triad:</strong> tenosynovitis + polyarthritis + dermatitis<br><strong>Skin:</strong> usually <strong>&lt; 40 lesions</strong> (countable!), <strong>papules → hemorrhagic pustules with gray necrotic centers</strong>, distributed peripherally <strong>near joints</strong>, upper extremities &gt; lower<br><strong>Patient:</strong> sexually active, often female, may have complement deficiency<br><strong>vs. meningococcemia:</strong> meningococcemia rapidly progressive, hypotensive, petechiae numerous (not countable) → purpura fulminans<br><strong>Treatment:</strong> ceftriaxone 1g IV/IM daily',
+    keys: ['Countable lesions', 'Near joints'] },
+  { cat: 'critical', catLabel: 'Critical', diff: 'Critical',
+    q: 'Cirrhotic patient ate raw oysters → fever + <span class="em">hemorrhagic bullae</span> on legs → shock — Dx?',
+    hint: 'Saltwater organism',
+    aMain: 'Vibrio vulnificus septicemia',
+    aDetail: '<strong>Setting:</strong> liver disease, hemochromatosis, immunosuppression, or DM → eat raw seafood (oysters) OR wound contact with seawater<br><strong>Skin:</strong> erythema → <strong>hemorrhagic bullae</strong> → necrotic ulcers ภายในชั่วโมง<br><strong>Systemic:</strong> sepsis, hypotension, mortality ~50%<br><strong>Treatment:</strong> doxycycline + ceftriaxone (or fluoroquinolone) + aggressive debridement<br><strong>Differential of hemorrhagic bullae in immunocompromised:</strong> Vibrio vulnificus, ecthyma gangrenosum, mucormycosis',
+    keys: ['Cirrhosis + raw seafood', 'Mortality 50%'] },
+  { cat: 'critical', catLabel: 'Critical', diff: 'Advanced',
+    q: '<span class="em">TTP/HUS</span> presents with fever + petechiae — แยกจาก meningococcemia ตรงไหน?',
+    hint: 'Non-infectious, classic pentad',
+    aMain: 'Microangiopathic hemolytic anemia + thrombocytopenia',
+    aDetail: '<strong>Classic pentad (TTP):</strong><br>1. <strong>Microangiopathic hemolytic anemia</strong> (schistocytes on smear)<br>2. <strong>Thrombocytopenia</strong><br>3. Fever (not always)<br>4. Renal dysfunction<br>5. Neurologic changes<br><strong>Mechanism:</strong> ADAMTS13 deficiency → can\'t cleave vWF multimers → microthrombi<br><strong>HUS variant:</strong> Shiga toxin from E. coli O157:H7 (bloody diarrhea, kids)<br><strong>Key clue:</strong> coagulation studies <strong>normal</strong> (unlike DIC), only platelets ↓ and schistocytes<br><strong>Treatment:</strong> plasma exchange (PLEX) urgently for TTP',
+    keys: ['MAHA + thrombocytopenia', 'Normal coags', 'PLEX emergency'] },
+  { cat: 'critical', catLabel: 'Critical', diff: 'Critical',
+    q: '<span class="em">Staph scalded skin syndrome (SSSS)</span> ต่างจาก TEN ตรงไหน?',
+    hint: 'Cleavage plane',
+    aMain: 'Superficial epidermal vs. full-thickness',
+    aDetail: '<strong>SSSS:</strong><br>• Children &lt; 10 หรือ adults with renal dysfunction<br>• <strong>Exfoliative toxin</strong> (ETA/ETB) จาก S. aureus phage group II — targets desmoglein-1<br>• Cleavage plane <strong>superficial (granular layer)</strong><br>• No mucosal involvement<br>• Mortality &lt; 5%<br><strong>TEN:</strong><br>• Adults, drug-induced<br>• <strong>Full-thickness epidermal necrosis</strong><br>• <strong>Mucosal involvement</strong> (oral, ocular, genital)<br>• Mortality up to 30%<br><strong>Both have Nikolsky sign +</strong> but SSSS has better prognosis<br><strong>Treatment SSSS:</strong> anti-staph β-lactam (oxacillin/clox) + supportive',
+    keys: ['SSSS superficial', 'TEN full-thickness', 'SSSS no mucosa'] },
+
+  // ========== CENTRAL — Common viral exanthems ==========
+  { cat: 'central', catLabel: 'Central', diff: 'Foundation',
+    q: 'เด็ก 5 ขวบ ไข้ลด แล้ว <span class="vignette">"slapped cheeks"</span> + lacy reticular rash on body — Dx?',
+    hint: 'Fifth disease',
+    aMain: 'Erythema infectiosum (parvovirus B19)',
+    aDetail: '<strong>Age:</strong> primarily 3-12 years old, winter/spring<br><strong>Phases:</strong><br>1. Mild fever (often resolves before rash)<br>2. <strong>"Slapped cheeks"</strong> — bright red erythema on cheeks with perioral pallor<br>3. Next day: lacy/reticular rash on trunk and extremities, may be pruritic<br>4. Wax/wane over <strong>3 weeks</strong> (worse with heat, sun)<br><strong>Adults:</strong> often <strong>arthritis/arthralgia</strong> instead of typical rash<br><strong>Pregnancy:</strong> <strong>Fetal hydrops</strong> (severe fetal anemia, transient aplastic crisis in sickle cell)<br><strong>Atypical:</strong> "gloves and socks" syndrome — papular-purpuric on hands/feet',
+    keys: ['Slapped cheeks', 'Fetal hydrops risk', 'Adult arthritis'],
+    img: { url: 'https://dermnetnz.org/topics/erythema-infectiosum', label: 'Fifth disease on DermNet' } },
+  { cat: 'central', catLabel: 'Central', diff: 'Foundation',
+    q: 'Toddler ไข้สูง 3 วัน ไข้ลด แล้วเกิด <span class="em">diffuse rose-pink rash</span> on trunk — Dx?',
+    hint: 'Rash AFTER fever',
+    aMain: 'Roseola / Exanthem subitum (HHV-6)',
+    aDetail: '<strong>Cause:</strong> HHV-6 (less commonly HHV-7)<br><strong>Age:</strong> children &lt; 3 years (peak 6-15 months)<br><strong>Course:</strong><br>1. High fever (39-40°C) × 3-5 days, otherwise well-appearing<br>2. Fever <strong>defervesces abruptly</strong><br>3. <strong>Then</strong> rash appears: 2-3 mm rose-pink macules/papules, initially on trunk/neck, rarely face<br>4. Fades within 2 days<br><strong>Complication:</strong> <strong>febrile seizures</strong> (HHV-6 has tropism for CNS)<br><strong>Similar pattern:</strong> "Boston exanthem" (echovirus 16)<br><strong>No treatment</strong> needed — self-limited',
+    keys: ['Rash AFTER fever', 'Febrile seizures'] },
+  { cat: 'central', catLabel: 'Central', diff: 'Advanced',
+    q: 'Adolescent มี mono + ได้ <span class="em">ampicillin</span> → diffuse maculopapular rash — Dx? Allergy?',
+    hint: 'Drug-virus interaction',
+    aMain: 'EBV-ampicillin rash (NOT true PCN allergy)',
+    aDetail: '<strong>Frequency:</strong> <strong>30-90%</strong> ของ patients with mono ที่ได้ ampicillin/amoxicillin จะเกิด rash<br><strong>NOT true penicillin allergy</strong> — patients usually tolerate PCN later<br><strong>Mechanism:</strong> EBV-induced transient immune dysregulation; antibody to amoxicillin metabolite<br><strong>Pattern:</strong> intensely erythematous, pruritic morbilliform rash, may be confluent<br><strong>Other high-risk drug-rash populations from Harrison:</strong><br>• HIV patients: <strong>50-60%</strong> develop rash to sulfa drugs<br>• Aromatic anticonvulsants → DRESS risk in slow acetylators<br><strong>Lesson:</strong> always document context — "rash with mono" ≠ true allergy',
+    keys: ['30-90% with mono', 'Not true PCN allergy'] },
+  { cat: 'central', catLabel: 'Central', diff: 'Critical',
+    q: 'Young adult with high fever spikes daily + <span class="em">evanescent salmon-pink rash</span> appearing with fever + arthritis — Dx?',
+    hint: 'Rash disappears between fever spikes',
+    aMain: 'Adult-onset Still\'s disease',
+    aDetail: '<strong>Classic triad:</strong> quotidian fever + arthritis + evanescent rash<br><strong>Rash features:</strong><br>• <strong>Salmon-pink</strong> color (not erythematous)<br>• <strong>Evanescent</strong> — appears with fever spike, fades when afebrile<br>• Trunk + proximal extremities<br>• 2-5 mm macules/papules<br>• Koebner phenomenon (linear streaks at scratch sites)<br><strong>Other features:</strong> sore throat, splenomegaly, lymphadenopathy<br><strong>Labs:</strong> very high ferritin (>5x normal, often &gt;3000), ESR &gt;100, neutrophilia, transaminitis<br><strong>Yamaguchi criteria</strong> for diagnosis<br><strong>Treatment:</strong> NSAIDs → steroids → IL-1/IL-6 inhibitors',
+    keys: ['Salmon, evanescent', 'Ferritin >> 5x', 'With fever spikes'] },
+  { cat: 'central', catLabel: 'Central', diff: 'Critical',
+    q: 'Mosquito-bite area, fever + <span class="em">retro-orbital pain</span> + arthralgia + maculopapular rash — Dx?',
+    hint: 'Aedes mosquito, tropical',
+    aMain: 'Dengue, Chikungunya, or Zika',
+    aDetail: '<strong>All Aedes mosquito-transmitted, overlap regions (tropical/subtropical)</strong> — แยกได้ยากด้วย clinical alone<br><br><strong>Dengue:</strong> high fever, "breakbone" myalgia, retro-orbital pain, leukopenia, thrombocytopenia, → shock phase risk<br><strong>Chikungunya:</strong> <strong>severe small-joint polyarthralgia</strong> (often persistent for weeks-months), fever<br><strong>Zika:</strong> usually mild, <strong>prominent conjunctival injection</strong>, pruritic rash, congenital microcephaly risk in pregnancy, Guillain-Barré association<br><br><strong>Workup:</strong> dengue NS1 (early) + IgM, chikungunya PCR/IgM, Zika PCR (urine/blood) + IgM<br><strong>Pregnancy → always test Zika</strong>',
+    keys: ['Aedes mosquito triad', 'Joint pain = Chik', 'Conjunctivitis = Zika'] },
+  { cat: 'central', catLabel: 'Central', diff: 'Critical',
+    q: 'Returning traveler from rural Thailand: fever + headache + maculopapular rash on trunk + <span class="em">black eschar</span> on leg — Dx?',
+    hint: 'Common in Asia, mite-borne',
+    aMain: 'Scrub typhus (Orientia tsutsugamushi)',
+    aDetail: '<strong>Endemic:</strong> "Tsutsugamushi triangle" — South/SE Asia, Pacific, N. Australia. <strong>Very common in Thailand</strong><br><strong>Vector:</strong> chigger (larval trombiculid mite) bite<br><strong>Pathognomonic:</strong> <strong>eschar (tâche noire)</strong> at bite site — painless, look in axilla, groin, neck — <strong>often missed!</strong><br><strong>Clinical:</strong> fever, headache, myalgia, regional lymphadenopathy, hepatosplenomegaly<br><strong>Rash:</strong> diffuse macular, starts trunk → extremities, may be petechial<br><strong>Severe:</strong> pneumonitis, meningoencephalitis, ARDS, multiorgan failure — mortality up to 30% untreated<br><strong>Treatment:</strong> <strong>doxycycline</strong> 100 mg PO BID × 7 days (azithromycin alternative)<br><strong>Always examine for eschar in febrile returning traveler from Asia</strong>',
+    keys: ['Eschar (tâche noire)', 'Doxycycline', 'Look in skin folds'],
+    img: { url: 'https://en.wikipedia.org/wiki/Scrub_typhus', label: 'Scrub typhus on Wikipedia' } },
+  { cat: 'central', catLabel: 'Central', diff: 'Advanced',
+    q: 'Farmer/sewer worker + flooding exposure + fever + <span class="em">scleral hemorrhage</span> + jaundice + AKI — Dx?',
+    hint: 'Animal urine',
+    aMain: 'Leptospirosis (Weil\'s disease, severe form)',
+    aDetail: '<strong>Cause:</strong> Leptospira spirochete, exposure to water contaminated with rat/animal urine<br><strong>Biphasic illness:</strong><br>1. <strong>Septicemic phase</strong> (5-7 days): high fever, headache, myalgia (calves!), <strong>conjunctival suffusion / scleral hemorrhage</strong> (pathognomonic), maculopapular rash<br>2. <strong>Immune phase</strong>: aseptic meningitis, uveitis<br><strong>Weil\'s disease (severe ~10%):</strong> jaundice + AKI + hemorrhage + myocarditis — mortality up to 40%<br><strong>Pulmonary form</strong>: alveolar hemorrhage, ARDS (Pacific/SE Asia outbreaks)<br><strong>Diagnosis:</strong> MAT, IgM, PCR<br><strong>Treatment:</strong> doxycycline (mild) or IV penicillin/ceftriaxone (severe)<br><strong>Common in Thailand</strong> — rice farmers, floods',
+    keys: ['Scleral hemorrhage', 'Calf myalgia', 'Doxy or ceftriaxone'] },
+  { cat: 'central', catLabel: 'Central', diff: 'Advanced',
+    q: 'Hiker in Northeast US + erythematous <span class="em">expanding ring lesion (15 cm)</span> with central clearing — Dx? Vector?',
+    hint: 'Bull\'s-eye',
+    aMain: 'Erythema migrans (Lyme disease, Borrelia burgdorferi)',
+    aDetail: '<strong>Vector:</strong> Ixodes scapularis (deer tick)<br><strong>Hallmark:</strong> annular erythematous lesion <strong>average 15 cm diameter</strong>, central clearing ("bull\'s-eye"), often at bite site, sometimes with concentric rings<br><strong>Multiple secondary lesions</strong> possible (early disseminated disease)<br><strong>Untreated:</strong> fades within 1 month, but may recur<br><strong>Late stages:</strong> cardiac (AV block), neurologic (Bell\'s palsy, meningitis), arthritis (knee large effusion)<br><strong>Diagnosis:</strong> <strong>clinical if erythema migrans</strong> — don\'t need serology. Two-tier ELISA + Western blot for later stages<br><strong>Treatment:</strong> doxycycline × 10-14 days (or amoxicillin/cefuroxime in pregnancy/kids)<br><strong>STARI</strong> = similar but in southern US (Amblyomma tick, smaller lesions, fewer systemic features)',
+    keys: ['15 cm average', 'Clinical Dx', 'Doxy 10-14d'] },
+  { cat: 'central', catLabel: 'Central', diff: 'Foundation',
+    q: 'Patient with rheumatic fever may develop <span class="em">erythema marginatum</span> — describe',
+    hint: 'Transient annular',
+    aMain: 'Transient enlarging/shifting annular pink lesions',
+    aDetail: '<strong>Major Jones criterion</strong> for acute rheumatic fever<br><strong>Appearance:</strong> pink/red annular or polycyclic lesions, well-defined edges, <strong>central clearing</strong>, painless, non-pruritic<br><strong>Sites:</strong> trunk, proximal extremities (never face)<br><strong>Distinctive:</strong> <strong>evanescent — appears and disappears within hours</strong>, may "migrate"<br><strong>Other Jones features:</strong> migratory polyarthritis, carditis, chorea, subcutaneous nodules<br><strong>Setting:</strong> 2-4 weeks after GAS pharyngitis<br><strong>vs. erythema migrans</strong> (Lyme): EM is single lesion, persistent, target appearance<br><strong>Treatment:</strong> penicillin for strep + anti-inflammatory + prophylaxis',
+    keys: ['Jones major criterion', 'Migratory', 'Post-strep'] },
+
+  // ========== PERIPHERAL ==========
+  { cat: 'peripheral', catLabel: 'Peripheral', diff: 'Critical',
+    q: 'IVDU/dental work patient + fever + new murmur + <span class="em">tender pink nodules on fingertips</span> + painless macules on palms — Dx?',
+    hint: 'Endocarditis stigmata',
+    aMain: 'Bacterial endocarditis — Osler nodes + Janeway lesions',
+    aDetail: '<strong>Cutaneous stigmata of endocarditis:</strong><br><br><strong>Osler nodes:</strong> <strong>tender</strong> pink-purple nodules on finger/toe pads, immune complex deposition, classic for <strong>subacute</strong> (viridans strep)<br><br><strong>Janeway lesions:</strong> <strong>painless</strong> hemorrhagic macules on palms/soles, septic emboli, classic for <strong>acute</strong> (S. aureus)<br><br><strong>Splinter hemorrhages:</strong> linear subungual<br><strong>Petechiae:</strong> conjunctiva, oral mucosa, extremities<br><strong>Roth spots:</strong> retinal hemorrhages with pale center<br><br><strong>Mnemonic:</strong> "<strong>O</strong>sler is <strong>O</strong>uch (painful), <strong>J</strong>aneway is <strong>J</strong>ust there (painless)"<br><strong>Duke criteria:</strong> major = positive blood cx + echo evidence',
+    keys: ['Osler = tender', 'Janeway = painless', 'Both peripheral'] },
+  { cat: 'peripheral', catLabel: 'Peripheral', diff: 'Critical',
+    q: 'Sexually active adult: <span class="em">copper-colored scaly rash on palms and soles</span> + diffuse trunk rash + condyloma lata — Dx?',
+    hint: '"The great mimicker"',
+    aMain: 'Secondary syphilis',
+    aDetail: '<strong>Timing:</strong> 6 weeks to 6 months after primary chancre (which may be missed)<br><strong>Skin findings:</strong><br>• <strong>Copper-colored, scaly papular eruption</strong> — DIFFUSE but <strong>prominent on palms/soles</strong> ← key clue<br>• <strong>Never vesicular</strong> in adults<br>• <strong>Condyloma lata</strong> — gray-white, moist papules in intertriginous areas (highly infectious!)<br>• <strong>Mucous patches</strong> on oral mucosa<br>• <strong>Moth-eaten alopecia</strong><br><strong>Systemic:</strong> fever, malaise, generalized lymphadenopathy, hepatitis<br><strong>Workup:</strong> RPR/VDRL (screening), FTA-ABS/TP-PA (confirmatory), <strong>HIV test mandatory</strong><br><strong>Treatment:</strong> benzathine penicillin G 2.4 MU IM × 1 (single dose)<br><strong>Always consider syphilis in any palm/sole rash</strong>',
+    keys: ['Palms/soles + diffuse', 'Always test HIV', 'BPG x1'] },
+  { cat: 'peripheral', catLabel: 'Peripheral', diff: 'Foundation',
+    q: 'Child with fever + <span class="em">target lesions on hands, feet, elbows, knees</span> ± mucosal — Dx? Common triggers?',
+    hint: 'Classic targets, symmetric',
+    aMain: 'Erythema multiforme (EM)',
+    aDetail: '<strong>Classic targets:</strong> central erythema → ring of clearing → outer ring of erythema (3 zones)<br><strong>Distribution:</strong> symmetric, <strong>extensors of elbows/knees, palms/soles, face</strong>, spread centripetally<br><strong>EM minor:</strong> no/minimal mucosal, no systemic symptoms, &lt; 10% BSA<br><strong>EM major:</strong> extensive mucosal involvement, fever — <em>can be confused with SJS but EM major lacks prominent skin sloughing</em><br><strong>Triggers:</strong><br>• <strong>HSV</strong> (most common, especially recurrent EM) — often 7-10 days after cold sore<br>• <strong>Mycoplasma pneumoniae</strong> (kids — see MIRM below)<br>• Drugs: sulfa, phenytoin, penicillin<br><strong>50% &lt; age 20</strong><br><strong>Treatment:</strong> supportive; chronic HSV suppression if recurrent EM',
+    keys: ['3-zone target', 'HSV most common', 'Symmetric extensors'] },
+  { cat: 'peripheral', catLabel: 'Peripheral', diff: 'Advanced',
+    q: 'Child with Mycoplasma pneumonia + <span class="em">severe mucositis</span> (lips/oral/genital) + sparse vesicular rash — Dx? เปรียบเทียบกับ SJS?',
+    hint: 'Mucositis >> rash',
+    aMain: 'MIRM (Mycoplasma-induced rash and mucositis)',
+    aDetail: '<strong>Distinct entity from SJS</strong> — better prognosis<br><strong>Features:</strong><br>• Severe mucositis ≥ 2 sites (oropharynx, ocular, genital) with <strong>nearly universal hemorrhagic crusting of lips</strong><br>• <strong>Sparse</strong> vesiculobullous/atypical target rash &lt; 10% BSA<br>• Lesions on extremities (sometimes truncal)<br>• Can occur <strong>"sine rash"</strong> (no skin lesions)<br><strong>Demographics:</strong> males, kids/young adults (mean 11-12 yo)<br><strong>Evidence of M. pneumoniae:</strong> pneumonia, serology, PCR<br><strong>Treatment:</strong> macrolides + supportive (mucosal care, eye/ophthal)<br><strong>Prognosis good</strong> — important to distinguish from SJS/TEN (no need for aggressive ICU care typically)<br><strong>Rare:</strong> Chlamydophila pneumoniae can cause similar syndrome',
+    keys: ['Mucositis >> rash', 'Better prognosis than SJS', 'Macrolides'] },
+  { cat: 'peripheral', catLabel: 'Peripheral', diff: 'Foundation',
+    q: 'Hand-foot-and-mouth disease — common pathogens? Why does <span class="em">EV71</span> matter?',
+    hint: 'Asia outbreaks',
+    aMain: 'Coxsackie A16 (typical), enterovirus 71 (severe)',
+    aDetail: '<strong>Typical HFMD (Coxsackie A16):</strong><br>• Children &lt; 10, summer/fall, family outbreaks<br>• Tender vesicles on palms, soles, oral mucosa (often dorsal too)<br>• 0.25 cm papules → vesicles with erythematous halo<br>• Mild, self-limited<br>• <strong>Onychomadesis</strong> (nail shedding) 1-2 months later possible<br><br><strong>Atypical HFMD (Coxsackie A6):</strong><br>• More extensive, including face, trunk, buttocks, genitals, eczema-affected areas ("eczema coxsackium")<br>• Can affect young adults<br><br><strong>EV71 — severe form:</strong><br>• <strong>Brainstem encephalitis</strong>, polio-like flaccid paralysis, aseptic meningitis<br>• Pulmonary edema, myocarditis<br>• Major outbreaks in Asia (Taiwan, China, SE Asia)<br>• <strong>Mortality in young children</strong><br><strong>Action:</strong> in HFMD with neurological signs, suspect EV71 → hospitalize',
+    keys: ['A16 typical', 'EV71 = encephalitis', 'A6 atypical/eczema'] },
+  { cat: 'peripheral', catLabel: 'Peripheral', diff: 'Advanced',
+    q: 'Mild COVID patient develops <span class="em">tender violaceous lesions on toes</span> — Dx? เรียกอะไร?',
+    hint: '"COVID toes"',
+    aMain: 'Pernio-like lesions ("COVID toes")',
+    aDetail: '<strong>COVID-19 cutaneous spectrum (Harrison Ch.19 explicitly covers):</strong><br><br><strong>Mild/asymptomatic COVID:</strong> <strong>Pernio</strong> — tender erythematous/violaceous macules/papules on feet (more common than hands), acral, often in young patients<br><br><strong>Moderate/severe:</strong> vesicles, urticaria, maculopapular (often pruritic) on trunk/extremities<br><br><strong>Severe COVID:</strong> <strong>Retiform purpura</strong> (net-like purple patches with necrosis) on extremities/buttocks → poor prognosis, thrombotic complications<br><br><strong>MIS-C (children):</strong> 2-6 weeks after infection, resembles <strong>Kawasaki disease</strong> — fever, mucositis, conjunctivitis, coronary involvement<br><br><strong>Note:</strong> skin lesions may be <strong>delayed</strong> compared to respiratory symptoms or appear without other symptoms',
+    keys: ['Pernio = mild', 'Retiform purpura = severe', 'MIS-C ≈ Kawasaki'] },
+
+  // ========== CONFLUENT DESQUAMATIVE ==========
+  { cat: 'desq', catLabel: 'Desquam.', diff: 'Critical',
+    q: 'Patient on aromatic anticonvulsant × 6 weeks → <span class="em">facial edema</span> + diffuse rash + eosinophilia + hepatitis — Dx?',
+    hint: 'Latent onset',
+    aMain: 'DRESS (Drug Reaction with Eosinophilia and Systemic Symptoms)',
+    aDetail: '<strong>Onset:</strong> <strong>2-8 weeks</strong> after starting drug (much longer than typical drug rash)<br><strong>RegiSCAR criteria:</strong><br>• Fever &gt; 38.5°C<br>• Morbilliform rash &gt; 50% BSA, may progress to <strong>exfoliative erythroderma</strong><br>• <strong>Facial edema</strong> (characteristic, swollen face)<br>• Lymphadenopathy (≥ 2 sites)<br>• <strong>Eosinophilia &gt; 1500 or atypical lymphocytes</strong><br>• <strong>Organ involvement</strong>: hepatitis (most common), interstitial nephritis, pneumonitis, myocarditis, thyroiditis (late)<br><strong>Culprits:</strong> aromatic anticonvulsants (carbamazepine, phenytoin, lamotrigine), <strong>allopurinol</strong>, sulfa, dapsone, minocycline, nevirapine<br><strong>Mortality ~10%</strong>, mostly hepatic failure<br><strong>HHV-6/EBV reactivation</strong> often involved<br><strong>Treatment:</strong> stop drug + systemic steroids + supportive<br><strong>Pearl:</strong> patients with slow N-acetylating capacity (sulfa) and certain HLA types are at higher risk',
+    keys: ['Latent 2-8 wk', 'Facial edema + organ', 'HHV-6 reactivation'] },
+  { cat: 'desq', catLabel: 'Desquam.', diff: 'Advanced',
+    q: 'Patient with underlying psoriasis develops <span class="em">diffuse erythema covering entire body</span> with scaling + fever + chills — Dx?',
+    hint: '"Red man syndrome" of dermatology',
+    aMain: 'Exfoliative erythroderma syndrome',
+    aDetail: '<strong>Definition:</strong> generalized erythema + scaling covering &gt; 90% BSA<br><strong>Causes:</strong><br>• <strong>Psoriasis</strong> (most common — flare, drug withdrawal)<br>• <strong>Eczema/atopic dermatitis</strong><br>• <strong>Drug reactions</strong> (can progress from DRESS or other)<br>• <strong>Mycosis fungoides</strong> (cutaneous T-cell lymphoma — Sézary syndrome)<br>• Idiopathic<br><strong>Demographics:</strong> usually &gt; 50 yo, men &gt; women<br><strong>Complications:</strong><br>• <strong>Thermoregulation</strong> failure (fever or hypothermia)<br>• <strong>High-output cardiac failure</strong><br>• Fluid/protein loss, electrolyte derangement<br>• Sepsis (loss of skin barrier)<br><strong>Treatment:</strong> ICU/burn unit, treat underlying, emollients, careful fluid management',
+    keys: ['> 90% BSA', 'Thermo failure', 'High-output HF'] },
+
+  // ========== VESICULOBULLOUS ==========
+  { cat: 'vesicle', catLabel: 'Vesicular', diff: 'Foundation',
+    q: 'Patient with grouped vesicles on erythematous base on lip — describe primary vs. recurrent HSV',
+    hint: 'Severity differs',
+    aMain: 'Primary = severe systemic; Recurrent = mild local',
+    aDetail: '<strong>Primary HSV:</strong><br>• Often in children/young adults<br>• <strong>Systemic symptoms</strong>: fever, malaise, regional lymphadenopathy<br>• <strong>Gingivostomatitis</strong> (HSV-1) or genital lesions (HSV-2)<br>• Lasts 7-14 days<br><br><strong>Recurrent HSV:</strong><br>• <strong>No fever</strong> typically (key clue)<br>• Prodromal tingling/burning<br>• <strong>Herpes labialis</strong> — does NOT involve oral mucosa (lips/vermilion only)<br>• Heals 5-7 days<br><br><strong>Disseminated HSV:</strong><br>• Immunocompromised, eczema (<strong>eczema herpeticum</strong>)<br>• Visceral organs (esophagus, liver, lungs) — high mortality<br>• Neonatal HSV → severe, may lack skin findings<br><br><strong>Diagnosis:</strong> PCR (most sensitive), Tzanck smear (multinucleated giant cells), DFA<br><strong>Treatment:</strong> acyclovir, valacyclovir, famciclovir',
+    keys: ['Primary = systemic', 'Recurrent = local', 'Eczema herpeticum'] },
+  { cat: 'vesicle', catLabel: 'Vesicular', diff: 'Advanced',
+    q: 'Urban resident in NYC + fever + <span class="em">eschar at mite bite</span> + diffuse vesicular rash — Dx?',
+    hint: 'Mouse mite vector',
+    aMain: 'Rickettsialpox (Rickettsia akari)',
+    aDetail: '<strong>Setting:</strong> urban (mouse mites in apartment buildings — historically New York)<br><strong>Vector:</strong> Liponyssoides sanguineus (house mouse mite)<br><strong>Course:</strong><br>1. <strong>Eschar at bite site</strong> first (1-2 weeks before fever) — small black eschar with erythema<br>2. Fever, headache, myalgia, regional lymphadenopathy<br>3. <strong>Generalized eruption</strong>: face, trunk, extremities (may involve palms/soles)<br>4. &lt; 100 papules → centers develop vesicles → pustules<br><strong>Distinguishing from varicella:</strong><br>• Eschar at bite site (varicella has no eschar)<br>• Papule/plaque base under each vesicle (varicella has erythematous flat base)<br>• Fewer lesions (varicella has hundreds)<br><strong>Treatment:</strong> doxycycline; usually self-limited if mild',
+    keys: ['Eschar + vesicles', 'Urban (mouse mites)', 'Doxy'] },
+  { cat: 'desq', catLabel: 'Desquam.', diff: 'Critical',
+    q: '<span class="em">Streptococcal TSS</span> vs <span class="em">Staphylococcal TSS</span> — key differences?',
+    hint: 'Source of infection differs',
+    aMain: 'Strep TSS = severe deep infection; Staph TSS = colonization + toxin',
+    aDetail: '<strong>Staphylococcal TSS:</strong><br>• <strong>Colonization only</strong> — often only S. aureus on mucosa (tampon, nasal packing, wound), not invasive<br>• <strong>TSST-1 or enterotoxin B</strong> — superantigen acting from distance<br>• <strong>Diffuse erythroderma</strong> (sunburn-like)<br>• <strong>Desquamation in 1-2 weeks</strong>, especially palms/soles<br>• Mortality ~5%<br><br><strong>Streptococcal TSS:</strong><br>• <strong>Severe invasive infection</strong> — often <strong>necrotizing fasciitis</strong>, bacteremia, pneumonia<br>• <strong>SpeA, SpeB or specific M types</strong> as superantigens<br>• Rash often <strong>scarlatiniform but less prominent</strong> than Staph<br>• Mortality 30-70%<br><br><strong>Both:</strong> fever, hypotension, multiorgan failure<br><strong>Both treatments:</strong> source control + β-lactam + <strong>clindamycin</strong> (suppresses toxin via 50S ribosomal inhibition) + IVIG for severe<br><br><strong>Pearl:</strong> Strep TSS — look for nec fasc as source. Staph TSS — look for tampon, wound, nasal packing',
+    keys: ['Staph = colonization', 'Strep = invasive', 'Clindamycin both'] },
+
+  { cat: 'desq', catLabel: 'Desquam.', diff: 'Foundation',
+    q: '<span class="em">Scarlet fever</span> — explain each distinctive finding + why it occurs',
+    hint: 'Pastia, strawberry, sandpaper',
+    aMain: 'Toxin-mediated — pyrogenic exotoxins A/B/C from GAS',
+    aDetail: '<strong>Cause:</strong> Group A Strep producing <strong>pyrogenic exotoxins</strong> (superantigens) → cytokine storm + skin changes<br><br><strong>"Sandpaper rash":</strong><br>• Fine punctate erythematous papules<br>• Texture from <strong>follicular accentuation</strong> + papillary edema<br>• Blanches on pressure<br>• Starts neck/chest → centripetal spread<br><br><strong>Pastia\'s lines:</strong><br>• <strong>Linear petechial accentuation</strong> in skin folds (axillae, antecubital, groin)<br>• From <strong>capillary fragility</strong> + mechanical trauma in folds<br>• Persists after rash fades<br><br><strong>Strawberry tongue:</strong><br>• Initially <strong>white-coated</strong> with red papillae poking through ("white strawberry")<br>• Then coating sheds → <strong>red strawberry tongue</strong> (denuded, prominent papillae)<br>• 4-5 days into illness<br><br><strong>Circumoral pallor:</strong> rash spares perioral area while cheeks flush<br><strong>Desquamation:</strong> 7-10 days, fine over body but <strong>large sheets on hands/feet</strong><br><br><strong>Treatment:</strong> penicillin/amoxicillin × 10 days → prevent <strong>rheumatic fever + post-strep GN</strong>',
+    keys: ['Pyrogenic exotoxin', 'White → red strawberry', 'Prevent ARF'] },
+
+  { cat: 'vesicle', catLabel: 'Vesicular', diff: 'Advanced',
+    q: 'Febrile patient on new anticonvulsant 5 days → <span class="em">tiny non-follicular pustules</span> on erythematous edematous skin, starts face/folds — Dx?',
+    hint: 'AGEP, not DRESS',
+    aMain: 'Acute Generalized Exanthematous Pustulosis (AGEP)',
+    aDetail: '<strong>Onset:</strong> 2-21 days after starting drug (often within first week — faster than DRESS or SJS)<br><strong>Culprits:</strong> antibiotics (β-lactams, macrolides), anticonvulsants, calcium channel blockers, antimalarials; rarely viral<br><strong>Features:</strong><br>• <strong>Tiny (&lt; 5 mm) sterile non-follicular pustules</strong> on edematous erythematous skin<br>• Starts on <strong>face and body folds</strong> → generalizes<br>• High fever, neutrophilic leukocytosis (often &gt; 10,000)<br>• Mucous membranes usually spared (vs. SJS/TEN)<br><strong>vs. SJS:</strong> AGEP has many small pustules, not full-thickness sloughing<br><strong>vs. pustular psoriasis:</strong> AGEP self-resolves in days after drug stops<br><strong>Treatment:</strong> stop drug; rapid resolution with desquamation in 1-2 weeks<br><strong>Mortality &lt; 5%</strong>',
+    keys: ['Tiny pustules', 'Face/folds first', 'Self-limited after stop'] },
+
+  { cat: 'vesicle', catLabel: 'Vesicular', diff: 'Advanced',
+    q: '<span class="em">Smallpox (variola)</span> vs <span class="em">varicella</span> — how to distinguish? Why does it matter?',
+    hint: 'Same stage vs different stages',
+    aMain: 'Synchronous (smallpox) vs Asynchronous (varicella) lesions',
+    aDetail: '<strong>Why this matters:</strong> <strong>Smallpox is a CDC Class A bioterrorism agent</strong>. Eradicated 1980 but lab/weapon stocks exist. Misdiagnosis = mass exposure.<br><br><strong>Variola (smallpox):</strong><br>• Lesions <strong>all at SAME stage</strong> in a given body region (synchronous)<br>• <strong>Centrifugal distribution</strong> — face + extremities &gt; trunk<br>• <strong>Palms and soles involved</strong><br>• Deep, firm, "shotty" lesions<br>• Severe prodrome — high fever 2-4 days BEFORE rash<br>• Mortality ~30%<br><br><strong>Varicella (chickenpox):</strong><br>• Lesions in <strong>DIFFERENT stages</strong> simultaneously — papule, vesicle ("dewdrop on rose petal"), pustule, crust (asynchronous)<br>• <strong>Centripetal</strong> — trunk &gt; extremities<br>• <strong>Palms/soles typically spared</strong><br>• Superficial vesicles<br>• Mild prodrome<br><br><strong>Mnemonic:</strong> Smallpox is <strong>S</strong>ynchronized and <strong>S</strong>tarts on the outside. Chickenpox is <strong>C</strong>haotic stages and <strong>C</strong>entered on trunk.<br><strong>If smallpox suspected:</strong> immediate isolation (airborne + contact), notify public health',
+    keys: ['Smallpox = synchronous', 'Varicella = chaotic', 'Bioterrorism alert'] },
+
+  // ========== PURPURIC ==========
+  { cat: 'purpura', catLabel: 'Purpuric', diff: 'Advanced',
+    q: 'Patient with terminal complement deficiency (C5-C8) + <span class="em">recurrent fevers</span> + petechial/nodular eruptions on legs — Dx?',
+    hint: 'Recurrent meningococcal',
+    aMain: 'Chronic meningococcemia',
+    aDetail: '<strong>Setting:</strong> <strong>terminal complement deficiency</strong> (C5-C8, properdin) — predisposes to recurrent Neisseria infections<br><strong>Distinct from acute meningococcemia</strong> — slow course, not fulminant<br><strong>Features:</strong><br>• Intermittent <strong>fevers, arthralgias, myalgias, headache</strong><br>• <strong>Polymorphic skin lesions</strong>:<br>  - Pink maculopapular<br>  - <strong>Nodular on lower extremities</strong> (resembles erythema nodosum but less tender)<br>  - Petechial (may have vesicular centers)<br>  - Purpura with pale blue-gray centers<br><strong>Workup:</strong> blood cultures (low yield because intermittent), <strong>CH50, AH50</strong> for complement deficiency<br><strong>Treatment:</strong> ceftriaxone, then meningococcal vaccines (all serogroups including B)<br><strong>vs. disseminated gonococcemia:</strong> may be indistinguishable cutaneously — sexual history + GC NAAT helps',
+    keys: ['Complement deficient', 'Recurrent, polymorphic', 'Check CH50'] },
+  { cat: 'purpura', catLabel: 'Purpuric', diff: 'Advanced',
+    q: 'Child after URI + <span class="em">palpable purpura on buttocks/legs</span> + abdominal pain + arthralgia + hematuria — Dx?',
+    hint: 'IgA-mediated',
+    aMain: 'Henoch-Schönlein Purpura (IgA vasculitis)',
+    aDetail: '<strong>Now called:</strong> <strong>IgA vasculitis</strong><br><strong>Demographics:</strong> children > adults; often post-URI/strep<br><strong>Classic tetrad:</strong><br>1. <strong>Palpable purpura</strong> — dependent areas (buttocks, lower extremities, symmetric)<br>2. <strong>Arthralgia/arthritis</strong> — large joints (knees, ankles)<br>3. <strong>Abdominal pain</strong> — colicky, possible intussusception<br>4. <strong>Renal involvement</strong> — hematuria, proteinuria, IgA nephropathy<br><strong>Pathology:</strong> leukocytoclastic vasculitis with IgA immune complex deposition<br><strong>Workup:</strong> UA, BUN/Cr, ASO, complement (usually normal), skin/renal biopsy if needed<br><strong>Treatment:</strong> mostly supportive, NSAIDs; <strong>steroids if severe</strong> (GI bleed, nephritis)<br><strong>Prognosis:</strong> generally good, but follow renal for 6 months<br><strong>Adult HSP:</strong> more severe renal disease',
+    keys: ['Tetrad: skin/joint/GI/kidney', 'IgA mediated', 'Post-URI'] },
+  { cat: 'purpura', catLabel: 'Purpuric', diff: 'Foundation',
+    q: '<span class="em">Cutaneous small-vessel vasculitis (leukocytoclastic)</span> — appearance? Common causes?',
+    hint: 'Palpable purpura, crops',
+    aMain: 'Palpable purpura in crops on dependent areas',
+    aDetail: '<strong>Appearance:</strong><br>• <strong>Palpable purpura</strong> — raised purple lesions you can <em>feel</em><br>• Appear in <strong>crops</strong> on legs / dependent areas<br>• May become vesicular, bullous, or ulcerative<br>• Symmetric<br><strong>Pathology:</strong> leukocytoclastic vasculitis on biopsy (neutrophil debris around vessels)<br><strong>Causes (many):</strong><br>• <strong>Infections:</strong> group A strep, hepatitis B/C<br>• <strong>Drugs:</strong> common — antibiotics, NSAIDs, allopurinol<br>• <strong>CTD:</strong> SLE, RA, Sjögren\'s<br>• <strong>Cryoglobulinemia</strong> (associated with hep C)<br>• <strong>Malignancy</strong><br>• <strong>HSP/IgA vasculitis</strong> (especially in children)<br>• <strong>Idiopathic</strong> (~50%)<br><strong>Workup:</strong> CBC, UA, hep B/C, ANA, complement, cryoglobulins, biopsy<br><strong>Treatment:</strong> remove trigger; steroids if severe organ involvement',
+    keys: ['Palpable + dependent', 'Many causes', 'Always check renal'] },
+  { cat: 'purpura', catLabel: 'Purpuric', diff: 'Advanced',
+    q: 'Returning traveler from Africa + fever + petechiae + bleeding from mucosa — Dx? Approach?',
+    hint: 'CDC Class A',
+    aMain: 'Viral Hemorrhagic Fever (Ebola, Lassa, etc.)',
+    aDetail: '<strong>Families:</strong> Arenaviruses (Lassa), Bunyaviruses (Crimean-Congo), Filoviruses (<strong>Ebola, Marburg</strong>), Flaviviruses (dengue, yellow fever)<br><strong>Triad:</strong> <strong>Fever + Shock + Hemorrhage</strong> (mucosal, GI)<br><strong>Approach in returning traveler:</strong><br>1. <strong>Isolate immediately</strong> — single room, dedicated equipment<br>2. <strong>Notify public health</strong> (mandatory reporting)<br>3. PPE: N95 + face shield + gown + gloves + boot covers<br>4. <strong>Limit phlebotomy</strong> — VHF labs only if needed<br>5. <strong>Don\'t skip dengue/malaria workup</strong> — much more common in returning travelers<br><strong>Treatment:</strong> mostly supportive; ribavirin for Lassa/CCHF; monoclonal antibodies for Ebola<br><strong>Pearl:</strong> dengue hemorrhagic fever is a VHF — endemic in Thailand',
+    keys: ['Isolate + report', 'Rule out malaria/dengue first', 'PPE'] },
+
+  { cat: 'purpura', catLabel: 'Purpuric', diff: 'Critical',
+    q: 'Adult patient walks in with <span class="em">petechial rash + fever</span> — what\'s your workup order in the first 30 minutes?',
+    hint: 'Treat first, investigate parallel',
+    aMain: 'Parallel: blood cultures → empiric Abx → labs + LP',
+    aDetail: '<strong>If ill-appearing or any sepsis sign — treat as meningococcemia until proven otherwise:</strong><br><br><strong>Minute 0-5:</strong><br>• Vitals + IV access × 2<br>• Airway/breathing check<br>• Quick history: onset, travel, drugs, sexual, contacts<br><br><strong>Minute 5-15:</strong><br>• <strong>Blood cultures × 2</strong> from different sites<br>• <strong>CBC with diff, BUN/Cr, electrolytes, LFT</strong><br>• <strong>Coagulation: PT/PTT, fibrinogen, D-dimer</strong> (assess DIC)<br>• Lactate, ABG/VBG<br>• Type & screen<br><br><strong>Minute 15-30:</strong><br>• <strong>Empiric ceftriaxone 2g IV</strong> if meningococcemia suspected — <strong>don\'t wait for LP</strong><br>• Add vancomycin if pneumococcal meningitis possible<br>• Add doxycycline if rickettsial exposure (tick, travel to endemic area)<br>• Fluid resuscitation if shock<br><br><strong>LP:</strong> after Abx if delayed; CT head first if focal deficit, papilledema, immunocompromised, age &gt; 60<br><br><strong>Other tests by suspicion:</strong> dengue NS1, scrub typhus serology, HIV, malaria smear, GC NAAT, ANA<br><br><strong>Don\'t forget:</strong> droplet isolation for suspected meningococcemia; notify public health',
+    keys: ['Empiric Abx first', 'Cultures parallel', 'Isolate'] },
+
+  // ========== OTHER: nodular, ulcers, special ==========
+  { cat: 'other', catLabel: 'Other', diff: 'Foundation',
+    q: 'Young woman with sarcoidosis + <span class="em">painful red nodules on shins</span> + fever — Dx? Other causes?',
+    hint: 'Septal panniculitis',
+    aMain: 'Erythema nodosum',
+    aDetail: '<strong>Appearance:</strong> tender, warm, violaceous subcutaneous nodules (1-5 cm), <strong>nonulcerative</strong>, typically on <strong>anterior shins</strong>, sometimes thighs/forearms<br><strong>Pathology:</strong> septal panniculitis (inflammation of fat septae)<br><strong>Demographics:</strong> females 15-30 yo more common<br><strong>Causes (broad — use mnemonic SORE SHINS):</strong><br>• <strong>S</strong>trep infection (most common)<br>• <strong>O</strong>CPs, pregnancy<br>• <strong>R</strong>heumatologic (sarcoidosis — esp. with hilar LN = <strong>Löfgren syndrome</strong>)<br>• <strong>E</strong>nteropathies (IBD, Yersinia, Salmonella)<br>• <strong>S</strong>ulfa, penicillin, OCPs<br>• <strong>H</strong>odgkin/leukemia<br>• <strong>I</strong>diopathic<br>• <strong>N</strong>oninfectious — Behçet, TB<br>• <strong>S</strong>arcoidosis<br><strong>Workup:</strong> ASO, CXR (sarcoidosis), stool cx if GI sx<br><strong>Treatment:</strong> treat underlying, NSAIDs, supportive; usually resolves 3-6 weeks',
+    keys: ['Shins, tender', 'SORE SHINS mnemonic', 'Löfgren syndrome'] },
+  { cat: 'other', catLabel: 'Other', diff: 'Advanced',
+    q: 'Middle-aged woman with AML + <span class="em">tender edematous red plaques on face/arms</span> + fever + neutrophilia — Dx?',
+    hint: 'Acute febrile neutrophilic dermatosis',
+    aMain: 'Sweet syndrome',
+    aDetail: '<strong>= Acute febrile neutrophilic dermatosis</strong><br><strong>Appearance:</strong> tender, well-demarcated red/blue <strong>edematous</strong> plaques and nodules — so swollen they may look vesicular/pseudovesicular<br><strong>Distribution:</strong> face, neck, upper extremities (asymmetric)<br><strong>Demographics:</strong> women 30-60 yo; men + women equally if malignancy-associated<br><strong>Associations:</strong><br>• <strong>Infection</strong> (URI, Yersinia)<br>• <strong>IBD</strong> (Crohn, UC)<br>• <strong>Pregnancy</strong><br>• <strong>Malignancy ~20%</strong> — typically <strong>hematologic (AML)</strong>; can predate diagnosis<br>• <strong>Drugs</strong> — <strong>G-CSF</strong>, all-trans retinoic acid, others<br><strong>Diagnosis:</strong> biopsy = dense neutrophilic infiltrate without vasculitis<br><strong>Treatment:</strong> systemic <strong>steroids</strong> (dramatic response), treat underlying<br><strong>Look for malignancy</strong> if first episode, atypical, or recurrent',
+    keys: ['Edematous plaques', 'AML association', 'Steroid responsive'] },
+  { cat: 'other', catLabel: 'Other', diff: 'Critical',
+    q: 'BMT patient post-chemo + fever + <span class="em">subcutaneous necrotic nodules</span> on extremities — Dx workup?',
+    hint: 'Think fungal',
+    aMain: 'Disseminated fungal infection — biopsy mandatory',
+    aDetail: '<strong>Common scenarios:</strong> bone marrow transplant, prolonged neutropenia, AIDS<br><strong>Organisms:</strong><br>• <strong>Candida tropicalis</strong> — fever + myalgia + erythematous papules/nodules (classic triad)<br>• <strong>Cryptococcus neoformans</strong> — lesions may <strong>resemble molluscum contagiosum</strong> (umbilicated papules); especially in HIV<br>• <strong>Aspergillus</strong> — <strong>necrotic nodules</strong> (angioinvasion); periorbital, nasal common<br>• <strong>Mucor</strong> — also necrotic; rhinocerebral classic<br>• <strong>Histoplasma, Coccidioides</strong> — endemic areas<br>• <strong>Sporothrix</strong> — lymphocutaneous after rose thorn<br>• <strong>Mycobacteria</strong> — fluctuant, draining<br><strong>Workup:</strong> <strong>punch biopsy for culture + histology (Gram, AFB, fungal stains)</strong>, blood cultures × 2, galactomannan, β-D-glucan, cryptococcal antigen<br><strong>Don\'t delay biopsy</strong> — empiric antifungal if high suspicion',
+    keys: ['Biopsy mandatory', 'Necrosis → Aspergillus/Mucor', 'Don\'t delay'] },
+  { cat: 'other', catLabel: 'Other', diff: 'Advanced',
+    q: 'Advanced HIV patient + <span class="em">vascular friable papules</span> bleeding easily + fever — Dx?',
+    hint: 'Cat exposure',
+    aMain: 'Bacillary angiomatosis (Bartonella henselae/quintana)',
+    aDetail: '<strong>Setting:</strong> advanced HIV (CD4 &lt; 100), other immunosuppression<br><strong>Pathogen:</strong> <strong>Bartonella henselae</strong> (cat scratch) or <strong>B. quintana</strong> (body louse, homeless)<br><strong>Skin findings (polymorphic):</strong><br>• <strong>Erythematous smooth vascular nodules</strong> — resemble <strong>pyogenic granulomas</strong> or <strong>Kaposi sarcoma</strong><br>• <strong>Friable, exophytic, bleed easily</strong><br>• Subcutaneous nodules<br>• Plaques<br><strong>Systemic involvement:</strong><br>• <strong>Peliosis hepatis/splenis</strong> (blood-filled cystic spaces)<br>• Osteomyelitis<br>• Bacteremia, endocarditis<br>• CNS<br><strong>Diagnosis:</strong> biopsy (Warthin-Starry stain shows bacilli), serology, PCR<br><strong>Treatment:</strong> <strong>doxycycline or erythromycin × 3 months</strong> for skin; longer if systemic<br><strong>vs. Kaposi sarcoma:</strong> biopsy is definitive — bacillary angiomatosis is treatable!',
+    keys: ['Friable + vascular', 'Bartonella', 'Treat — not KS'] },
+  { cat: 'other', catLabel: 'Other', diff: 'Critical',
+    q: 'Patient handling sheep/goat carcasses + <span class="em">painless ulcer with central black eschar</span> on arm — Dx?',
+    hint: 'Bioterrorism agent',
+    aMain: 'Cutaneous anthrax',
+    aDetail: '<strong>Pathogen:</strong> Bacillus anthracis<br><strong>Exposure:</strong><br>• Occupational: livestock, hides, wool, bone meal<br>• <strong>Bioterrorism</strong> (CDC Class A agent)<br><strong>Course:</strong><br>1. Pruritic papule at inoculation site (1-7 days)<br>2. Enlarges to <strong>painless ulcer</strong> (1-3 cm)<br>3. Surrounding vesicles<br>4. <strong>Central black eschar</strong> with extensive edema (hallmark)<br>5. Residual scar after healing<br><strong>Distinctive:</strong> <strong>painless</strong> ulcer (vs. ecthyma which is painful)<br><strong>Systemic:</strong> regional lymphadenopathy, headache, may progress to sepsis/meningitis<br><strong>Treatment:</strong> ciprofloxacin or doxycycline; mass-casualty: prophylaxis 60 days<br><strong>Mortality cutaneous &lt; 1% if treated, untreated 20%; inhalational ~90%</strong><br><strong>Mandatory reporting</strong> — public health emergency',
+    keys: ['Painless eschar', 'Edema dramatic', 'CDC report'] },
+  { cat: 'other', catLabel: 'Other', diff: 'Advanced',
+    q: 'Hunter handling rabbit + fever + <span class="em">tender ulcer with raised border</span> + regional lymphadenopathy — Dx?',
+    hint: 'Ulceroglandular',
+    aMain: 'Tularemia (Francisella tularensis) — ulceroglandular form',
+    aDetail: '<strong>Exposure:</strong> ticks, biting flies, contact with infected rabbits/rodents, ingestion of contaminated water<br><strong>Forms:</strong><br>• <strong>Ulceroglandular (most common ~75%):</strong> tender papule at inoculation → necrotic ulcer with raised borders + tender regional LN<br>• Glandular (LN only)<br>• Oculoglandular (conjunctival, periauricular LN)<br>• Oropharyngeal<br>• Typhoidal (severe, no localizing signs)<br>• <strong>Pneumonic</strong> (inhalational — bioterrorism)<br><strong>Skin in 35% of cases:</strong> maculopapular, vesiculopapular, acneiform, urticarial; <strong>erythema nodosum or EM</strong> may also occur<br><strong>Diagnosis:</strong> serology (single titer ≥ 1:160 or fourfold rise), PCR; <strong>BSL-3</strong> — alert lab!<br><strong>Treatment:</strong> streptomycin or gentamicin; doxy/cipro alternatives<br><strong>CDC Class A bioterrorism agent</strong>',
+    keys: ['Rabbit/tick exposure', 'Painful ulcer', 'BSL-3 alert lab'] },
+
+  // ========== APPROACH & PEARLS ==========
+  { cat: 'other', catLabel: 'Approach', diff: 'Critical',
+    q: 'Patient with febrile illness + rash — <span class="em">history elements that change the differential dramatically</span>?',
+    hint: '10 categories from Harrison',
+    aMain: 'Harrison\'s 10-point history for fever + rash',
+    aDetail: '<strong>1. Immune status</strong> — neutropenia, HIV, transplant, asplenia → broadens differential dramatically (fungal, atypical)<br><strong>2. Medications past month</strong> — drug eruptions, DRESS, SJS, AGEP<br><strong>3. Specific travel</strong> — dengue, scrub typhus, malaria, rickettsial, VHF<br><strong>4. Immunization status</strong> — measles, rubella, varicella<br><strong>5. Pets / domestic animals</strong> — Bartonella (cats), psittacosis (birds), Capnocytophaga (dog bite)<br><strong>6. Animal bites</strong> — arthropod, rat-bite fever, anthrax<br><strong>7. Diet</strong> — typhoid, listeria, Vibrio<br><strong>8. Cardiac abnormalities/prosthetic</strong> — endocarditis<br><strong>9. Ill contacts</strong> — measles, varicella, COVID-19, viral exanthems<br><strong>10. Sexual exposures</strong> — secondary syphilis, primary HIV, disseminated gonococcemia<br><br><strong>Also document:</strong> site of rash onset, direction + rate of spread (peripheral→central vs reverse, cephalocaudal)',
+    keys: ['10 history points', 'Direction of spread'] },
+  { cat: 'other', catLabel: 'Approach', diff: 'Critical',
+    q: 'Acute febrile patient with petechial rash — <span class="em">when to give empiric antibiotics BEFORE workup</span>?',
+    hint: 'Don\'t wait if you suspect',
+    aMain: 'Always empiric Abx in suspected meningococcemia/sepsis',
+    aDetail: '<strong>Treat empirically (don\'t wait for confirmation):</strong><br><br><strong>Meningococcemia suspected:</strong><br>• Blood cultures × 2 if &lt; 45 min delay<br>• <strong>Ceftriaxone 2 g IV immediately</strong><br>• LP after Abx (no significant yield loss within 2 hours)<br>• Mortality increases ~10% per hour delay<br><br><strong>RMSF suspected (tick exposure + fever + rash, even partial):</strong><br>• <strong>Doxycycline immediately</strong> — even in children, even pregnant<br>• Don\'t wait for serology (often negative early)<br>• Delay &gt; 5 days from onset → much higher mortality<br><br><strong>Sepsis with any rash:</strong><br>• Broad-spectrum within 1 hour (Surviving Sepsis)<br>• Cover MSSA/MRSA + gram-negative + consider clindamycin (toxin)<br><br><strong>Echovirus 9</strong> can mimic meningococcemia — treat as bacterial until proven otherwise<br><br><strong>Pearl:</strong> petechial rash + fever + ill-appearing = treat as meningococcemia',
+    keys: ['Don\'t wait for confirm', 'Mortality climbs per hour'] },
+  { cat: 'other', catLabel: 'Pearls', diff: 'Foundation',
+    q: '<span class="em">Forchheimer spots</span> — what are they? How are they different from Koplik?',
+    hint: 'Palatal petechiae',
+    aMain: 'Palatal petechiae — nonspecific (NOT pathognomonic)',
+    aDetail: '<strong>Forchheimer spots:</strong> <strong>palatal petechiae</strong> (red spots on soft palate)<br><strong>Diseases (NONSPECIFIC):</strong><br>• Rubella<br>• Infectious mononucleosis (EBV)<br>• Scarlet fever<br>• Zika virus<br><br><strong>vs. Koplik spots (specific for measles):</strong><br>• Location: buccal mucosa (vs. soft palate)<br>• Color: bluish-white center with red halo<br>• Specificity: pathognomonic (Koplik) vs. nonspecific (Forchheimer)<br><br><strong>Clinical use:</strong> If you see palatal petechiae + fever + rash spreading from hairline → think rubella (especially with postauricular/suboccipital lymphadenopathy in adults)<br><strong>Don\'t over-call</strong> — minor palatal redness is common in URI',
+    keys: ['Palatal petechiae', 'Nonspecific', 'NOT Koplik'] },
+  { cat: 'other', catLabel: 'Pearls', diff: 'Foundation',
+    q: 'Patient with bacterial endocarditis — <span class="em">painful</span> nodules on fingertips vs. <span class="em">painless</span> macules on palms — which is which?',
+    hint: 'Mnemonic',
+    aMain: 'Osler = Ouch (painful); Janeway = Just there (painless)',
+    aDetail: '<strong>Osler nodes:</strong><br>• <strong>Painful, tender</strong> pink-purple nodules<br>• On <strong>finger/toe pads</strong><br>• <strong>Immune complex deposition</strong> (Type III HSR)<br>• Classic for <strong>subacute</strong> endocarditis (viridans strep)<br>• Lasts hours-days, may recur<br><br><strong>Janeway lesions:</strong><br>• <strong>Painless</strong> erythematous/hemorrhagic macules<br>• On <strong>palms/soles</strong><br>• <strong>Septic emboli</strong><br>• Classic for <strong>acute</strong> endocarditis (S. aureus)<br>• More persistent<br><br><strong>Memory tricks:</strong><br>• "<strong>O</strong>sler is <strong>O</strong>uch"<br>• "<strong>J</strong>aneway is <strong>J</strong>ust a mac" (just a macule, no pain)<br>• <strong>O</strong>sler on the <strong>O</strong>uter finger pad / <strong>J</strong>aneway on the palm<br><br>Both are minor Duke criteria',
+    keys: ['Osler = Ouch', 'Janeway = Just there', 'Duke minor'] }
+];
+
+let currentCategory = 'all';
+let currentDeck = [];
+let currentIndex = 0;
+let isRevealed = false;
+let stats = { known: 0, hard: 0, total: 0 };
+let hardCards = [];
+
+const $ = id => document.getElementById(id);
+const card = $('card');
+
+function initCounts() {
+  $('count-all').textContent = `(${cards.length})`;
+  ['framework', 'critical', 'central', 'peripheral', 'desq', 'vesicle', 'purpura', 'other'].forEach(cat => {
+    $('count-' + cat).textContent = `(${cards.filter(c => c.cat === cat).length})`;
+  });
+}
+
+function buildDeck(cat) {
+  const filtered = cat === 'all' ? cards : cards.filter(c => c.cat === cat);
+  return [...filtered].sort(() => Math.random() - 0.5);
+}
+
+function loadCard(idx) {
+  if (idx < 0 || idx >= currentDeck.length) return;
+  const c = currentDeck[idx];
+  $('questionText').innerHTML = c.q;
+  $('hintText').textContent = c.hint || '';
+  $('answerMain').innerHTML = c.aMain;
+  $('answerDetail').innerHTML = c.aDetail;
+  $('answerKeys').innerHTML = (c.keys || []).map(k => `<span class="answer-key">${k}</span>`).join('');
+  $('answerImage').innerHTML = c.img ? `<a href="${c.img.url}" target="_blank" rel="noopener noreferrer" class="image-link">${c.img.label}</a>` : '';
+  $('catTag').textContent = c.catLabel;
+  $('diffTag').textContent = c.diff;
+  $('currentNum').textContent = idx + 1;
+  $('totalNum').textContent = currentDeck.length;
+  $('progressFill').style.width = (idx / currentDeck.length * 100) + '%';
+  card.classList.remove('revealed');
+  isRevealed = false;
+  $('actionsInitial').style.display = 'flex';
+  $('actionsJudgment').classList.remove('visible');
+  $('btnPrev').disabled = idx === 0;
+}
+
+function revealAnswer() {
+  if (isRevealed) {
+    card.classList.remove('revealed');
+    isRevealed = false;
+    $('actionsInitial').style.display = 'flex';
+    $('actionsJudgment').classList.remove('visible');
+  } else {
+    card.classList.add('revealed');
+    isRevealed = true;
+    setTimeout(() => {
+      $('actionsInitial').style.display = 'none';
+      $('actionsJudgment').classList.add('visible');
+    }, 250);
+  }
+}
+
+function recordResult(result) {
+  if (result === 'known') stats.known++;
+  else { stats.hard++; hardCards.push(currentDeck[currentIndex]); }
+  stats.total++;
+  if (currentIndex < currentDeck.length - 1) {
+    currentIndex++;
+    loadCard(currentIndex);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else showCompletion();
+}
+
+function showCompletion() {
+  $('cardArea').style.display = 'none';
+  $('completion').classList.add('visible');
+  $('finalKnown').textContent = stats.known;
+  $('finalReview').textContent = stats.hard;
+  $('finalTotal').textContent = stats.total;
+  $('progressFill').style.width = '100%';
+  const pct = stats.total > 0 ? (stats.known / stats.total) : 0;
+  let msg = '';
+  if (pct >= 0.9) msg = 'Excellent — you have strong command of this material.';
+  else if (pct >= 0.7) msg = 'Solid performance. Review hard cards to consolidate gaps.';
+  else if (pct >= 0.5) msg = 'On the right track. Re-read Harrison Ch.19 sections you missed.';
+  else msg = 'This deck is dense — start with the beginner deck and pathophysiology, then return.';
+  $('completionMsg').textContent = msg;
+}
+
+function reset() {
+  currentIndex = 0;
+  stats = { known: 0, hard: 0, total: 0 };
+  hardCards = [];
+  currentDeck = buildDeck(currentCategory);
+  $('cardArea').style.display = 'block';
+  $('completion').classList.remove('visible');
+  loadCard(0);
+}
+
+function reviewHardCards() {
+  if (hardCards.length === 0) { reset(); return; }
+  currentDeck = [...hardCards].sort(() => Math.random() - 0.5);
+  currentIndex = 0;
+  stats = { known: 0, hard: 0, total: 0 };
+  hardCards = [];
+  $('cardArea').style.display = 'block';
+  $('completion').classList.remove('visible');
+  loadCard(0);
+}
+
+$('cardQuestion').addEventListener('click', () => { if (!isRevealed) revealAnswer(); });
+$('btnFlip').addEventListener('click', revealAnswer);
+$('btnPrev').addEventListener('click', () => { if (currentIndex > 0) { currentIndex--; loadCard(currentIndex); } });
+$('btnNext').addEventListener('click', () => { if (currentIndex < currentDeck.length - 1) { currentIndex++; loadCard(currentIndex); } });
+document.querySelectorAll('[data-result]').forEach(btn => {
+  btn.addEventListener('click', () => recordResult(btn.dataset.result));
+});
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    currentCategory = tab.dataset.cat;
+    reset();
+  });
+});
+$('btnRestart').addEventListener('click', reset);
+$('btnReviewHard').addEventListener('click', reviewHardCards);
+
+initCounts();
+currentDeck = buildDeck('all');
+loadCard(0);
+</script>
+
+</body>
+</html>
